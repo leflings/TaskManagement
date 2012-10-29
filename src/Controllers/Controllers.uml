@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_6OPz4BxUEeK2tLhGGzozIg" name="Controllers">
+    <eAnnotations xmi:id="_6di0IBxUEeK2tLhGGzozIg" source="http://www.yatta-solutions.com/umllab/codegen/codegenDirectory">
+      <details xmi:id="_6di0IRxUEeK2tLhGGzozIg" key="codegenDirectory" value="/ProjectManagement/src"/>
+    </eAnnotations>
+    <eAnnotations xmi:id="_6qd10BxUEeK2tLhGGzozIg" source="com.yattasolutions.codegen.RoundTripInformation">
+      <details xmi:id="_6qd10RxUEeK2tLhGGzozIg" key="AssociatedSourceCode" value="/ProjectManagement/src/Controllers/GroupController.java;3442165011/1;/ProjectManagement/src/Controllers/IBaseController.java;1798021940/1;/ProjectManagement/src/Controllers/MainController.java;785519445/1;/ProjectManagement/src/Controllers/ProjectController.java;3335934911/1;/ProjectManagement/src/Controllers/TaskController.java;3631114426/1;/ProjectManagement/src/Controllers/TimeEntryController.java;3730271196/1;/ProjectManagement/src/Controllers/UserController.java;3609198508/1;"/>
+    </eAnnotations>
+    <elementImport xmi:id="_6juUoBxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_6juUoRxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_6juUohxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_6juUoxxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_6juUpBxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_6ju7sBxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_6ju7sRxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_6ju7shxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_6ju7sxxUEeK2tLhGGzozIg">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_6jww4BxUEeK2tLhGGzozIg" name="Controllers">
+      <packagedElement xmi:type="uml:Class" xmi:id="_6kBPkBxUEeK2tLhGGzozIg" clientDependency="_6kyEkBxUEeK2tLhGGzozIg" name="GroupController">
+        <interfaceRealization xmi:id="_6kyEkBxUEeK2tLhGGzozIg" client="_6kBPkBxUEeK2tLhGGzozIg" supplier="_6kE58BxUEeK2tLhGGzozIg" contract="_6kE58BxUEeK2tLhGGzozIg"/>
+        <ownedOperation xmi:id="_6kB2oBxUEeK2tLhGGzozIg" name="createGroup"/>
+        <ownedOperation xmi:id="_6kCdsBxUEeK2tLhGGzozIg" name="editGroup"/>
+        <ownedOperation xmi:id="_6kCdsRxUEeK2tLhGGzozIg" name="addMember"/>
+        <ownedOperation xmi:id="_6kCdshxUEeK2tLhGGzozIg" name="removeMember"/>
+        <ownedOperation xmi:id="_6kDEwBxUEeK2tLhGGzozIg" name="createProject"/>
+        <ownedOperation xmi:id="_6kDEwRxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_6kE58BxUEeK2tLhGGzozIg" name="IBaseController">
+        <ownedOperation xmi:id="_6kFhABxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6kGIEBxUEeK2tLhGGzozIg" clientDependency="_6kyroBxUEeK2tLhGGzozIg" name="MainController">
+        <interfaceRealization xmi:id="_6kyroBxUEeK2tLhGGzozIg" client="_6kGIEBxUEeK2tLhGGzozIg" supplier="_6kE58BxUEeK2tLhGGzozIg" contract="_6kE58BxUEeK2tLhGGzozIg"/>
+        <ownedOperation xmi:id="_6kGvIBxUEeK2tLhGGzozIg" name="logIn"/>
+        <ownedOperation xmi:id="_6kGvIRxUEeK2tLhGGzozIg" name="logOut"/>
+        <ownedOperation xmi:id="_6kHWMBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6kJLYBxUEeK2tLhGGzozIg" clientDependency="_6kyroRxUEeK2tLhGGzozIg" name="ProjectController">
+        <interfaceRealization xmi:id="_6kyroRxUEeK2tLhGGzozIg" client="_6kJLYBxUEeK2tLhGGzozIg" supplier="_6kE58BxUEeK2tLhGGzozIg" contract="_6kE58BxUEeK2tLhGGzozIg"/>
+        <ownedOperation xmi:id="_6kRHMBxUEeK2tLhGGzozIg" name="createProject"/>
+        <ownedOperation xmi:id="_6kRHMRxUEeK2tLhGGzozIg" name="editProject"/>
+        <ownedOperation xmi:id="_6kRuQBxUEeK2tLhGGzozIg" name="addMember"/>
+        <ownedOperation xmi:id="_6kRuQRxUEeK2tLhGGzozIg" name="removeMember"/>
+        <ownedOperation xmi:id="_6kRuQhxUEeK2tLhGGzozIg" name="assignToGroup"/>
+        <ownedOperation xmi:id="_6kSVUBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6kUKgBxUEeK2tLhGGzozIg" clientDependency="_6kzSsBxUEeK2tLhGGzozIg" name="TaskController">
+        <interfaceRealization xmi:id="_6kzSsBxUEeK2tLhGGzozIg" client="_6kUKgBxUEeK2tLhGGzozIg" supplier="_6kE58BxUEeK2tLhGGzozIg" contract="_6kE58BxUEeK2tLhGGzozIg"/>
+        <ownedOperation xmi:id="_6kUxkBxUEeK2tLhGGzozIg" name="createTask"/>
+        <ownedOperation xmi:id="_6kVYoBxUEeK2tLhGGzozIg" name="editTask"/>
+        <ownedOperation xmi:id="_6kVYoRxUEeK2tLhGGzozIg" name="addCollaborator"/>
+        <ownedOperation xmi:id="_6kVYohxUEeK2tLhGGzozIg" name="removeCollaborator"/>
+        <ownedOperation xmi:id="_6kV_sBxUEeK2tLhGGzozIg" name="assignToGroup"/>
+        <ownedOperation xmi:id="_6kV_sRxUEeK2tLhGGzozIg" name="assignToProject"/>
+        <ownedOperation xmi:id="_6kV_shxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6kX04BxUEeK2tLhGGzozIg" clientDependency="_6kz5wBxUEeK2tLhGGzozIg" name="TimeEntryController">
+        <interfaceRealization xmi:id="_6kz5wBxUEeK2tLhGGzozIg" client="_6kX04BxUEeK2tLhGGzozIg" supplier="_6kE58BxUEeK2tLhGGzozIg" contract="_6kE58BxUEeK2tLhGGzozIg"/>
+        <ownedOperation xmi:id="_6kZDABxUEeK2tLhGGzozIg" name="createTimeEntry"/>
+        <ownedOperation xmi:id="_6kZDARxUEeK2tLhGGzozIg" name="editTimeEntry"/>
+        <ownedOperation xmi:id="_6kZDAhxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_6ka4MBxUEeK2tLhGGzozIg" clientDependency="_6k0g0BxUEeK2tLhGGzozIg" name="UserController">
+        <interfaceRealization xmi:id="_6k0g0BxUEeK2tLhGGzozIg" client="_6ka4MBxUEeK2tLhGGzozIg" supplier="_6kE58BxUEeK2tLhGGzozIg" contract="_6kE58BxUEeK2tLhGGzozIg"/>
+        <ownedOperation xmi:id="_6kbfQBxUEeK2tLhGGzozIg" name="createUser"/>
+        <ownedOperation xmi:id="_6kcGUBxUEeK2tLhGGzozIg" name="editUser"/>
+        <ownedOperation xmi:id="_6kcGURxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_6djbMBxUEeK2tLhGGzozIg">
+      <eAnnotations xmi:id="_6djbMRxUEeK2tLhGGzozIg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_6dkCQBxUEeK2tLhGGzozIg" base_Package="_6OPz4BxUEeK2tLhGGzozIg">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6kDr0BxUEeK2tLhGGzozIg" base_Element="_6kDEwRxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6kHWMRxUEeK2tLhGGzozIg" base_Element="_6kHWMBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6kSVURxUEeK2tLhGGzozIg" base_Element="_6kSVUBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6kWmwBxUEeK2tLhGGzozIg" base_Element="_6kV_shxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6kZqEBxUEeK2tLhGGzozIg" base_Element="_6kZDAhxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_6kctYBxUEeK2tLhGGzozIg" base_Element="_6kcGURxUEeK2tLhGGzozIg"/>
+</xmi:XMI>

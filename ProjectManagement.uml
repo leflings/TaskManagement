@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20110701" xmlns:xmi="http://www.omg.org/spec/XMI/20110701" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:UMLLabProfile="http:///schemas/UMLLabProfile/NS/0" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http:///schemas/UMLLabProfile/NS/0 pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile">
+  <uml:Model xmi:id="_M8cjMBu3EeKNKpdcQUeHRQ" name="ProjectManagement">
+    <eAnnotations xmi:id="_NgUsUBu3EeKNKpdcQUeHRQ" source="http://www.yatta-solutions.com/umllab/codegen/codegenDirectory">
+      <details xmi:id="_NgUsURu3EeKNKpdcQUeHRQ" key="codegenDirectory" value="/ProjectManagement/src"/>
+    </eAnnotations>
+    <eAnnotations xmi:id="_Ng6iMBu3EeKNKpdcQUeHRQ" source="http://www.yatta-solutions.com/umllab/codegen/observedFolders">
+      <details xmi:id="_Ng6iMRu3EeKNKpdcQUeHRQ" key="observedFolders" value="/ProjectManagement/src"/>
+    </eAnnotations>
+    <eAnnotations xmi:id="_Nv1AIBw0EeKzW5Xm70qbjA" source="com.yattasolutions.codegen.RoundTripInformation">
+      <details xmi:id="_Nv1AIRw0EeKzW5Xm70qbjA" key="AssociatedSourceCode" value="/ProjectManagement/src/DataTransferObjects/User.java;1101393730/1;/ProjectManagement/src/DataTransferObjects/Group.java;2021778966/1;/ProjectManagement/src/DataTransferObjects/Project.java;2431154223/1;/ProjectManagement/src/DataTransferObjects/Task.java;2418171755/1;/ProjectManagement/src/DataTransferObjects/TimeEntry.java;3000691564/1;/ProjectManagement/src/DataAccessObjects/TaskDAO.java;3304940379/1;/ProjectManagement/src/DataAccessObjects/UserDAO.java;2198951867/1;/ProjectManagement/src/DataAccessObjects/GroupDAO.java;508203116/1;/ProjectManagement/src/DataAccessObjects/ProjectDAO.java;4108923999/1;/ProjectManagement/src/DataAccessObjects/TimeEntryDAO.java;2321753725/1;/ProjectManagement/src/Views/SelectUser.java;187541125/1;/ProjectManagement/src/Views/SelectTask.java;35618359/1;/ProjectManagement/src/Views/SelectGroup.java;1850186618/1;/ProjectManagement/src/Views/SelectProject.java;2627553913/1;/ProjectManagement/src/Views/SelectTimeEntry.java;2403476390/1;/ProjectManagement/src/Views/EditUser.java;693613966/1;/ProjectManagement/src/Views/EditTask.java;543518012/1;/ProjectManagement/src/Views/EditGroup.java;4189534433/1;/ProjectManagement/src/Views/EditProject.java;1106738186/1;/ProjectManagement/src/Views/EditTimeEntry.java;1156202848/1;/ProjectManagement/src/Controllers/MainController.java;997949311/1;/ProjectManagement/src/Controllers/UserController.java;1300701207/1;/ProjectManagement/src/Controllers/TaskController.java;374044725/1;/ProjectManagement/src/Controllers/ProjectController.java;1837296676/1;/ProjectManagement/src/Controllers/GroupController.java;2256932255/1;/ProjectManagement/src/Controllers/TimeEntryController.java;31514691/1;/ProjectManagement/src/Controllers/IBaseController.java;1798021940/1;"/>
+    </eAnnotations>
+    <elementImport xmi:id="_SpkzMBu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+    </elementImport>
+    <elementImport xmi:id="_SplaQBu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#byte"/>
+    </elementImport>
+    <elementImport xmi:id="_SpmBUBu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#char"/>
+    </elementImport>
+    <elementImport xmi:id="_SpmBURu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#double"/>
+    </elementImport>
+    <elementImport xmi:id="_SpmBUhu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#float"/>
+    </elementImport>
+    <elementImport xmi:id="_SpmBUxu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+    </elementImport>
+    <elementImport xmi:id="_SpmoYBu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+    </elementImport>
+    <elementImport xmi:id="_SpmoYRu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#short"/>
+    </elementImport>
+    <elementImport xmi:id="_Spn2gBu5EeKNKpdcQUeHRQ">
+      <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </elementImport>
+    <packagedElement xmi:type="uml:Package" xmi:id="_3Fmg0Bu4EeKNKpdcQUeHRQ" name="DataTransferObjects">
+      <packagedElement xmi:type="uml:Class" xmi:id="_naIGcBu4EeKNKpdcQUeHRQ" name="User">
+        <ownedAttribute xmi:id="_g8e4IBu5EeKNKpdcQUeHRQ" name="name">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_kEACsBu5EeKNKpdcQUeHRQ" name="userName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_mvMdoBu5EeKNKpdcQUeHRQ" name="userId">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_oV9nIBu5EeKNKpdcQUeHRQ" name="email">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_hjlfsxxOEeK2tLhGGzozIg" name="groups" type="_t-YoMBu5EeKNKpdcQUeHRQ" association="_hjk4oBxOEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hjmGwBxOEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hjmGwRxOEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_nxMcARxPEeK2tLhGGzozIg" name="ownedProjects" type="_zWKIsBu6EeKNKpdcQUeHRQ" isOrdered="true" isReadOnly="true" association="_nxMcABxPEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nxMcAhxPEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nxMcAxxPEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xsEUQRxQEeK2tLhGGzozIg" name="projects" type="_zWKIsBu6EeKNKpdcQUeHRQ" isOrdered="true" association="_xsDtMBxQEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xsEUQhxQEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xsE7UBxQEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_-mgxcBxQEeK2tLhGGzozIg" name="ownedTasks" type="_KZgIgBu7EeKNKpdcQUeHRQ" isOrdered="true" association="_-mgKYBxQEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgxcRxQEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgxchxQEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsksARxUEeK2tLhGGzozIg" name="tasks" type="_KZgIgBu7EeKNKpdcQUeHRQ" isOrdered="true" association="_fslTEhxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fslTEBxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fslTERxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_t-YoMBu5EeKNKpdcQUeHRQ" name="Group">
+        <ownedAttribute xmi:id="_wk8awBu5EeKNKpdcQUeHRQ" name="groupId">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xmQGwBu5EeKNKpdcQUeHRQ" name="name">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_ymCIwBu5EeKNKpdcQUeHRQ" name="description">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_f32zIRxNEeK2tLhGGzozIg" name="owner" type="_naIGcBu4EeKNKpdcQUeHRQ" association="_fsgakBxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_f32zIhxNEeK2tLhGGzozIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_f32zIxxNEeK2tLhGGzozIg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_hjlfsBxOEeK2tLhGGzozIg" name="members" type="_naIGcBu4EeKNKpdcQUeHRQ" association="_hjk4oBxOEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_hjlfsRxOEeK2tLhGGzozIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_hjlfshxOEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsNfoBxUEeK2tLhGGzozIg" name="projects" type="_zWKIsBu6EeKNKpdcQUeHRQ" isOrdered="true" association="_fsOtwRxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsOGsBxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsOGsRxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsPU0BxUEeK2tLhGGzozIg" name="tasks" type="_KZgIgBu7EeKNKpdcQUeHRQ" isOrdered="true" association="_fsP74RxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsPU0RxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsPU0hxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_zWKIsBu6EeKNKpdcQUeHRQ" name="Project">
+        <ownedAttribute xmi:id="_4tW24Bu6EeKNKpdcQUeHRQ" name="projectId">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_5lW14Bu6EeKNKpdcQUeHRQ" name="projectName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_7YsbwBu6EeKNKpdcQUeHRQ" name="description">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_nxNDEBxPEeK2tLhGGzozIg" name="owner" type="_naIGcBu4EeKNKpdcQUeHRQ" association="_nxMcABxPEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_nxNDERxPEeK2tLhGGzozIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_nxNDEhxPEeK2tLhGGzozIg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_xsDtMRxQEeK2tLhGGzozIg" name="members" type="_naIGcBu4EeKNKpdcQUeHRQ" isOrdered="true" association="_xsDtMBxQEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xsDtMhxQEeK2tLhGGzozIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xsEUQBxQEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsOGshxUEeK2tLhGGzozIg" name="group" type="_t-YoMBu5EeKNKpdcQUeHRQ" association="_fsOtwRxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsOtwBxUEeK2tLhGGzozIg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsiPwBxUEeK2tLhGGzozIg" name="tasks" type="_KZgIgBu7EeKNKpdcQUeHRQ" isOrdered="true" association="_fsjd4RxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsiPwRxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsi20BxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_KZgIgBu7EeKNKpdcQUeHRQ" name="Task">
+        <ownedAttribute xmi:id="_RvQOEBu7EeKNKpdcQUeHRQ" name="taskId">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_UVQnABu7EeKNKpdcQUeHRQ" name="taskName">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_-mgxcxxQEeK2tLhGGzozIg" name="owner" type="_naIGcBu4EeKNKpdcQUeHRQ" isOrdered="true" association="_-mgKYBxQEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mhYgBxQEeK2tLhGGzozIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mhYgRxQEeK2tLhGGzozIg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsPU0xxUEeK2tLhGGzozIg" name="group" type="_t-YoMBu5EeKNKpdcQUeHRQ" association="_fsP74RxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsP74BxUEeK2tLhGGzozIg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsi20RxUEeK2tLhGGzozIg" name="project" type="_zWKIsBu6EeKNKpdcQUeHRQ" association="_fsjd4RxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsjd4BxUEeK2tLhGGzozIg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fskE8BxUEeK2tLhGGzozIg" name="collaborators" type="_naIGcBu4EeKNKpdcQUeHRQ" isOrdered="true" association="_fslTEhxUEeK2tLhGGzozIg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsksABxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsoWYBxUEeK2tLhGGzozIg" name="parentTask" type="_KZgIgBu7EeKNKpdcQUeHRQ" association="_fspkgRxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fso9cBxUEeK2tLhGGzozIg"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fso9cRxUEeK2tLhGGzozIg" name="childTasks" type="_KZgIgBu7EeKNKpdcQUeHRQ" isOrdered="true" association="_fspkgRxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fso9chxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fspkgBxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsqyoBxUEeK2tLhGGzozIg" name="timeEntry" type="_f-rhMBu7EeKNKpdcQUeHRQ" isOrdered="true" association="_fsrZsRxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fsqyoRxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsqyohxUEeK2tLhGGzozIg" value="*"/>
+        </ownedAttribute>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_f-rhMBu7EeKNKpdcQUeHRQ" name="TimeEntry">
+        <ownedAttribute xmi:id="_y1nK8Bu7EeKNKpdcQUeHRQ" name="duration">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_7gsEsBu7EeKNKpdcQUeHRQ" name="date">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_M7EHEhxPEeK2tLhGGzozIg" name="user" type="_naIGcBu4EeKNKpdcQUeHRQ" association="_fvGbkBxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_M7EuIBxPEeK2tLhGGzozIg" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_M7EuIRxPEeK2tLhGGzozIg" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_fsrZsBxUEeK2tLhGGzozIg" name="task" type="_KZgIgBu7EeKNKpdcQUeHRQ" association="_fsrZsRxUEeK2tLhGGzozIg"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_hjk4oBxOEeK2tLhGGzozIg" name="" memberEnd="_hjlfsBxOEeK2tLhGGzozIg _hjlfsxxOEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_nxMcABxPEeK2tLhGGzozIg" name="" memberEnd="_nxMcARxPEeK2tLhGGzozIg _nxNDEBxPEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_xsDtMBxQEeK2tLhGGzozIg" name="" memberEnd="_xsDtMRxQEeK2tLhGGzozIg _xsEUQRxQEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_-mgKYBxQEeK2tLhGGzozIg" name="" memberEnd="_-mgxcBxQEeK2tLhGGzozIg _-mgxcxxQEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fsOtwRxUEeK2tLhGGzozIg" name="" memberEnd="_fsOGshxUEeK2tLhGGzozIg _fsNfoBxUEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fsP74RxUEeK2tLhGGzozIg" name="" memberEnd="_fsPU0xxUEeK2tLhGGzozIg _fsPU0BxUEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fsgakBxUEeK2tLhGGzozIg" name="" memberEnd="_fsQi8BxUEeK2tLhGGzozIg _f32zIRxNEeK2tLhGGzozIg">
+        <ownedEnd xmi:id="_fsQi8BxUEeK2tLhGGzozIg" name="group" type="_t-YoMBu5EeKNKpdcQUeHRQ" association="_fsgakBxUEeK2tLhGGzozIg">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fsQi8RxUEeK2tLhGGzozIg" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fsjd4RxUEeK2tLhGGzozIg" name="" memberEnd="_fsi20RxUEeK2tLhGGzozIg _fsiPwBxUEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fslTEhxUEeK2tLhGGzozIg" name="" memberEnd="_fskE8BxUEeK2tLhGGzozIg _fsksARxUEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fspkgRxUEeK2tLhGGzozIg" name="" memberEnd="_fso9cRxUEeK2tLhGGzozIg _fsoWYBxUEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fsrZsRxUEeK2tLhGGzozIg" name="" memberEnd="_fsqyoBxUEeK2tLhGGzozIg _fsrZsBxUEeK2tLhGGzozIg"/>
+      <packagedElement xmi:type="uml:Association" xmi:id="_fvGbkBxUEeK2tLhGGzozIg" name="" memberEnd="_fstO4BxUEeK2tLhGGzozIg _M7EHEhxPEeK2tLhGGzozIg">
+        <ownedEnd xmi:id="_fstO4BxUEeK2tLhGGzozIg" name="timeEntry" type="_f-rhMBu7EeKNKpdcQUeHRQ" association="_fvGbkBxUEeK2tLhGGzozIg">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_fstO4RxUEeK2tLhGGzozIg"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_fstO4hxUEeK2tLhGGzozIg" value="*"/>
+        </ownedEnd>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_7TNM4Bu8EeKNKpdcQUeHRQ" name="DataAccessObjects">
+      <packagedElement xmi:type="uml:Class" xmi:id="_BrbTMBu9EeKNKpdcQUeHRQ" name="TaskDAO"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_EwRkQBu9EeKNKpdcQUeHRQ" name="UserDAO"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_HmlqEBu9EeKNKpdcQUeHRQ" name="GroupDAO"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_J3G7MBu9EeKNKpdcQUeHRQ" name="ProjectDAO"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_UVciUBu9EeKNKpdcQUeHRQ" name="TimeEntryDAO"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_5xd34Bu9EeKNKpdcQUeHRQ" name="Views">
+      <packagedElement xmi:type="uml:Class" xmi:id="_6Cp5EBu-EeKNKpdcQUeHRQ" name="SelectUser"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_9VDd8Bu-EeKNKpdcQUeHRQ" name="SelectTask"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CbaTwBu_EeKNKpdcQUeHRQ" name="SelectGroup"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Esio4Bu_EeKNKpdcQUeHRQ" name="SelectProject">
+        <eAnnotations xmi:id="_yWPxkBu_EeKNKpdcQUeHRQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_yWQYoBu_EeKNKpdcQUeHRQ" key="SelectProject"/>
+        </eAnnotations>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_U4c20Bu_EeKNKpdcQUeHRQ" name="SelectTimeEntry"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BGD08BvAEeKNKpdcQUeHRQ" name="EditUser"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Bhho8BvAEeKNKpdcQUeHRQ" name="EditTask"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CCH0kBvAEeKNKpdcQUeHRQ" name="EditGroup"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ChLIEBvAEeKNKpdcQUeHRQ" name="EditProject"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_DIEwABvAEeKNKpdcQUeHRQ" name="EditTimeEntry"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_4fIfIBwyEeKzW5Xm70qbjA" name="Controllers">
+      <packagedElement xmi:type="uml:Class" xmi:id="__UwTIBwyEeKzW5Xm70qbjA" clientDependency="_BOjdoBxEEeKzW5Xm70qbjA" name="MainController">
+        <interfaceRealization xmi:id="_BOjdoBxEEeKzW5Xm70qbjA" client="__UwTIBwyEeKzW5Xm70qbjA" supplier="_Wx0nQBxDEeKzW5Xm70qbjA" contract="_Wx0nQBxDEeKzW5Xm70qbjA"/>
+        <ownedOperation xmi:id="_ewu0ABxCEeKzW5Xm70qbjA" name="logIn"/>
+        <ownedOperation xmi:id="_ktfGUBxCEeKzW5Xm70qbjA" name="logOut"/>
+        <ownedOperation xmi:id="_t2ZtcBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Jy67IBwzEeKzW5Xm70qbjA" clientDependency="_CZAekBxEEeKzW5Xm70qbjA" name="UserController">
+        <interfaceRealization xmi:id="_CZAekBxEEeKzW5Xm70qbjA" client="_Jy67IBwzEeKzW5Xm70qbjA" supplier="_Wx0nQBxDEeKzW5Xm70qbjA" contract="_Wx0nQBxDEeKzW5Xm70qbjA"/>
+        <ownedOperation xmi:id="_Tiug8Bw2EeKzW5Xm70qbjA" name="createUser"/>
+        <ownedOperation xmi:id="_WcIXABw2EeKzW5Xm70qbjA" name="editUser"/>
+        <ownedOperation xmi:id="_xM69UBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ao3kkBwzEeKzW5Xm70qbjA" clientDependency="_D9UJ8BxEEeKzW5Xm70qbjA" name="TaskController">
+        <interfaceRealization xmi:id="_D9UJ8BxEEeKzW5Xm70qbjA" client="_ao3kkBwzEeKzW5Xm70qbjA" supplier="_Wx0nQBxDEeKzW5Xm70qbjA" contract="_Wx0nQBxDEeKzW5Xm70qbjA"/>
+        <ownedOperation xmi:id="_0vLvsBw_EeKzW5Xm70qbjA" name="createTask"/>
+        <ownedOperation xmi:id="_1RhnwBw_EeKzW5Xm70qbjA" name="editTask"/>
+        <ownedOperation xmi:id="_7HECUBxAEeKzW5Xm70qbjA" name="addCollaborator"/>
+        <ownedOperation xmi:id="_VMQCgBxBEeKzW5Xm70qbjA" name="removeCollaborator"/>
+        <ownedOperation xmi:id="_UsGGUBxCEeKzW5Xm70qbjA" name="assignToGroup"/>
+        <ownedOperation xmi:id="_VvuGgBxCEeKzW5Xm70qbjA" name="assignToProject"/>
+        <ownedOperation xmi:id="_vLppIBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_dM1WIBwzEeKzW5Xm70qbjA" clientDependency="_E5LVQBxEEeKzW5Xm70qbjA" name="ProjectController">
+        <interfaceRealization xmi:id="_E5LVQBxEEeKzW5Xm70qbjA" client="_dM1WIBwzEeKzW5Xm70qbjA" supplier="_Wx0nQBxDEeKzW5Xm70qbjA" contract="_Wx0nQBxDEeKzW5Xm70qbjA"/>
+        <ownedOperation xmi:id="_ksRFsBw_EeKzW5Xm70qbjA" name="createProject"/>
+        <ownedOperation xmi:id="_niwKoBw_EeKzW5Xm70qbjA" name="editProject"/>
+        <ownedOperation xmi:id="_o2g4kBw_EeKzW5Xm70qbjA" name="addMember"/>
+        <ownedOperation xmi:id="_p9sjEBw_EeKzW5Xm70qbjA" name="removeMember"/>
+        <ownedOperation xmi:id="_LuF7cBxAEeKzW5Xm70qbjA" name="assignToGroup"/>
+        <ownedOperation xmi:id="_tnEQ8BxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_er7KUBwzEeKzW5Xm70qbjA" clientDependency="_GjeT4BxEEeKzW5Xm70qbjA" name="GroupController">
+        <interfaceRealization xmi:id="_GjeT4BxEEeKzW5Xm70qbjA" client="_er7KUBwzEeKzW5Xm70qbjA" supplier="_Wx0nQBxDEeKzW5Xm70qbjA" contract="_Wx0nQBxDEeKzW5Xm70qbjA"/>
+        <ownedOperation xmi:id="_f8jkYBw2EeKzW5Xm70qbjA" name="createGroup"/>
+        <ownedOperation xmi:id="_gvBjIBw2EeKzW5Xm70qbjA" name="editGroup"/>
+        <ownedOperation xmi:id="_lScrABw2EeKzW5Xm70qbjA" name="addMember"/>
+        <ownedOperation xmi:id="_o93z4Bw2EeKzW5Xm70qbjA" name="removeMember"/>
+        <ownedOperation xmi:id="_NzPZIBw3EeKzW5Xm70qbjA" name="createProject"/>
+        <ownedOperation xmi:id="_rbETcBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Ya_s4Bw1EeKzW5Xm70qbjA" clientDependency="_wgkA4BxEEeKzW5Xm70qbjA" name="TimeEntryController">
+        <interfaceRealization xmi:id="_wgkA4BxEEeKzW5Xm70qbjA" client="_Ya_s4Bw1EeKzW5Xm70qbjA" supplier="_Wx0nQBxDEeKzW5Xm70qbjA" contract="_Wx0nQBxDEeKzW5Xm70qbjA"/>
+        <ownedOperation xmi:id="_-8M5IBxGEeK2tLhGGzozIg" name="createTimeEntry"/>
+        <ownedOperation xmi:id="_MSnj0BxLEeK2tLhGGzozIg" name="editTimeEntry"/>
+        <ownedOperation xmi:id="_v7pisBxUEeK2tLhGGzozIg" name="presentMenu"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Interface" xmi:id="_Wx0nQBxDEeKzW5Xm70qbjA" name="IBaseController">
+        <ownedOperation xmi:id="_bpI7gBxDEeKzW5Xm70qbjA" name="presentMenu"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_fqzKYBxUEeK2tLhGGzozIg" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_fqzKYRxUEeK2tLhGGzozIg" name="util">
+        <packagedElement xmi:type="uml:Class" xmi:id="_fsDHkBxUEeK2tLhGGzozIg" name="ArrayList"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_fsDuoRxUEeK2tLhGGzozIg" name="List"/>
+        <packagedElement xmi:type="uml:Interface" xmi:id="_fsEVsRxUEeK2tLhGGzozIg" name="Set"/>
+        <packagedElement xmi:type="uml:Class" xmi:id="_fsFj0RxUEeK2tLhGGzozIg" name="HashSet"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_NgqqkBu3EeKNKpdcQUeHRQ">
+      <eAnnotations xmi:id="_NgsfwBu3EeKNKpdcQUeHRQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile-Annotation_2-UMLLabProfile"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UMLLAB_PROFILES/UMLLab.profile.uml#UMLLabProfile"/>
+    </profileApplication>
+  </uml:Model>
+  <UMLLabProfile:TargetLanguage xmi:id="_NgzNcBu3EeKNKpdcQUeHRQ" base_Package="_M8cjMBu3EeKNKpdcQUeHRQ">
+    <languageName>java</languageName>
+  </UMLLabProfile:TargetLanguage>
+  <UMLLabProfile:UnresolvedElement xmi:id="_TajuwBu6EeKNKpdcQUeHRQ"/>
+  <UMLLabProfile:UnresolvedElement xmi:id="_VRrocBu6EeKNKpdcQUeHRQ"/>
+  <UMLLabProfile:UnresolvedElement xmi:id="_Wx2asBu6EeKNKpdcQUeHRQ"/>
+  <UMLLabProfile:UnresolvedElement xmi:id="_qpw48Bu9EeKNKpdcQUeHRQ"/>
+  <UMLLabProfile:UnresolvedElement xmi:id="_yBEqABxHEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Reference xmi:id="_fsDuoBxUEeK2tLhGGzozIg" base_Element="_fsDHkBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Reference xmi:id="_fsEVsBxUEeK2tLhGGzozIg" base_Element="_fsDuoRxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Reference xmi:id="_fsFj0BxUEeK2tLhGGzozIg" base_Element="_fsEVsRxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Reference xmi:id="_fsGK4BxUEeK2tLhGGzozIg" base_Element="_fsFj0RxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Annotations xmi:id="_rbE6gBxUEeK2tLhGGzozIg" base_Element="_rbETcBxUEeK2tLhGGzozIg">
+    <annotations xmi:id="_rbE6gRxUEeK2tLhGGzozIg" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_rbGIoBxUEeK2tLhGGzozIg" base_Element="_rbETcBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Annotations xmi:id="_tnE4ABxUEeK2tLhGGzozIg" base_Element="_tnEQ8BxUEeK2tLhGGzozIg">
+    <annotations xmi:id="_tnE4ARxUEeK2tLhGGzozIg" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_tnGtMBxUEeK2tLhGGzozIg" base_Element="_tnEQ8BxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Annotations xmi:id="_t2aUgBxUEeK2tLhGGzozIg" base_Element="_t2ZtcBxUEeK2tLhGGzozIg">
+    <annotations xmi:id="_t2aUgRxUEeK2tLhGGzozIg" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_t2bioBxUEeK2tLhGGzozIg" base_Element="_t2ZtcBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Annotations xmi:id="_vLppIRxUEeK2tLhGGzozIg" base_Element="_vLppIBxUEeK2tLhGGzozIg">
+    <annotations xmi:id="_vLppIhxUEeK2tLhGGzozIg" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_vLq3QBxUEeK2tLhGGzozIg" base_Element="_vLppIBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Annotations xmi:id="_v7qJwBxUEeK2tLhGGzozIg" base_Element="_v7pisBxUEeK2tLhGGzozIg">
+    <annotations xmi:id="_v7qJwRxUEeK2tLhGGzozIg" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_v7rX4BxUEeK2tLhGGzozIg" base_Element="_v7pisBxUEeK2tLhGGzozIg"/>
+  <UMLLabProfile:Annotations xmi:id="_xM69URxUEeK2tLhGGzozIg" base_Element="_xM69UBxUEeK2tLhGGzozIg">
+    <annotations xmi:id="_xM7kYBxUEeK2tLhGGzozIg" name="Override"/>
+  </UMLLabProfile:Annotations>
+  <UMLLabProfile:LegacyStyledElement xmi:id="_xM8LcBxUEeK2tLhGGzozIg" base_Element="_xM69UBxUEeK2tLhGGzozIg"/>
+</xmi:XMI>
