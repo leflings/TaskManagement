@@ -1,5 +1,12 @@
 package Views;
 
 
-public class EditProject {
+public class EditProject implements BaseView {
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

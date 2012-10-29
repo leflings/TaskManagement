@@ -1,5 +1,12 @@
 package Views;
 
 
-public class SelectUser {
+public class SelectUser implements BaseView {
+
+	@Override
+	public void print() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }
