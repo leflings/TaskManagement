@@ -21,7 +21,7 @@ public class SelectProject implements BaseView{
 		for (int i = 0 ; i < projects.size(); i++) {
 			SelectUtilities.printSelectLine(i+1,projects.get(i).getProjectName() + " (id: " + projects.get(i).getProjectId() + ")");		
 		}
-		choice = SelectUtilities.selectChoice();
+		choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 		
 	}
 	

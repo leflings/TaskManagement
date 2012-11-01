@@ -22,7 +22,7 @@ public class SelectUser implements BaseView {
 		for (int i = 0 ; i < users.size(); i++) {
 			SelectUtilities.printSelectLine(i+1,users.get(i).getUserName() + " (id: " + users.get(i).getUserId() + ")");		
 		}
-		choice = SelectUtilities.selectChoice();
+		choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 		
 	}
 
