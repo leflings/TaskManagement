@@ -20,7 +20,7 @@ public class SelectUser implements BaseView {
 	public void print() {
 		
 		for (int i = 0 ; i < users.size(); i++) {
-			SelectUtilities.printSelectLine(i+1,users.get(i).getUserName() + " (id: " + users.get(i).getUserId() + ")");		
+			SelectUtilities.printSelectLine(i+1,users.get(i).getName() + " (id: " + users.get(i).getUserId() + ")");		
 		}
 		choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 		
