@@ -1,60 +1,43 @@
 package main.dto;
 
+import java.util.Date;
 
 public class TimeEntry {
-	/**
-	 * <pre>
-	 *           0..*     1..1
-	 * TimeEntry ------------------------- Task
-	 *           timeEntry        &gt;       task
-	 * </pre>
-	 */
 	private Task task;
-
-
-	public void setTask(Task value) {
-		this.task = value;
-	}
+	private User user;
+	private int duration;
+	private Date date;
 
 	public Task getTask() {
-		return this.task;
+		return task;
 	}
 
-	private int duration;
-
-	public void setDuration(int value) {
-		this.duration = value;
-	}
-
-	public int getDuration() {
-		return this.duration;
-	}
-
-	private String date;
-
-	public void setDate(String value) {
-		this.date = value;
-	}
-
-	public String getDate() {
-		return this.date;
-	}
-
-	/**
-	 * <pre>
-	 *           0..*     1..1
-	 * TimeEntry ------------------------> User
-	 *           timeEntry        &gt;       user
-	 * </pre>
-	 */
-	private User user;
-
-	public void setUser(User value) {
-		this.user = value;
+	public void setTask(Task task) {
+		this.task = task;
 	}
 
 	public User getUser() {
-		return this.user;
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getDuration() {
+		return duration;
+	}
+
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 }

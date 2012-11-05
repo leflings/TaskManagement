@@ -1,129 +1,60 @@
 package main.dto;
 
-import java.util.Set;
-import java.util.HashSet;
 import java.util.List;
-import java.util.ArrayList;
 
 public class User {
-	/**
-	 * <pre>
-	 *           1..*     0..*
-	 * User ------------------------- Task
-	 *           collaborators        &gt;       tasks
-	 * </pre>
-	 */
-	private List<Task> tasks;
 
-	public List<Task> getTasks() {
-		if (this.tasks == null) {
-			this.tasks = new ArrayList<Task>();
-		}
-		return this.tasks;
+	private int userId;
+	private String username;
+	private String name;
+	private String email;
+	private String password;
+	private List<Task> tasks;
+	private List<Group> groups;
+	private List<Project> projects;
+
+	public int getUserId() {
+		return userId;
 	}
 
-	private String name;
+	public String getUsername() {
+		return username;
+	}
 
-	public void setName(String value) {
-		this.name = value;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
-	private String userName;
-
-	public void setUserName(String value) {
-		this.userName = value;
-	}
-
-	public String getUserName() {
-		return this.userName;
-	}
-
-	private int userId;
-
-	public void setUserId(int value) {
-		this.userId = value;
-	}
-
-	public int getUserId() {
-		return this.userId;
-	}
-
-	private String email;
-
-	public void setEmail(String value) {
-		this.email = value;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
-	/**
-	 * <pre>
-	 *           1..*     0..*
-	 * User ------------------------- Group
-	 *           members        &gt;       groups
-	 * </pre>
-	 */
-	private Set<Group> groups;
-
-	public Set<Group> getGroups() {
-		if (this.groups == null) {
-			this.groups = new HashSet<Group>();
-		}
-		return this.groups;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	/**
-	 * <pre>
-	 *           1..1     0..*
-	 * User ------------------------- Project
-	 *           owner        &lt;       ownedProjects
-	 * </pre>
-	 */
-	private List<Project> ownedProjects;
-
-	public List<Project> getOwnedProjects() {
-		if (this.ownedProjects == null) {
-			this.ownedProjects = new ArrayList<Project>();
-		}
-		return this.ownedProjects;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	/**
-	 * <pre>
-	 *           1..*     0..*
-	 * User ------------------------- Project
-	 *           members        &gt;       projects
-	 * </pre>
-	 */
-	private List<Project> projects;
+	public List<Task> getTasks() {
+		return tasks;
+	}
+
+	public List<Group> getGroups() {
+		return groups;
+	}
 
 	public List<Project> getProjects() {
-		if (this.projects == null) {
-			this.projects = new ArrayList<Project>();
-		}
-		return this.projects;
-	}
-
-	/**
-	 * <pre>
-	 *           1..1     0..*
-	 * User ------------------------- Task
-	 *           owner        &lt;       ownedTasks
-	 * </pre>
-	 */
-	private List<Task> ownedTasks;
-
-	public List<Task> getOwnedTasks() {
-		if (this.ownedTasks == null) {
-			this.ownedTasks = new ArrayList<Task>();
-		}
-		return this.ownedTasks;
+		return projects;
 	}
 
 }

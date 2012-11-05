@@ -1,143 +1,140 @@
 package main.dto;
-import java.util.ArrayList;
+
+import java.util.Date;
 import java.util.List;
 
-
 public class Task {
-/**
- * <pre>
- *           0..*     1..*
- * Task ------------------------- User
- *           tasks        &lt;       collaborators
- * </pre>
- */
-private List<User> collaborators;
+	private int taskId;
+	private int priority;
+	private int status;
+	private int estimatedTime;
 
-public List<User> getCollaborators() {
-   if (this.collaborators == null) {
-this.collaborators = new ArrayList<User>();
-   }
-   return this.collaborators;
-}
+	private String title;
+	private String description;
 
-/**
- * <pre>
- *           0..*     0..1
- * Task ------------------------- Project
- *           tasks        &lt;       project
- * </pre>
- */
-private Project project;
+	private Date deadline;
+	private Date createdAt;
+	private Date updatedAt;
 
-public void setProject(Project value) {
-   this.project = value;
-}
+	private User owner;
+	private Project project;
+	private Group group;
+	private Task parentTask;
 
-public Project getProject() {
-   return this.project;
-}
+	private List<User> collaborators;
+	private List<Task> childTasks;
+	private List<TimeEntry> timeEntries;
 
-/**
- * <pre>
- *           0..*     0..1
- * Task ------------------------- Group
- *           tasks        &lt;       group
- * </pre>
- */
-private Group group;
+	public int getTaskId() {
+		return taskId;
+	}
 
-public void setGroup(Group value) {
-   this.group = value;
-}
+	public int getPriority() {
+		return priority;
+	}
 
-public Group getGroup() {
-   return this.group;
-}
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
-/**
- * <pre>
- *           0..*     0..1
- * Task ------------------------- Task
- *           childTasks        &gt;       parentTask
- * </pre>
- */
-private Task parentTask;
+	public int getStatus() {
+		return status;
+	}
 
-public void setParentTask(Task value) {
-   this.parentTask = value;
-}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
-public Task getParentTask() {
-   return this.parentTask;
-}
+	public int getEstimatedTime() {
+		return estimatedTime;
+	}
 
-/**
- * <pre>
- *           0..1     0..*
- * Task ------------------------- Task
- *           parentTask        &lt;       childTasks
- * </pre>
- */
-private List<Task> childTasks;
+	public void setEstimatedTime(int estimatedTime) {
+		this.estimatedTime = estimatedTime;
+	}
 
-public List<Task> getChildTasks() {
-   if (this.childTasks == null) {
-this.childTasks = new ArrayList<Task>();
-   }
-   return this.childTasks;
-}
+	public String getTitle() {
+		return title;
+	}
 
-/**
- * <pre>
- *           1..1     0..*
- * Task ------------------------- TimeEntry
- *           task        &lt;       timeEntry
- * </pre>
- */
-private List<TimeEntry> timeEntry;
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-public List<TimeEntry> getTimeEntry() {
-   if (this.timeEntry == null) {
-this.timeEntry = new ArrayList<TimeEntry>();
-   }
-   return this.timeEntry;
-}
+	public String getDescription() {
+		return description;
+	}
 
-private int taskId;
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-public void setTaskId(int value) {
-   this.taskId = value;
-}
+	public Date getDeadline() {
+		return deadline;
+	}
 
-public int getTaskId() {
-   return this.taskId;
-}
+	public void setDeadline(Date deadline) {
+		this.deadline = deadline;
+	}
 
-private String taskName;
+	public Date getCreatedAt() {
+		return createdAt;
+	}
 
-public void setTaskName(String value) {
-   this.taskName = value;
-}
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
+	}
 
-public String getTaskName() {
-   return this.taskName;
-}
+	public Date getUpdatedAt() {
+		return updatedAt;
+	}
 
-/**
- * <pre>
- *           0..*     1..1
- * Task ------------------------- User
- *           ownedTasks        &gt;       owner
- * </pre>
- */
-private User owner;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
+	}
 
-public void setOwner(User value) {
-   this.owner = value;
-}
+	public User getOwner() {
+		return owner;
+	}
 
-public User getOwner() {
-   return this.owner;
-}
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	public Project getProject() {
+		return project;
+	}
+
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public Task getParentTask() {
+		return parentTask;
+	}
+
+	public void setParentTask(Task parentTask) {
+		this.parentTask = parentTask;
+	}
+
+	public List<User> getCollaborators() {
+		return collaborators;
+	}
+
+	public List<Task> getChildTasks() {
+		return childTasks;
+	}
+
+	public List<TimeEntry> getTimeEntries() {
+		return timeEntries;
+	}
 
 }

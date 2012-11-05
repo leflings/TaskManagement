@@ -1,103 +1,58 @@
 package main.dto;
 
 import java.util.List;
-import java.util.ArrayList;
 
 public class Project {
-/**
- * <pre>
- *           0..*     0..1
- * Project ------------------------- Group
- *           projects        &lt;       group
- * </pre>
- */
-private Group group;
+	private int projectId;
+	private String projectName;
+	private String description;
 
-public void setGroup(Group value) {
-   this.group = value;
-}
+	private User owner;
+	private Group group;
 
-public Group getGroup() {
-   return this.group;
-}
+	private List<Task> tasks;
+	private List<User> members;
 
-/**
- * <pre>
- *           0..1     0..*
- * Project ------------------------- Task
- *           project        &gt;       tasks
- * </pre>
- */
-private List<Task> tasks;
+	public int getProjectId() {
+		return projectId;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
 
-public List<Task> getTasks() {
-   if (this.tasks == null) {
-this.tasks = new ArrayList<Task>();
-   }
-   return this.tasks;
-}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
 
-private int projectId;
+	public String getDescription() {
+		return description;
+	}
 
-public void setProjectId(int value) {
-   this.projectId = value;
-}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-public int getProjectId() {
-   return this.projectId;
-}
+	public User getOwner() {
+		return owner;
+	}
 
-private String projectName;
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
 
-public void setProjectName(String value) {
-   this.projectName = value;
-}
+	public Group getGroup() {
+		return group;
+	}
 
-public String getProjectName() {
-   return this.projectName;
-}
+	public void setGroup(Group group) {
+		this.group = group;
+	}
 
-private String description;
+	public List<Task> getTasks() {
+		return tasks;
+	}
 
-public void setDescription(String value) {
-   this.description = value;
-}
-
-public String getDescription() {
-   return this.description;
-}
-
-/**
- * <pre>
- *           0..*     1..1
- * Project ------------------------- User
- *           ownedProjects        &gt;       owner
- * </pre>
- */
-private User owner;
-
-public void setOwner(User value) {
-   this.owner = value;
-}
-
-public User getOwner() {
-   return this.owner;
-}
-
-/**
- * <pre>
- *           0..*     1..*
- * Project ------------------------- User
- *           projects        &lt;       members
- * </pre>
- */
-private List<User> members;
-
-public List<User> getMembers() {
-   if (this.members == null) {
-this.members = new ArrayList<User>();
-   }
-   return this.members;
-}
-
+	public List<User> getMembers() {
+		return members;
+	}
 }
