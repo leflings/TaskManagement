@@ -16,4 +16,11 @@ public class SelectUtilities {
 		return choice;
 	}
 	
+	public static String inputEdit(String text) {
+		Scanner scan = new Scanner(System.in);
+		System.out.format("%s", text);
+		String edit = scan.next();
+		
+		return edit;
+	}
 }

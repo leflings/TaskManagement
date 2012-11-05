@@ -13,7 +13,7 @@ public class SelectUser implements BaseView {
 	private List<User> users;
 	private int choice;
 
-	public SelectUser(List<User> users){
+	public SelectUser(List<User> users) {
 		this.users = users;
 	}
 	
