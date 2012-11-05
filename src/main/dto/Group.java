@@ -11,6 +11,7 @@ public class Group {
 	private List<Project> projects;
 	private List<Task> tasks;
 	private List<User> members;
+	
 
 	public String getName() {
 		return name;

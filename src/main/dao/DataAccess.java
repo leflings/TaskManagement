@@ -50,7 +50,7 @@ public class DataAccess {
 
 	public UserDAO getUserDAO() {
 		if (userDAO == null) {
-			userDAO = new UserDAO();
+			userDAO = new UserDAO(null);
 		}
 		return userDAO;
 	}

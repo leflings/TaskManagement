@@ -13,6 +13,14 @@ public class User {
 	private List<Group> groups;
 	private List<Project> projects;
 
+	public User() {
+	}
+	
+	public User(int userId) {
+		this();
+		this.userId = userId;
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
