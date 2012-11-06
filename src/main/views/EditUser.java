@@ -13,33 +13,30 @@ public class EditUser implements BaseView {
 		this.user = user;
 	}
 
-	@Override
 	public void print() {
 		System.out.println(	"[ 1] : Rediger navn" +
 							"[ 2] : Rediger brugernavn" +
 							"[ 3] : Rediger e-mail" +
 							"[ 4] : Rediger password");
-
-		int choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
-		String text;
-
-		switch(choice) {
-		case 1:	text = "Dit nuværende navn er: " + user.getName() + "\nIndtast dit nye navn: ";
-				user.setName(SelectUtilities.inputEdit(text));
-			break;
-		case 2: text = "Dit nuværende brugernavn er: " + user.getUserName() + "\nIndtast dit nye brugernavn: ";
-				user.setUserName(SelectUtilities.inputEdit(text));
-			break;
-		case 3: text = "Dit nuværende e-mail er: " + user.getEmail() + "\nIndtast dit nye e-mail: ";
-				user.setEmail(SelectUtilities.inputEdit(text));
-			break;
-		case 4: text = "Indtast dit nye password: ";
-				user.setPassword(SelectUtilities.inputEdit(text));
-			break;
-		}
 	}
-
-	public User getUser() {
-		return user;
+		
+	public int choose() {
+		return SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
+	}
+	
+	public String editName() {
+		return "Dit nuværende navn er: " + user.getName() + "\nIndtast dit nye navn: ";
+	}
+	
+	public String editUserName() {
+		return "Dit nuværende brugernavn er: " + user.getUserName() + "\nIndtast dit nye brugernavn: ";
+	}
+	
+	public String editEmail() {
+		return "Dit nuværende e-mail er: " + user.getEmail() + "\nIndtast dit nye e-mail: ";
+	}
+	
+	public String editPassword() {
+		return "Indtast dit nye password: ";
 	}
 }
