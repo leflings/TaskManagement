@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 
 /**
  * Utility class for DAO's. This class contains commonly used DAO logic which is
@@ -43,13 +44,12 @@ public final class DAOUtil {
 	 * @throws SQLException
 	 *             If something fails during creating the PreparedStatement.
 	 */
-	public static PreparedStatement prepareStatement(Connection connection,
-			String sql, boolean returnGeneratedKeys, Object... values)
-			throws SQLException {
-		PreparedStatement preparedStatement = connection.prepareStatement(sql,
-				returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS
-						: Statement.NO_GENERATED_KEYS);
-		setValues(preparedStatement, values);
+	public static PreparedStatement prepareStatement(Connection connection, String sql, boolean returnGeneratedKeys, Object... values) throws SQLException {
+		PreparedStatement preparedStatement = connection.prepareStatement(sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS);
+		if(values != null) {
+			setValues(preparedStatement, values);
+		}
+		
 		return preparedStatement;
 	}
 
@@ -65,8 +65,7 @@ public final class DAOUtil {
 	 *             If something fails during setting the PreparedStatement
 	 *             values.
 	 */
-	public static void setValues(PreparedStatement preparedStatement,
-			Object... values) throws SQLException {
+	public static void setValues(PreparedStatement preparedStatement, Object... values) throws SQLException {
 		for (int i = 0; i < values.length; i++) {
 			preparedStatement.setObject(i + 1, values[i]);
 		}
@@ -81,6 +80,14 @@ public final class DAOUtil {
 	 */
 	public static Date toSqlDate(java.util.Date date) {
 		return (date != null) ? new Date(date.getTime()) : null;
+	}
+
+	public static Timestamp sqlTimestampFromDate(java.util.Date date) {
+		return(date != null) ? new Timestamp(date.getTime()) : null;
+	}
+	
+	public static java.util.Date dateFromSqlTimestamp(Timestamp timestamp) {
+		return (timestamp != null) ? new java.util.Date(timestamp.getTime()) : null;
 	}
 
 	/**

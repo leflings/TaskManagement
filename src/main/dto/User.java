@@ -2,8 +2,10 @@ package main.dto;
 
 import java.util.List;
 
-public class User {
+import main.dao.DAOFactory;
 
+public class User extends BaseModel {
+	
 	private int userId;
 	private String username;
 	private String name;
@@ -14,6 +16,7 @@ public class User {
 	private List<Project> projects;
 
 	public User() {
+		super();
 	}
 	
 	public User(int userId) {
@@ -54,10 +57,17 @@ public class User {
 	}
 
 	public List<Task> getTasks() {
+		if(tasks == null) {
+			tasks = getFactory().getTaskDAO().getByOwner(this);
+		}
 		return tasks;
 	}
 
 	public List<Group> getGroups() {
+		if(groups == null) {
+			groups = getFactory().getGroupDAO().getByOwnership(this);
+			groups.addAll(getFactory().getGroupDAO().getByMembership(this));
+		}
 		return groups;
 	}
 

@@ -2,16 +2,30 @@ package main.dto;
 
 import java.util.List;
 
-public class Group {
+public class Group extends BaseModel {
 
 	private int groupId;
 	private String name;
 	private String description;
+	private int ownerId;
 	private User owner;
 	private List<Project> projects;
 	private List<Task> tasks;
 	private List<User> members;
 	
+	public Group() {
+		super();
+	}
+	
+	public Group(int groupId) {
+		this();
+		this.groupId = groupId;
+	}
+	
+	public Group(int groupId, int ownerId) {
+		this(groupId);
+		this.ownerId = ownerId;
+	}
 
 	public String getName() {
 		return name;

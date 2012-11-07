@@ -104,8 +104,7 @@ public abstract class DAOFactory {
 		String url = properties.getProperty(PROPERTY_URL, true);
 		String driverClassName = properties.getProperty(PROPERTY_DRIVER, false);
 		String password = properties.getProperty(PROPERTY_PASSWORD, false);
-		String username = properties.getProperty(PROPERTY_USERNAME,
-				password != null);
+		String username = properties.getProperty(PROPERTY_USERNAME, password != null);
 		DAOFactory instance;
 
 		// If driver is specified, then load it to let it register itself with
@@ -160,6 +159,22 @@ public abstract class DAOFactory {
 	 */
 	public UserDAO getUserDAO() {
 		return new UserDAO(this);
+	}
+	
+	public GroupDAO getGroupDAO() {
+		return new GroupDAO(this);
+	}
+	
+	public ProjectDAO getProjectDAO() {
+		return new ProjectDAO(this);
+	}
+	
+	public TaskDAO getTaskDAO() {
+		return new TaskDAO(this);
+	}
+	
+	public TimeEntryDAO getTimeEntryDAO() {
+		return new TimeEntryDAO(this);
 	}
 
 	// You can add more DAO implementation getters here.
