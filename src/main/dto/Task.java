@@ -3,10 +3,13 @@ package main.dto;
 import java.util.Date;
 import java.util.List;
 
+import main.enums.Priority;
+import main.enums.Status;
+
 public class Task extends BaseModel {
 	private int taskId;
-	private int priority;
-	private int status;
+	private Priority priority;
+	private Status status;
 	private int estimatedTime;
 
 	private String title;
@@ -37,6 +40,8 @@ public class Task extends BaseModel {
 
 	public Task() {
 		super();
+		status = Status.NONE;
+		priority = priority.NONE;
 	}
 
 	public Task(int taskId) {
@@ -56,20 +61,26 @@ public class Task extends BaseModel {
 	public int getTaskId() {
 		return taskId;
 	}
+	
+	public void setTaskId(int taskId) {
+		if(this.taskId == 0) {
+			this.taskId = taskId;
+		}
+	}
 
-	public int getPriority() {
+	public Priority getPriority() {
 		return priority;
 	}
 
-	public void setPriority(int priority) {
+	public void setPriority(Priority priority) {
 		this.priority = priority;
 	}
 
-	public int getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(int status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
@@ -123,7 +134,7 @@ public class Task extends BaseModel {
 
 	public User getOwner() {
 		if(owner == null) {
-			factory.getUserDAO().getById(ownerId);
+			owner = getFactory().getUserDAO().getById(ownerId);
 		}
 		return owner;
 	}
