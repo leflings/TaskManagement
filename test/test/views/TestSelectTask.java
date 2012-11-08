@@ -1,18 +1,14 @@
 package test.views;
 
-import static org.junit.Assert.*;
-
 import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.dto.*;
+import main.dto.Task;
 import main.views.SelectTask;
 
-import org.junit.*;
-
-
-
+import org.junit.Before;
+import org.junit.Test;
 
 public class TestSelectTask {
 
@@ -21,18 +17,15 @@ public class TestSelectTask {
 
 	@Before
 	public void setup() {
-		Task task1 = new Task();
-		Task task2 = new Task();
-		Task task3 = new Task();
+		Task task1 = new Task(19);
+		Task task2 = new Task(2131);
+		Task task3 = new Task(1231);
 
-		task1.setTaskName("gør rent");
-		task1.setTaskId(19);
+		task1.setTitle("gør rent");
 
-		task2.setTaskName("støvsug");
-		task2.setTaskId(32193218);
+		task2.setTitle("støvsug");
 
-		task3.setTaskName("mug ud i stalden");
-		task3.setTaskId(1);
+		task3.setTitle("mug ud i stalden");
 
 		taskList = new ArrayList<Task>();
 		taskList.add(task1);
@@ -42,11 +35,11 @@ public class TestSelectTask {
 	}
 
 	@Test
-	public void	testSelectTask(){
+	public void testSelectTask() {
 
 		SelectTask taskTest = new SelectTask(taskList);
 		taskTest.print();
 		Task selectedTask = taskTest.getResult();
-		System.out.println(selectedTask.getTaskName());
+		System.out.println(selectedTask.getTitle());
 	}
 }

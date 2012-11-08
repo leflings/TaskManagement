@@ -2,7 +2,7 @@ package main.views;
 
 import java.util.List;
 
-import main.dto.TimeEntry;;
+import main.dto.TimeEntry;
 import main.utilities.SelectUtilities;
 
 

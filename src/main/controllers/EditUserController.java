@@ -25,7 +25,7 @@ public class EditUserController {
 			setName();
 			break;
 		case 2:
-			setUserName();
+			setUsername();
 			break;
 		case 3:
 			setEmail();
@@ -40,8 +40,8 @@ public class EditUserController {
 		user.setName(SelectUtilities.inputEdit(edit.editName()));
 	}
 	
-	private void setUserName() {
-		user.setUserName(SelectUtilities.inputEdit(edit.editUserName()));
+	private void setUsername() {
+		user.setUsername(SelectUtilities.inputEdit(edit.editUserName()));
 	}
 	
 	private void setEmail() {

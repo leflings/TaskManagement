@@ -20,9 +20,9 @@ public class SelectTimeEntry implements BaseView{
 	@Override
 	public void print() {
 		for (int i = 0 ; i < timeEntries.size() ; i++){
-			String task = timeEntries.get(i).getTask().getTaskName();
+			String task = timeEntries.get(i).getTask().getTitle();
 			String user = timeEntries.get(i).getUser().getName();
-			String date = timeEntries.get(i).getDate();
+			String date = timeEntries.get(i).getDate().toString();
 			int duration = timeEntries.get(i).getDuration();
 			SelectUtilities.printSelectLine(i +1, "taskname: " + task + "\tUsername: " + user + "\tDate: " + date +
 					"\tDuration: " + duration);			

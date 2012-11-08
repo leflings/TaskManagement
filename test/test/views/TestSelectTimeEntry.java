@@ -29,7 +29,7 @@ public class TestSelectTimeEntry {
 		User user = new User();
 		
 		user.setName("Karl Johan");
-		task.setTaskName("Køb fisk");
+		task.setTitle("Køb fisk");
 		
 		entry1.setDate("12-12-2012");
 		entry1.setDuration(3);
