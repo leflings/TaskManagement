@@ -28,6 +28,13 @@ public class Project extends BaseModel {
 	public int getProjectId() {
 		return projectId;
 	}
+	
+	public void setProjectId(int projectId) {
+		if(this.projectId == 0) {
+			this.projectId = projectId;
+		}
+	}
+	
 	public String getProjectName() {
 		return projectName;
 	}

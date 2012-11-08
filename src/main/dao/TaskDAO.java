@@ -134,8 +134,6 @@ public class TaskDAO extends BaseDAO {
 					
 	}
 	
-	//TODO Insert task
-	
 	public void insert(Task task) {
 		if (task.getTaskId() != 0) {
 			throw new IllegalArgumentException("User is already created. UserId is not 0");

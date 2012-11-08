@@ -24,6 +24,7 @@ public class ProjectDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT p.* FROM Project p INNER JOIN ProjectMembership pm ON pm.Project_ProjectId = p.ProjectId AND pm.User_UserId = ?";
 	
 	private static final String SQL_UPDATE = "UPDATE Project SET ProjectName = ?, Description = ?, Owner_UserId = ?, Group_GroupId = ? WHERE ProjectId = ?";
+	private static final String SQL_INSERT = "INSERT INTO Project (ProjectName, Description, Owner_UserId, Group_GroupId) VALUES (?, ?, ?, ?)";
 
 	protected ProjectDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -101,6 +102,41 @@ public class ProjectDAO extends BaseDAO {
 					project.getOwner().getUserId(),
 					((project.getGroup() == null) ? null : project.getGroup().getGroupId()),
 					project.getProjectId());
+		}
+	}
+	
+	public void insert(Project project) {
+		if (project.getProjectId() != 0) {
+			throw new IllegalArgumentException("Group is already created. GroupId is not 0");
+		}
+
+		Object values[] = {
+				project.getProjectName(),
+				project.getDescription(),
+				project.getOwner().getUserId(),
+				((project.getGroup() == null) ? null : project.getGroup().getGroupId())
+			};
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet generatedKeys = null;
+
+		try {
+			connection = daoFactory.getConnection();
+			preparedStatement = prepareStatement(connection, SQL_INSERT, true, values);
+			int affectedRows = preparedStatement.executeUpdate();
+			if (affectedRows == 0) {
+				throw new DAOException("Creating project failed, no rows affected.");
+			}
+			generatedKeys = preparedStatement.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				project.setProjectId(generatedKeys.getInt(1));
+			} else {
+				throw new DAOException("Creating project failed, no generated key obtained.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			close(connection, preparedStatement, generatedKeys);
 		}
 	}
 	
