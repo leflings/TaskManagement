@@ -20,7 +20,7 @@ public class TaskDAO {
 
 	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Task WHERE Owner_UserId = ?";
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM Task WHERE TaskId = ?";
-	private static final String SQL_FIND = "SELECT * FROM Task";
+	private static final String SQL_FIND_ALL = "SELECT * FROM Task";
 
 	public TaskDAO(DAOFactory daoFactory) {
 		this.daoFactory = daoFactory;
@@ -79,7 +79,7 @@ public class TaskDAO {
 	}
 	
 	public List<Task> getAll() {
-		return findMany(SQL_FIND, null);
+		return findMany(SQL_FIND_ALL, null);
 	}
 
 	private static Task map(ResultSet rs) throws SQLException {
