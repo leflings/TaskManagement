@@ -1,6 +1,7 @@
 package main.dto;
 
 import main.dao.DAOFactory;
+import main.dao.DAOProperties;
 
 public abstract class BaseModel {
 	
@@ -8,7 +9,7 @@ public abstract class BaseModel {
 	
 	final DAOFactory getFactory() {
 		if(factory == null ) {
-			factory = DAOFactory.getInstance("javabase.jdbc");
+			factory = DAOFactory.getInstance();
 		}
 		return factory;
 	}

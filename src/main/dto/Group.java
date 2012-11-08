@@ -2,6 +2,8 @@ package main.dto;
 
 import java.util.List;
 
+import main.enums.PermissionLevel;
+
 public class Group extends BaseModel {
 
 	private int groupId;
@@ -29,6 +31,12 @@ public class Group extends BaseModel {
 
 	public int getGroupId() {
 		return groupId;
+	}
+	
+	public void setGroupId(int groupId) {
+		if(groupId == 0) {
+			this.groupId = groupId;
+		}
 	}
 
 	public String getName() {
@@ -84,5 +92,15 @@ public class Group extends BaseModel {
 		}
 		return members;
 	}
+	
+    @Override
+    public boolean equals(Object other) {
+    	return (other instanceof Group) && (other != null) ? getGroupId() == (((Group) other).getGroupId()) : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (groupId != 0) ? (this.getClass().hashCode() + groupId) : super.hashCode();
+    }
 
 }

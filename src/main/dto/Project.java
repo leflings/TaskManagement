@@ -86,7 +86,18 @@ public class Project extends BaseModel {
 	public List<User> getMembers() {
 		if(members == null) {
 			members = getFactory().getUserDAO().getByProject(this);
+			members.add(getOwner());
 		}
 		return members;
 	}
+	
+    @Override
+    public boolean equals(Object other) {
+    	return (other instanceof Project) && (other != null) ? getProjectId() == (((Project) other).getProjectId()) : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (projectId != 0) ? (this.getClass().hashCode() + projectId) : super.hashCode();
+    }
 }

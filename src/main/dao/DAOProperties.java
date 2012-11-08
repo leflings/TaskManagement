@@ -11,6 +11,9 @@ public class DAOProperties {
 	// Constants
 	// ----------------------------------------------------------------------------------
 
+	// Define which connection to use here. Add more as needed in dao.properties
+	public static final String CONNECTION_NAME = "flemming_localhost";
+	
 	private static final String PROPERTIES_FILE = "dao.properties";
 	private static final Properties PROPERTIES = new Properties();
 

@@ -94,6 +94,9 @@ public abstract class DAOFactory {
 	 *             either the driver cannot be loaded or the datasource cannot
 	 *             be found.
 	 */
+	public static DAOFactory getInstance() {
+		return getInstance(DAOProperties.CONNECTION_NAME);
+	}
 	public static DAOFactory getInstance(String name)
 			throws DAOConfigurationException {
 		if (name == null) {
@@ -176,7 +179,19 @@ public abstract class DAOFactory {
 	public TimeEntryDAO getTimeEntryDAO() {
 		return new TimeEntryDAO(this);
 	}
+	
+	public GroupMembershipDAO getGroupMembershipDAO() {
+		return new GroupMembershipDAO(this);
+	}
+	
+	public ProjectMembershipDAO getProjectMembershipDAO() {
+		return new ProjectMembershipDAO(this);
+	}
 
+	public TaskAssignmentDAO getTaskAssignmentDAO() {
+		return new TaskAssignmentDAO(this);
+	}
+	
 	// You can add more DAO implementation getters here.
 
 }

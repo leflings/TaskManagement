@@ -222,4 +222,14 @@ public class Task extends BaseModel {
 		return timeEntries;
 	}
 	
+    @Override
+    public boolean equals(Object other) {
+    	return (other instanceof Task) && (other != null) ? getTaskId() == (((Task) other).getTaskId()) : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (taskId != 0) ? (this.getClass().hashCode() + taskId) : super.hashCode();
+    }
+	
 }

@@ -81,7 +81,9 @@ public class TimeEntryDAO {
 	}
 	
 	private static TimeEntry map(ResultSet rs) throws SQLException {
-		TimeEntry timeentry = new TimeEntry(rs.getInt("User_UserId"), rs.getInt("Task_TaskId"));
+		TimeEntry timeentry = new TimeEntry(rs.getInt("TimeEntryId"));
+		timeentry.setUser(rs.getInt("User_UserId"));
+		timeentry.setTask(rs.getInt("Task_TaskId"));
 		timeentry.setDuration(rs.getInt("Duration"));
 		timeentry.setDate(dateFromSqlTimestamp(rs.getTimestamp("Date")));
 		

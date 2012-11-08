@@ -86,4 +86,13 @@ public class User extends BaseModel {
 		return timeEntries;
 	}
 
+    @Override
+    public boolean equals(Object other) {
+    	return (other instanceof User) && (other != null) ? getUserId() == (((User) other).getUserId()) : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (userId != 0) ? (this.getClass().hashCode() + userId) : super.hashCode();
+    }
 }

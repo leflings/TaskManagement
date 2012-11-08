@@ -3,6 +3,7 @@ package main.dto;
 import java.util.Date;
 
 public class TimeEntry extends BaseModel {
+	private int timeEntryId;
 	private int taskId;
 	private Task task;
 	private int userId;
@@ -14,16 +15,19 @@ public class TimeEntry extends BaseModel {
 		super();
 	}
 	
-	public TimeEntry(int taskId, int userId) {
+	public TimeEntry(int timeEntryId) {
 		this();
-		this.taskId = taskId;
-		this.userId = userId;
+		this.timeEntryId = timeEntryId;
 	}
 	
-	public TimeEntry(User user, Task task) {
-		this();
-		setTask(task);
-		setUser(user);
+	public int getTimeEntryId() {
+		return timeEntryId;
+	}
+	
+	public void setTimeEntryId(int timeEntryId) {
+		if(timeEntryId == 0) {
+			this.timeEntryId = timeEntryId;
+		}
 	}
 
 	public Task getTask() {
@@ -37,6 +41,10 @@ public class TimeEntry extends BaseModel {
 		this.taskId = task.getTaskId();
 		this.task = task;
 	}
+	
+	public void setTask(int taskId) {
+		this.taskId = taskId;
+	}
 
 	public User getUser() {
 		if(user == null) {
@@ -48,6 +56,10 @@ public class TimeEntry extends BaseModel {
 	public void setUser(User user) {
 		this.userId = user.getUserId();
 		this.user = user;
+	}
+	
+	public void setUser(int userId) {
+		this.userId = userId;
 	}
 
 	public int getDuration() {
@@ -66,4 +78,13 @@ public class TimeEntry extends BaseModel {
 		this.date = date;
 	}
 
+    @Override
+    public boolean equals(Object other) {
+    	return (other instanceof TimeEntry) && (other != null) ? getTimeEntryId() == (((TimeEntry) other).getTimeEntryId()) : (other == this);
+    }
+
+    @Override
+    public int hashCode() {
+        return (timeEntryId != 0) ? (this.getClass().hashCode() + timeEntryId) : super.hashCode();
+    }
 }
