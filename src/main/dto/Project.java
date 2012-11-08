@@ -45,7 +45,7 @@ public class Project extends BaseModel {
 	}
 
 	public User getOwner() {
-		if(owner == null) {
+		if(owner == null && ownerId != 0) {
 			owner = getFactory().getUserDAO().getById(ownerId);
 		}
 		return owner;
@@ -77,10 +77,16 @@ public class Project extends BaseModel {
 	}
 
 	public List<Task> getTasks() {
+		if (tasks == null) {
+			tasks = getFactory().getTaskDAO().getByProject(this);
+		}
 		return tasks;
 	}
 
 	public List<User> getMembers() {
+		if(members == null) {
+			members = getFactory().getUserDAO().getByProject(this);
+		}
 		return members;
 	}
 }

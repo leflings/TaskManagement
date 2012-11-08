@@ -15,6 +15,15 @@ public class Main {
 		UserDAO users = javabase.getUserDAO();
 		GroupDAO groups = javabase.getGroupDAO();
 		
+		for (Group g : groups.getAll()) {
+			System.out.println(g.getName());
+			for (User u : g.getMembers()) {
+				System.out.println("\t"+u.getName());
+			}
+		}
+		
+		System.out.println("\n");
+		
 		for (User u : users.getAll()) {
 			System.out.println(u.getName());
 			for (Group g : u.getGroups()) {

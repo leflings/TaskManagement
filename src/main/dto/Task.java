@@ -27,6 +27,9 @@ public class Task extends BaseModel {
 
 	private int parentTaskId;
 	private Task parentTask;
+	
+	private int rootTaskId;
+	private Task rootTask;
 
 	private List<User> collaborators;
 	private List<Task> childTasks;
@@ -181,12 +184,34 @@ public class Task extends BaseModel {
 	public void setParentTask(int parentTaskId) {
 		this.parentTaskId = parentTaskId;
 	}
+	
+	public Task getRootTask() {
+		if(rootTask == null && rootTaskId != 0) {
+			rootTask = getFactory().getTaskDAO().getById(rootTaskId);
+		}
+		return rootTask;
+	}
+	
+	public void setRootTask(Task rootTask) {
+		this.rootTaskId = rootTask.getTaskId();
+		this.rootTask = rootTask;
+	}
+	
+	public void setRootTask(int rootTaskId) {
+		this.rootTaskId = rootTaskId;
+	}
 
 	public List<User> getCollaborators() {
+		if(collaborators == null ) {
+			collaborators = getFactory().getUserDAO().getByTaskAssignment(this);
+		}
 		return collaborators;
 	}
 
 	public List<Task> getChildTasks() {
+		if(childTasks == null) {
+			childTasks = getFactory().getTaskDAO().getByParentTask(this);
+		}
 		return childTasks;
 	}
 

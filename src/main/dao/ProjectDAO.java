@@ -20,6 +20,9 @@ public class ProjectDAO {
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM Project";
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM Project WHERE ProjectId = ?";
+	private static final String SQL_FIND_BY_GROUP_ID = "SELECT * FROM Project WHERE Group_GroupId = ?";
+	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Project WHERE Owner_UserId = ?";
+	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT p.* FROM Project p INNER JOIN ProjectMembership pm ON pm.Project_ProjectId = p.ProjectId AND pm.User_UserId = ?";
 
 	public ProjectDAO(DAOFactory daoFactory) {
 		this.daoFactory = daoFactory;
@@ -71,6 +74,18 @@ public class ProjectDAO {
 	
 	public List<Project> getAll() {
 		return findMany(SQL_FIND_ALL, null);
+	}
+	
+	public List<Project> getByGroup(Group group) {
+		return findMany(SQL_FIND_BY_GROUP_ID, group.getGroupId());
+	}
+	
+	public List<Project> getByMembership(User user) {
+		return findMany(SQL_FIND_BY_MEMBERSHIP, user.getUserId());
+	}
+	
+	public List<Project> getByOwner(User user) {
+		return findMany(SQL_FIND_BY_OWNER, user.getUserId());
 	}
 	
 	public Project getById(int projectId) {

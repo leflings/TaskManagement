@@ -27,6 +27,10 @@ public class Group extends BaseModel {
 		this.ownerId = ownerId;
 	}
 
+	public int getGroupId() {
+		return groupId;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -44,27 +48,41 @@ public class Group extends BaseModel {
 	}
 
 	public User getOwner() {
+		if(owner == null && ownerId != 0) {
+			owner = getFactory().getUserDAO().getById(ownerId);
+		}
 		return owner;
 	}
 
 	public void setOwner(User owner) {
+		this.ownerId = owner.getUserId();
 		this.owner = owner;
+	}
+	
+	public void setOwner(int ownerId) {
+		this.ownerId = ownerId;
 	}
 
 	public List<Project> getProjects() {
+		if(projects == null ) {
+			projects = getFactory().getProjectDAO().getByGroup(this);
+		}
 		return projects;
 	}
 
 	public List<Task> getTasks() {
+		if(tasks == null) {
+			tasks = getFactory().getTaskDAO().getByGroup(this);
+		}
 		return tasks;
 	}
 
 	public List<User> getMembers() {
+		if(members == null) {
+			members = getFactory().getUserDAO().getByGroup(this);
+			members.add(getOwner());
+		}
 		return members;
-	}
-
-	public int getGroupId() {
-		return groupId;
 	}
 
 }
