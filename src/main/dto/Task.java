@@ -41,7 +41,7 @@ public class Task extends BaseModel {
 	public Task() {
 		super();
 		status = Status.NONE;
-		priority = priority.NONE;
+		priority = Priority.NONE;
 	}
 
 	public Task(int taskId) {

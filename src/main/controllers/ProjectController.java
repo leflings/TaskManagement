@@ -1,34 +1,28 @@
 package main.controllers;
 
-
 public class ProjectController implements IBaseController {
-public void createProject() {
-   // TODO implement this operation
-   throw new UnsupportedOperationException("not implemented");
-}
+	public void createProject() {
+		throw new UnsupportedOperationException("not implemented");
+	}
 
-public void editProject() {
-   // TODO implement this operation
-   throw new UnsupportedOperationException("not implemented");
-}
+	public void editProject() {
+		throw new UnsupportedOperationException("not implemented");
+	}
 
-public void addMember() {
-   // TODO implement this operation
-   throw new UnsupportedOperationException("not implemented");
-}
+	public void addMember() {
+		throw new UnsupportedOperationException("not implemented");
+	}
 
-public void removeMember() {
-   // TODO implement this operation
-   throw new UnsupportedOperationException("not implemented");
-}
+	public void removeMember() {
+		throw new UnsupportedOperationException("not implemented");
+	}
 
-public void assignToGroup() {
-   // TODO implement this operation
-   throw new UnsupportedOperationException("not implemented");
-}
-public void presentMenu() {
-	// TODO Auto-generated method stub
-	
-}
+	public void assignToGroup() {
+		throw new UnsupportedOperationException("not implemented");
+	}
+
+	public void presentMenu() {
+
+	}
 
 }

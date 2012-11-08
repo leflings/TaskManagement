@@ -45,6 +45,10 @@ public class TimeEntryDAO {
 		return timeentry;
 	}
 	
+	private List<TimeEntry> findMany(String sql) {
+		return findMany(sql, new Object[0]);
+	}
+	
 	private List<TimeEntry> findMany(String sql, Object ... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -69,7 +73,7 @@ public class TimeEntryDAO {
 	}
 	
 	public List<TimeEntry> getAll() {
-		return findMany(SQL_FIND_ALL, null);
+		return findMany(SQL_FIND_ALL);
 	}
 	
 	public List<TimeEntry> getByUser(User user) {

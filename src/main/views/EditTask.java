@@ -42,61 +42,38 @@ public class EditTask implements BaseView {		//TODO overvej om edit views skal i
 	}
 
 	public void addUser() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	public void removeUser() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void editOwner() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void addToGroup() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public String removeFromGroup() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void addToProject() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public String removeFromProject() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void addChildTask() {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void removeChildTask() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void addToParentTask() {
-		// TODO Auto-generated method stub
-		
 	}
 
-	public String removeFromParentTask() {
-		// TODO Auto-generated method stub
-		return null;
+	public void removeFromParentTask() {
 	}
-
-	
-
-	
 }

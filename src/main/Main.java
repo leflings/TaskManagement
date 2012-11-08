@@ -22,12 +22,10 @@ public class Main {
 		TaskDAO tasks = javabase.getTaskDAO();
 		ProjectDAO projects = javabase.getProjectDAO();
 		
-//		User user = users.getById(1);
+		User user = users.getById(1);
 //		List<Project> flemmingProjects = user.getProjects();
-//		List<Task> flemmingTasks = user.getTasks();
+		List<Task> flemmingTasks = user.getTasks();
 		
-		Task task = tasks.getById(1);
-		System.out.println(task.getTitle());
 //		task.setEstimatedTime(10);
 //		tasks.update(task);
 //		task = tasks.getById(1);
@@ -47,9 +45,9 @@ public class Main {
 //			System.out.println(project.getProjectName());
 //		}
 //		
-//		for (Task task : flemmingTasks) {
-//			System.out.println(task.getTitle() + " - CreatedAt:" + DateFormat.getDateTimeInstance().format(task.getCreatedAt()));
-//		}
+		for (Task task : flemmingTasks) {
+			System.out.println(task.getTitle() + " - CreatedAt:" + DateFormat.getDateTimeInstance().format(task.getCreatedAt()));
+		}
 		
 		
 //		User user = users.getById(3);

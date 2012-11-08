@@ -29,6 +29,10 @@ public class ProjectDAO extends BaseDAO {
 	protected ProjectDAO(DAOFactory daoFactory) {
 		super(daoFactory);
 	}
+	
+	private Project find(String sql) {
+		return find(sql, new Object[0]);
+	}
 
 	private Project find(String sql, Object ... values) {
 		Connection connection = null;
@@ -49,6 +53,10 @@ public class ProjectDAO extends BaseDAO {
 		}
 
 		return project;
+	}
+	
+	private List<Project> findMany(String sql) {
+		return findMany(sql, new Object[0]);
 	}
 	
 	private List<Project> findMany(String sql, Object ... values) {
@@ -75,7 +83,7 @@ public class ProjectDAO extends BaseDAO {
 	}
 	
 	public List<Project> getAll() {
-		return findMany(SQL_FIND_ALL, null);
+		return findMany(SQL_FIND_ALL);
 	}
 	
 	public List<Project> getByGroup(Group group) {

@@ -53,6 +53,10 @@ public class UserDAO extends BaseDAO {
 		return user;
 	}
 
+	private List<User> findMany(String sql) {
+		return findMany(sql, new Object[0]);
+	}
+	
 	private List<User> findMany(String sql, Object... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -85,7 +89,7 @@ public class UserDAO extends BaseDAO {
 	}
 
 	public List<User> getAll() {
-		return findMany(SQL_FIND, null);
+		return findMany(SQL_FIND);
 	}
 
 	public List<User> getByGroup(Group group) {

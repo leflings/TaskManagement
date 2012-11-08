@@ -30,11 +30,18 @@ public class TaskDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_PROJECT = "SELECT * FROM Task WHERE Project_ProjectId = ?";
 	private static final String SQL_FIND_BY_GROUP = "SELECT * FROM Task WHERE Group_GroupId = ?";
 	
+	private static final String SQL_FIND_TASKS_WITHOUT_GROUP = "SELECT * FROM Task WHERE Group_GroupId IS NULL";
+	private static final String SQL_FIND_TASKS_WITHOUT_PROJECT = "SELECT * FROM Task WHERE Project_ProjectId IS NULL";
+	
 	private static final String SQL_UPDATE = "UPDATE Task SET Title = ?, Description = ?, Priority = ?, Status = ?, Deadline = ?, Owner_UserId = ?, EstimatedTime = ?, Updated = CURRENT_TIMESTAMP, Group_GroupId = ?, Project_ProjectId = ?, ParentId = ?, RootId = ? WHERE TaskId = ?";
 	private static final String SQL_INSERT = "INSERT INTO Task (Title, Description, Priority, Status, Deadline, Owner_UserId, EstimatedTime, Group_GroupId, Project_ProjectId, ParentId, RootId) VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)";
 
 	protected TaskDAO(DAOFactory daoFactory) {
 		super(daoFactory);
+	}
+	
+	private Task find(String sql) {
+		return find(sql, new Object[0]);
 	}
 
 	private Task find(String sql, Object... values) {
@@ -57,6 +64,8 @@ public class TaskDAO extends BaseDAO {
 
 		return task;
 	}
+	
+	private List<Task> findMany(String sql) { return findMany(sql, new Object[0]); }
 
 	private List<Task> findMany(String sql, Object... values) {
 		Connection connection = null;
@@ -85,12 +94,19 @@ public class TaskDAO extends BaseDAO {
 		return find(SQL_FIND_BY_ID, taskId);
 	}
 
+	public List<Task> getTasksWithoutProject() {
+		return findMany(SQL_FIND_TASKS_WITHOUT_PROJECT);
+	}
+	public List<Task> getTasksWithoutGroup() {
+		return findMany(SQL_FIND_TASKS_WITHOUT_GROUP);
+	}
+	
 	public List<Task> getByOwner(User owner) {
 		return findMany(SQL_FIND_BY_OWNER, owner.getUserId());
 	}
 
 	public List<Task> getAll() {
-		return findMany(SQL_FIND_ALL, null);
+		return findMany(SQL_FIND_ALL);
 	}
 
 	public List<Task> getByProject(Project project) {

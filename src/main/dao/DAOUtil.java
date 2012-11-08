@@ -46,7 +46,7 @@ public final class DAOUtil {
 	 */
 	public static PreparedStatement prepareStatement(Connection connection, String sql, boolean returnGeneratedKeys, Object... values) throws SQLException {
 		PreparedStatement preparedStatement = connection.prepareStatement(sql, returnGeneratedKeys ? Statement.RETURN_GENERATED_KEYS : Statement.NO_GENERATED_KEYS);
-		if(values != null) {
+		if(values != null || values.length > 0) {
 			setValues(preparedStatement, values);
 		}
 		
