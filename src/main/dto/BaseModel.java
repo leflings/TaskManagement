@@ -5,7 +5,9 @@ import main.dao.DAOProperties;
 
 public abstract class BaseModel {
 	
-	DAOFactory factory;
+	protected DAOFactory factory;
+	
+	public abstract int getId();
 	
 	final DAOFactory getFactory() {
 		if(factory == null ) {

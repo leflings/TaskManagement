@@ -20,7 +20,7 @@ public class TimeEntryDAO {
 	private static final String SQL_FIND_BY_USER = "SELECT * FROM TimeEntry WHERE User_UserId = ?";
 	private static final String SQL_FIND_BY_TASK = "SELECT * FROM TimeEntry WHERE Task_TaskId = ?";
 
-	public TimeEntryDAO(DAOFactory daoFactory) {
+	protected TimeEntryDAO(DAOFactory daoFactory) {
 		this.daoFactory = daoFactory;
 	}
 

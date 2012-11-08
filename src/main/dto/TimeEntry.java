@@ -87,4 +87,9 @@ public class TimeEntry extends BaseModel {
     public int hashCode() {
         return (timeEntryId != 0) ? (this.getClass().hashCode() + timeEntryId) : super.hashCode();
     }
+
+	@Override
+	public int getId() {
+		return timeEntryId;
+	}
 }

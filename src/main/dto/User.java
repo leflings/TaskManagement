@@ -26,6 +26,10 @@ public class User extends BaseModel {
 	public int getUserId() {
 		return userId;
 	}
+	
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public String getUsername() {
 		return username;
@@ -49,6 +53,10 @@ public class User extends BaseModel {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public String getPassword() {
+		return password;
 	}
 
 	public void setPassword(String password) {
@@ -95,4 +103,9 @@ public class User extends BaseModel {
     public int hashCode() {
         return (userId != 0) ? (this.getClass().hashCode() + userId) : super.hashCode();
     }
+
+	@Override
+	public int getId() {
+		return userId;
+	}
 }

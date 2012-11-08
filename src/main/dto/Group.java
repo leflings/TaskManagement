@@ -2,8 +2,6 @@ package main.dto;
 
 import java.util.List;
 
-import main.enums.PermissionLevel;
-
 public class Group extends BaseModel {
 
 	private int groupId;
@@ -103,4 +101,8 @@ public class Group extends BaseModel {
         return (groupId != 0) ? (this.getClass().hashCode() + groupId) : super.hashCode();
     }
 
+    @Override
+	public int getId() {
+		return groupId;
+	}
 }

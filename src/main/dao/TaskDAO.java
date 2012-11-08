@@ -17,7 +17,7 @@ import main.dto.Task;
 import main.dto.User;
 import main.exceptions.DAOException;
 
-public class TaskDAO {
+public class TaskDAO extends BaseDAO {
 	private DAOFactory daoFactory;
 
 	private static final String SQL_FIND_BY_COLLABORATION = "SELECT t.* FROM Task t INNER JOIN TaskAssignment ta ON ta.Task_TaskId = t.TaskId AND ta.User_UserId = ?";
@@ -28,9 +28,11 @@ public class TaskDAO {
 	private static final String SQL_FIND_ALL = "SELECT * FROM Task";
 	private static final String SQL_FIND_BY_PROJECT = "SELECT * FROM Task WHERE Project_ProjectId = ?";
 	private static final String SQL_FIND_BY_GROUP = "SELECT * FROM Task WHERE Group_GroupId = ?";
+	
+	private static final String SQL_UPDATE = "UPDATE Task SET Title = ?, Description = ?, Priority = ?, Status = ?, Deadline = ?, Owner_UserId = ?, EstimatedTime = ?, Updated = CURRENT_TIMESTAMP, Group_GroupId = ?, Project_ProjectId = ?, ParentId = ?, RootId = ? WHERE TaskId = ?";
 
-	public TaskDAO(DAOFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	protected TaskDAO(DAOFactory daoFactory) {
+		super(daoFactory);
 	}
 
 	private Task find(String sql, Object... values) {
@@ -108,6 +110,29 @@ public class TaskDAO {
 	public List<Task> getByCollaboration(User user) {
 		return findMany(SQL_FIND_BY_COLLABORATION, user.getUserId());
 	}
+	
+	public void update(Task task) {
+		if(task.getTaskId() != 0) {
+			executeUpdate(SQL_UPDATE,
+					task.getTitle(),
+					task.getDescription(),
+					task.getPriority(),
+					task.getStatus(),
+					DAOUtil.sqlTimestampFromDate(task.getDeadline()),
+					task.getOwner().getUserId(),
+					task.getEstimatedTime(),
+					(task.getGroup() == null) ? null : task.getGroup().getGroupId(),
+					(task.getProject() == null) ? null : task.getProject().getProjectId(),
+					(task.getParentTask() == null) ? null : task.getParentTask().getTaskId(),
+					(task.getRootTask() == null) ? null : task.getRootTask().getTaskId(),
+					task.getTaskId()
+				);
+		}
+					
+					
+	}
+	
+	//TODO Insert task
 
 	private static Task map(ResultSet rs) throws SQLException {
 		Task task = new Task(rs.getInt("TaskId"));

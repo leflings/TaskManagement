@@ -16,9 +16,7 @@ import main.dto.Task;
 import main.dto.User;
 import main.exceptions.DAOException;
 
-public class UserDAO {
-
-	private DAOFactory daoFactory;
+public class UserDAO extends BaseDAO {
 
 	private static final String SQL_FIND_BY_TASK_ASSIGNMENT = "SELECT u.* FROM User u INNER JOIN TaskAssignment ta ON ta.User_UserId = u.UserId AND ta.Task_TaskId = ?";
 	private static final String SQL_FIND_BY_PROJECT = "SELECT u.* FROM User u INNER JOIN ProjectMembership pm ON pm.User_UserId = u.UserId AND pm.Project_ProjectId = ?";
@@ -27,11 +25,14 @@ public class UserDAO {
 	private static final String SQL_FIND_BY_USERNAME = "SELECT * FROM User WHERE Username = ?";
 	private static final String SQL_FIND = "SELECT * FROM User";
 
-	public UserDAO(DAOFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	private static final String SQL_INSERT = "INSERT INTO User (Username, Name, Email, Password) VALUES (?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE User SET Username = ?, Name = ?, Email = ?, Password = ? WHERE UserId = ?";
+
+	protected UserDAO(DAOFactory daoFactory) {
+		super(daoFactory);
 	}
 
-	private User find(String sql, Object ... values) {
+	private User find(String sql, Object... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -51,8 +52,8 @@ public class UserDAO {
 
 		return user;
 	}
-	
-	private List<User> findMany(String sql, Object ... values) {
+
+	private List<User> findMany(String sql, Object... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
@@ -74,29 +75,66 @@ public class UserDAO {
 
 		return users;
 	}
-	
+
 	public User getById(int userId) {
 		return find(SQL_FIND_BY_ID, userId);
 	}
-	
+
 	public User getByUsername(String username) {
 		return find(SQL_FIND_BY_USERNAME, username);
 	}
-	
+
 	public List<User> getAll() {
 		return findMany(SQL_FIND, null);
 	}
-	
+
 	public List<User> getByGroup(Group group) {
 		return findMany(SQL_FIND_BY_GROUP, group.getGroupId());
 	}
-	
+
 	public List<User> getByProject(Project project) {
 		return findMany(SQL_FIND_BY_PROJECT, project.getProjectId());
 	}
-	
+
 	public List<User> getByTaskAssignment(Task task) {
 		return findMany(SQL_FIND_BY_TASK_ASSIGNMENT, task.getTaskId());
+	}
+
+	public void update(User user) {
+		if (user.getUserId() != 0) {
+			executeUpdate(SQL_UPDATE, user.getUsername(), user.getName(), user.getEmail(), user.getPassword(), user.getUserId());
+		}
+	}
+
+	public void insert(User user) {
+		if (user.getUserId() != 0) {
+			throw new IllegalArgumentException("User is already created. UserId is not 0");
+		}
+
+		Object values[] = { user.getUsername(), user.getName(), user.getEmail(), user.getPassword() };
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet generatedKeys = null;
+
+		try {
+			connection = daoFactory.getConnection();
+			preparedStatement = prepareStatement(connection, SQL_INSERT, true, values);
+			int affectedRows = preparedStatement.executeUpdate();
+			if (affectedRows == 0) {
+				throw new DAOException("Creating user failed, no rows affected.");
+			}
+			generatedKeys = preparedStatement.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				user.setUserId(generatedKeys.getInt(1));
+			} else {
+				throw new DAOException("Creating user failed, no generated key obtained.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			close(connection, preparedStatement, generatedKeys);
+		}
+
 	}
 
 	private static User map(ResultSet rs) throws SQLException {

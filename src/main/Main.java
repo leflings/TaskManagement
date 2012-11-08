@@ -16,14 +16,18 @@ public class Main {
 		UserDAO users = javabase.getUserDAO();
 		GroupDAO groups = javabase.getGroupDAO();
 		
-		User user = users.getById(3);
-		Group group = groups.getById(2);
-		javabase.getGroupMembershipDAO().addMember(group, user);
+//		User user = users.getById(3);
+//		Group group = groups.getById(2);
+//		javabase.getGroupMembershipDAO().addMember(group, user);
 		
 		for (Group g : groups.getAll()) {
 			System.out.println(g.getName());
 			for (User u : g.getMembers()) {
-				System.out.println("\t"+u.getName());
+				if(g.getOwner().equals(u)) {
+					System.out.println("\t* "+u.getName());
+				} else {
+					System.out.println("\t"+u.getName());
+				}
 			}
 		}
 		

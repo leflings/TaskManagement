@@ -15,17 +15,18 @@ import main.dto.Project;
 import main.dto.User;
 import main.exceptions.DAOException;
 
-public class ProjectDAO {
-	private DAOFactory daoFactory;
+public class ProjectDAO extends BaseDAO {
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM Project";
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM Project WHERE ProjectId = ?";
 	private static final String SQL_FIND_BY_GROUP_ID = "SELECT * FROM Project WHERE Group_GroupId = ?";
 	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Project WHERE Owner_UserId = ?";
 	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT p.* FROM Project p INNER JOIN ProjectMembership pm ON pm.Project_ProjectId = p.ProjectId AND pm.User_UserId = ?";
+	
+	private static final String SQL_UPDATE = "UPDATE Project SET ProjectName = ?, Description = ?, Owner_UserId = ?, Group_GroupId = ? WHERE ProjectId = ?";
 
-	public ProjectDAO(DAOFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	protected ProjectDAO(DAOFactory daoFactory) {
+		super(daoFactory);
 	}
 
 	private Project find(String sql, Object ... values) {
@@ -90,6 +91,17 @@ public class ProjectDAO {
 	
 	public Project getById(int projectId) {
 		return find(SQL_FIND_BY_ID, projectId);
+	}
+	
+	public void update(Project project) {
+		if(project.getProjectId() != 0) {
+			executeUpdate(SQL_UPDATE,
+					project.getProjectName(),
+					project.getDescription(),
+					project.getOwner().getUserId(),
+					((project.getGroup() == null) ? null : project.getGroup().getGroupId()),
+					project.getProjectId());
+		}
 	}
 	
 	private static Project map(ResultSet rs) throws SQLException {

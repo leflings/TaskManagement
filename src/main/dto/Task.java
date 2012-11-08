@@ -231,5 +231,10 @@ public class Task extends BaseModel {
     public int hashCode() {
         return (taskId != 0) ? (this.getClass().hashCode() + taskId) : super.hashCode();
     }
+
+	@Override
+	public int getId() {
+		return taskId;
+	}
 	
 }

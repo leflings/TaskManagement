@@ -100,4 +100,9 @@ public class Project extends BaseModel {
     public int hashCode() {
         return (projectId != 0) ? (this.getClass().hashCode() + projectId) : super.hashCode();
     }
+
+	@Override
+	public int getId() {
+		return projectId;
+	}
 }
