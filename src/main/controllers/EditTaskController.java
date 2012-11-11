@@ -72,7 +72,7 @@ public class EditTaskController {
 	}
 
 	private void editName() {
-		task.setTaskName(SelectUtilities.inputEdit(edit.editName()));
+		task.setTitle(SelectUtilities.inputEdit(edit.editName()));
 	}
 
 	private void editDescription() {

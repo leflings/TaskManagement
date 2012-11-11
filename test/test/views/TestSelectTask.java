@@ -25,15 +25,16 @@ public class TestSelectTask {
 		Task task2 = new Task();
 		Task task3 = new Task();
 
-		task1.setTaskName("gør rent");
+		task1.setTitle("gør rent");
 		task1.setTaskId(19);
 
-		task2.setTaskName("støvsug");
+		task2.setTitle("støvsug");
 		task2.setTaskId(32193218);
 
-		task3.setTaskName("mug ud i stalden");
+		task3.setTitle("mug ud i stalden");
 		task3.setTaskId(1);
-
+		
+		
 		taskList = new ArrayList<Task>();
 		taskList.add(task1);
 		taskList.add(task2);
@@ -47,6 +48,6 @@ public class TestSelectTask {
 		SelectTask taskTest = new SelectTask(taskList);
 		taskTest.print();
 		Task selectedTask = taskTest.getResult();
-		System.out.println(selectedTask.getTaskName());
+		System.out.println(selectedTask.getTitle());
 	}
 }

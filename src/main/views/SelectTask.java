@@ -20,7 +20,7 @@ public class SelectTask implements BaseView{
 	@Override
 	public void print() {
 	for (int i = 0 ; i < tasks.size() ; i++){
-		SelectUtilities.printSelectLine(i + 1, tasks.get(i).getTaskName() + " (id: " + tasks.get(i).getTaskId() + ")");
+		SelectUtilities.printSelectLine(i + 1, tasks.get(i).getTitle() + " (id: " + tasks.get(i).getTaskId() + ")");
 	}
 	choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 		

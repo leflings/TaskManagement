@@ -29,7 +29,7 @@ public class EditUser implements BaseView {
 	}
 	
 	public String editUserName() {
-		return "Dit nuværende brugernavn er: " + user.getUserName() + "\nIndtast dit nye brugernavn: ";
+		return "Dit nuværende brugernavn er: " + user.getUsername() + "\nIndtast dit nye brugernavn: ";
 	}
 	
 	public String editEmail() {
