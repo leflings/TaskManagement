@@ -24,9 +24,10 @@ public class UserDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM User WHERE UserId = ?";
 	private static final String SQL_FIND_BY_USERNAME = "SELECT * FROM User WHERE Username = ?";
 	private static final String SQL_FIND = "SELECT * FROM User";
+	private static final String SQL_FIND_BY_LOGIN = "SELECT * FROM User WHERE Username = ? AND Password = ?";
 
 	private static final String SQL_INSERT = "INSERT INTO User (Username, Name, Email, Password) VALUES (?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE User SET Username = ?, Name = ?, Email = ?, Password = ? WHERE UserId = ?";
+	private static final String SQL_UPDATE = "UPDATE User SET Username = ?, Name = ?, Email = ? WHERE UserId = ?";
 
 	protected UserDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -79,6 +80,10 @@ public class UserDAO extends BaseDAO {
 
 		return users;
 	}
+	
+	public User authenticate(String username, String password) {
+		return find(SQL_FIND_BY_LOGIN, username, password);
+	}
 
 	public User getById(int userId) {
 		return find(SQL_FIND_BY_ID, userId);
@@ -106,7 +111,7 @@ public class UserDAO extends BaseDAO {
 
 	public void update(User user) {
 		if (user.getUserId() != 0) {
-			executeUpdate(SQL_UPDATE, user.getUsername(), user.getName(), user.getEmail(), user.getPassword(), user.getUserId());
+			executeUpdate(SQL_UPDATE, user.getUsername(), user.getName(), user.getEmail(), user.getUserId());
 		}
 	}
 

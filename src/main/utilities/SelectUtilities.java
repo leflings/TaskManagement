@@ -19,7 +19,7 @@ public class SelectUtilities {
 	public static String inputEdit(String text) {
 		Scanner scan = new Scanner(System.in);
 		System.out.format("%s", text);
-		String edit = scan.next();
+		String edit = scan.nextLine();
 
 		return edit;
 	}
