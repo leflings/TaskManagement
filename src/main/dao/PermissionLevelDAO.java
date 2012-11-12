@@ -15,8 +15,8 @@ import main.exceptions.DAOException;
 
 public class PermissionLevelDAO extends BaseDAO {
 	
-	private static final String SQL_GROUP_MEMBERSHIP_PERMISSIONLEVEL = "SELECT PermissionLevel FROM GroupMembership WHERE Group_GroupId = ? AND User_UserId = ?";
-	private static final String SQL_PROJECT_MEMBERSHIP_PERMISSIONLEVEL = "SELECT PermissionLevel FROM ProjectMembership WHERE Project_ProjectId = ? AND User_UserId = ?";
+	private static final String SQL_GROUP_MEMBERSHIP_PERMISSIONLEVEL = "SELECT gm_PermissionLevel FROM GroupMembership WHERE gm_GroupId = ? AND gm_UserId = ?";
+	private static final String SQL_PROJECT_MEMBERSHIP_PERMISSIONLEVEL = "SELECT pm_PermissionLevel FROM ProjectMembership WHERE pm_ProjectId = ? AND pm_UserId = ?";
 
 	protected PermissionLevelDAO(DAOFactory daoFactory) {
 		super(daoFactory);

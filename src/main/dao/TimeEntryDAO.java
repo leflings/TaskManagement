@@ -17,8 +17,8 @@ public class TimeEntryDAO {
 	private DAOFactory daoFactory;
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM TimeEntry";
-	private static final String SQL_FIND_BY_USER = "SELECT * FROM TimeEntry WHERE User_UserId = ?";
-	private static final String SQL_FIND_BY_TASK = "SELECT * FROM TimeEntry WHERE Task_TaskId = ?";
+	private static final String SQL_FIND_BY_USER = "SELECT * FROM TimeEntry WHERE te_UserId = ?";
+	private static final String SQL_FIND_BY_TASK = "SELECT * FROM TimeEntry WHERE te_TaskId = ?";
 
 	protected TimeEntryDAO(DAOFactory daoFactory) {
 		this.daoFactory = daoFactory;
@@ -85,11 +85,11 @@ public class TimeEntryDAO {
 	}
 	
 	private static TimeEntry map(ResultSet rs) throws SQLException {
-		TimeEntry timeentry = new TimeEntry(rs.getInt("TimeEntryId"));
-		timeentry.setUser(rs.getInt("User_UserId"));
-		timeentry.setTask(rs.getInt("Task_TaskId"));
-		timeentry.setDuration(rs.getInt("Duration"));
-		timeentry.setDate(dateFromSqlTimestamp(rs.getTimestamp("Date")));
+		TimeEntry timeentry = new TimeEntry(rs.getInt("te_TimeEntryId"));
+		timeentry.setUser(rs.getInt("te_UserId"));
+		timeentry.setTask(rs.getInt("te_TaskId"));
+		timeentry.setDuration(rs.getInt("te_Duration"));
+		timeentry.setDate(dateFromSqlTimestamp(rs.getTimestamp("te_Date")));
 		
 		return timeentry;
 	}

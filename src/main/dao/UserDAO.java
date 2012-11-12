@@ -18,16 +18,16 @@ import main.exceptions.DAOException;
 
 public class UserDAO extends BaseDAO {
 
-	private static final String SQL_FIND_BY_TASK_ASSIGNMENT = "SELECT u.* FROM User u INNER JOIN TaskAssignment ta ON ta.User_UserId = u.UserId AND ta.Task_TaskId = ?";
-	private static final String SQL_FIND_BY_PROJECT = "SELECT u.* FROM User u INNER JOIN ProjectMembership pm ON pm.User_UserId = u.UserId AND pm.Project_ProjectId = ?";
-	private static final String SQL_FIND_BY_GROUP = "SELECT u.* FROM User u INNER JOIN GroupMembership gm ON gm.User_UserId = u.UserId AND gm.Group_GroupId = ?";
-	private static final String SQL_FIND_BY_ID = "SELECT * FROM User WHERE UserId = ?";
-	private static final String SQL_FIND_BY_USERNAME = "SELECT * FROM User WHERE Username = ?";
+	private static final String SQL_FIND_BY_TASK_ASSIGNMENT = "SELECT u.* FROM User u INNER JOIN TaskAssignment ta ON ta.ta_UserId = u.u_UserId AND ta.ta_TaskId = ?";
+	private static final String SQL_FIND_BY_PROJECT = "SELECT u.* FROM User u INNER JOIN ProjectMembership pm ON pm.pm_UserId = u.u_UserId AND pm.pm_ProjectId = ?";
+	private static final String SQL_FIND_BY_GROUP = "SELECT u.* FROM User u INNER JOIN GroupMembership gm ON gm.gm_UserId = u.u_UserId AND gm.gm_GroupId = ?";
+	private static final String SQL_FIND_BY_ID = "SELECT * FROM User WHERE u_UserId = ?";
+	private static final String SQL_FIND_BY_USERNAME = "SELECT * FROM User WHERE u_Username = ?";
 	private static final String SQL_FIND = "SELECT * FROM User";
-	private static final String SQL_FIND_BY_LOGIN = "SELECT * FROM User WHERE Username = ? AND Password = ?";
+	private static final String SQL_FIND_BY_LOGIN = "SELECT * FROM User WHERE u_Username = ? AND u_Password = ?";
 
-	private static final String SQL_INSERT = "INSERT INTO User (Username, Name, Email, Password) VALUES (?, ?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE User SET Username = ?, Name = ?, Email = ? WHERE UserId = ?";
+	private static final String SQL_INSERT = "INSERT INTO User (u_Username, u_Name, u_Email, u_Password) VALUES (?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE User SET u_Username = ?, u_Name = ?, u_Email = ? WHERE u_UserId = ?";
 
 	protected UserDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -147,10 +147,10 @@ public class UserDAO extends BaseDAO {
 	}
 
 	private static User map(ResultSet rs) throws SQLException {
-		User user = new User(rs.getInt("UserId"));
-		user.setEmail(rs.getString("Email"));
-		user.setName(rs.getString("Name"));
-		user.setUsername(rs.getString("Username"));
+		User user = new User(rs.getInt("u_UserId"));
+		user.setEmail(rs.getString("u_Email"));
+		user.setName(rs.getString("u_Name"));
+		user.setUsername(rs.getString("u_Username"));
 		return user;
 	}
 }

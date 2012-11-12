@@ -18,13 +18,13 @@ import main.exceptions.DAOException;
 public class ProjectDAO extends BaseDAO {
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM Project";
-	private static final String SQL_FIND_BY_ID = "SELECT * FROM Project WHERE ProjectId = ?";
-	private static final String SQL_FIND_BY_GROUP_ID = "SELECT * FROM Project WHERE Group_GroupId = ?";
-	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Project WHERE Owner_UserId = ?";
-	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT p.* FROM Project p INNER JOIN ProjectMembership pm ON pm.Project_ProjectId = p.ProjectId AND pm.User_UserId = ?";
+	private static final String SQL_FIND_BY_ID = "SELECT * FROM Project WHERE p_ProjectId = ?";
+	private static final String SQL_FIND_BY_GROUP_ID = "SELECT * FROM Project WHERE p_Group_GroupId = ?";
+	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Project WHERE p_Owner_UserId = ?";
+	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT p.* FROM Project p INNER JOIN ProjectMembership pm ON pm.pm_ProjectId = p.p_ProjectId AND pm.pm_UserId = ?";
 	
-	private static final String SQL_UPDATE = "UPDATE Project SET ProjectName = ?, Description = ?, Owner_UserId = ?, Group_GroupId = ? WHERE ProjectId = ?";
-	private static final String SQL_INSERT = "INSERT INTO Project (ProjectName, Description, Owner_UserId, Group_GroupId) VALUES (?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE Project SET p_Title = ?, p_Description = ?, p_Owner_UserId = ?, p_Group_GroupId = ? WHERE p_ProjectId = ?";
+	private static final String SQL_INSERT = "INSERT INTO Project (p_Title, p_Description, p_Owner_UserId, p_Group_GroupId) VALUES (?, ?, ?, ?)";
 
 	protected ProjectDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -105,7 +105,7 @@ public class ProjectDAO extends BaseDAO {
 	public void update(Project project) {
 		if(project.getProjectId() != 0) {
 			executeUpdate(SQL_UPDATE,
-					project.getProjectName(),
+					project.getTitle(),
 					project.getDescription(),
 					project.getOwner().getUserId(),
 					((project.getGroup() == null) ? null : project.getGroup().getGroupId()),
@@ -119,7 +119,7 @@ public class ProjectDAO extends BaseDAO {
 		}
 
 		Object values[] = {
-				project.getProjectName(),
+				project.getTitle(),
 				project.getDescription(),
 				project.getOwner().getUserId(),
 				((project.getGroup() == null) ? null : project.getGroup().getGroupId())
@@ -149,11 +149,11 @@ public class ProjectDAO extends BaseDAO {
 	}
 	
 	private static Project map(ResultSet rs) throws SQLException {
-		Project project = new Project(rs.getInt("ProjectId"));
-		project.setOwner(rs.getInt("Owner_UserId"));
-		project.setProjectName(rs.getString("ProjectName"));
-		project.setDescription(rs.getString("Description"));
-		project.setGroup(rs.getInt("Group_GroupId"));
+		Project project = new Project(rs.getInt("p_ProjectId"));
+		project.setOwner(rs.getInt("p_Owner_UserId"));
+		project.setTitle(rs.getString("p_Title"));
+		project.setDescription(rs.getString("p_Description"));
+		project.setGroup(rs.getInt("p_Group_GroupId"));
 		
 		return project;
 	}

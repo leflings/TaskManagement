@@ -6,7 +6,7 @@ import main.enums.PermissionLevel;
 
 public class ProjectMembershipDAO extends BaseDAO {
 	private static final String SQL_ADD_MEMBER = "INSERT INTO ProjectMembership VALUES (?, ?, ?)";
-	private static final String SQL_REMOVE_MEMBER = "DELETE FROM ProjectMembership WHERE Project_ProjectId = ? AND User_UserId = ?";
+	private static final String SQL_REMOVE_MEMBER = "DELETE FROM ProjectMembership WHERE pm_ProjectId = ? AND pm_UserId = ?";
 
 	protected ProjectMembershipDAO(DAOFactory daoFactory) {
 		super(daoFactory);

@@ -12,20 +12,18 @@ import java.util.List;
 
 import main.dto.Group;
 import main.dto.User;
-import main.enums.PermissionLevel;
 import main.exceptions.DAOException;
 
 public class GroupDAO extends BaseDAO {
-	private static final String SQL_REMOVE_MEMBER = "DELETE FROM GroupMembership WHERE User_UserId = ? AND Group_GroupId = ?";
+	private static final String SQL_REMOVE_MEMBER = "DELETE FROM GroupMembership WHERE gm_UserId = ? AND gm_GroupId = ?";
 	private static final String SQL_ADD_MEMBER = "INSERT INTO GroupMembership VALUES (?, ?, ?)";
 	private static final String SQL_FIND_ALL = "SELECT * FROM `Group`";
-	private static final String SQL_FIND_BY_ID = "SELECT * FROM `Group` WHERE GroupId = ?";
-	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT g.* FROM `Group` g INNER JOIN GroupMembership gm ON gm.Group_GroupId = g.GroupId AND gm.User_UserId = ?";
-	private static final String SQL_FIND_BY_OWNERSHIP = "SELECT * FROM `Group` WHERE Owner_UserId = ?";
+	private static final String SQL_FIND_BY_ID = "SELECT * FROM `Group` WHERE g_GroupId = ?";
+	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT g.* FROM `Group` g INNER JOIN GroupMembership gm ON gm.gm_GroupId = g.g_GroupId AND gm.gm_UserId = ?";
+	private static final String SQL_FIND_BY_OWNERSHIP = "SELECT * FROM `Group` WHERE g_Owner_UserId = ?";
 	
-	private static final String SQL_INSERT = "INSERT INTO `Group` (Name, Description, Owner_UserId) VALUES (?, ?, ?)";
-	private static final String SQL_UPDATE = "UPDATE `Group` SET Name = ?, Description = ?, Owner_UserId = ? WHERE GroupId = ?";
-
+	private static final String SQL_INSERT = "INSERT INTO `Group` (g_Title, g_Description, g_Owner_UserId) VALUES (?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE `Group` SET g_Title = ?, g_Description = ?, g_Owner_UserId = ? WHERE g_GroupId = ?";
 	
 	protected GroupDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -97,7 +95,7 @@ public class GroupDAO extends BaseDAO {
 			throw new IllegalArgumentException("Group is already created. GroupId is not 0");
 		}
 
-		Object values[] = { group.getName(), group.getDescription(), group.getOwner().getUserId() };
+		Object values[] = { group.getTitle(), group.getDescription(), group.getOwner().getUserId() };
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet generatedKeys = null;
@@ -124,15 +122,14 @@ public class GroupDAO extends BaseDAO {
 	
 	public void update(Group group) {
 		if(group.getGroupId() != 0) {
-			executeUpdate(SQL_UPDATE, group.getName(), group.getDescription(), group.getOwner().getUserId(), group.getGroupId());
+			executeUpdate(SQL_UPDATE, group.getTitle(), group.getDescription(), group.getOwner().getUserId(), group.getGroupId());
 		}
 	}
-
 	
 	private static Group map(ResultSet rs) throws SQLException {
-		Group group = new Group(rs.getInt("GroupId"), rs.getInt("Owner_UserId"));
-		group.setName(rs.getString("Name"));
-		group.setDescription(rs.getString("Description"));
+		Group group = new Group(rs.getInt("g_GroupId"), rs.getInt("g_Owner_UserId"));
+		group.setTitle(rs.getString("g_Title"));
+		group.setDescription(rs.getString("g_Description"));
 
 		return group;
 	}

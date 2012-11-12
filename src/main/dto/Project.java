@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Project extends BaseModel {
 	private int projectId;
-	private String projectName;
+	private String title;
 	private String description;
 
 	private int ownerId;
@@ -35,12 +35,12 @@ public class Project extends BaseModel {
 		}
 	}
 	
-	public String getProjectName() {
-		return projectName;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {

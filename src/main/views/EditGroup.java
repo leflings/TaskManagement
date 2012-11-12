@@ -32,7 +32,7 @@ public class EditGroup implements BaseView {
 	}
 	
 	public String editName() {
-		return "Det nuværende gruppenavn er: " + group.getName() + "\nIndtast det nye gruppenavn: ";
+		return "Det nuværende gruppenavn er: " + group.getTitle() + "\nIndtast det nye gruppenavn: ";
 	}
 	
 	public String editDescription() {

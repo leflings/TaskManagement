@@ -15,7 +15,7 @@ import main.exceptions.DAOException;
 public class TaskAssignmentDAO extends BaseDAO {
 	
 	private static final String SQL_ADD_ASSIGNMENT = "INSERT INTO TaskAssignment VALUES (?, ?)";
-	private static final String SQL_REMOVE_ASSIGNMENT = "DELETE FROM TaskAssignment WHERE Task_TaskId = ? AND User_UserId = ?";
+	private static final String SQL_REMOVE_ASSIGNMENT = "DELETE FROM TaskAssignment WHERE ta_TaskId = ? AND ta_UserId = ?";
 
 	protected TaskAssignmentDAO(DAOFactory daoFactory) {
 		super(daoFactory);

@@ -61,7 +61,7 @@ public class EditGroupController {
 	}
 
 	private void setName() {
-		group.setName(SelectUtilities.inputEdit(edit.editName()));
+		group.setTitle(SelectUtilities.inputEdit(edit.editName()));
 	}
 
 	private void setDescription() {
