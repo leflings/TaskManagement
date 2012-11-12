@@ -9,13 +9,13 @@ import java.util.List;
 
 public class TextMenu extends TextMenuItem {
 
-	private static final TextMenuItem quit = new TextMenuItem("quit", new Runnable() {
+	private static final TextMenuItem quit = new TextMenuItem("afslut", new Runnable() {
 		public void run() {
 			System.exit(0);
 		}
 	});
 
-	private static final TextMenuItem back = new TextMenuItem("back");
+	private static final TextMenuItem back = new TextMenuItem("tilbage");
 
 	List<TextMenuItem> items;
 
@@ -33,10 +33,13 @@ public class TextMenu extends TextMenuItem {
 	private void initialize(boolean addBack, boolean addQuit, TextMenuItem... items) {
 
 		this.items = new ArrayList<TextMenuItem>(Arrays.asList(items));
-		if (addBack)
+		if (addBack) {
 			this.items.add(back);
-		if (addQuit)
+
+		}
+		if (addQuit) {
 			this.items.add(quit);
+		}
 	}
 
 	private void display() {
@@ -61,16 +64,17 @@ public class TextMenu extends TextMenuItem {
 			String line = br.readLine();
 			try {
 				int option = Integer.parseInt(line);
-				if (option >= 0 && option < items.size())
+				if (option >= 0 && option < items.size()) {
 					return items.get(option);
+				}
 			} catch (NumberFormatException e) {
 			}
 
 			System.out.println("not a valid menu option: " + line);
 		}
 	}
-	
-	public void addItems(TextMenuItem ... menuItems) {
+
+	public void addItems(TextMenuItem... menuItems) {
 		for (TextMenuItem textMenuItem : menuItems) {
 			items.add(textMenuItem);
 		}
@@ -79,8 +83,10 @@ public class TextMenu extends TextMenuItem {
 	public void run() {
 
 		try {
-			for (TextMenuItem item = prompt(); item.isExec(); item = prompt())
+			for (TextMenuItem item = prompt(); item.isExec(); item = prompt()) {
 				item.run();
+
+			}
 		} catch (Throwable t) {
 			t.printStackTrace(System.out);
 		}
