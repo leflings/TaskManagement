@@ -49,7 +49,7 @@ public class EditUserController {
 	}
 	
 	private void setPassword() {
-		user.setPassword(SelectUtilities.inputEdit(edit.editPassword()));	//TODO lav metode setPassword i User
+		user.setPassword(SelectUtilities.inputEdit(edit.editPassword()));
 	}
 
 	public User getUser() {

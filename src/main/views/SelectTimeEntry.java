@@ -1,5 +1,6 @@
 package main.views;
 
+import java.util.Date;
 import java.util.List;
 
 import main.dto.TimeEntry;
@@ -22,9 +23,9 @@ public class SelectTimeEntry implements BaseView{
 		for (int i = 0 ; i < timeEntries.size() ; i++){
 			String task = timeEntries.get(i).getTask().getTitle();
 			String user = timeEntries.get(i).getUser().getName();
-			String date = timeEntries.get(i).getDate().toString();
+			Date date = timeEntries.get(i).getDate();
 			int duration = timeEntries.get(i).getDuration();
-			SelectUtilities.printSelectLine(i +1, "taskname: " + task + "\tUsername: " + user + "\tDate: " + date +
+			SelectUtilities.printSelectLine(i +1, "taskname: " + task + "\tUsername: " + user + "\tDate: " + date.toString() +
 					"\tDuration: " + duration);			
 				}
 		choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");

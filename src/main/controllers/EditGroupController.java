@@ -93,7 +93,7 @@ public class EditGroupController {
 	private void addProject() {
 		edit.addProject();
 		ProjectDAO pdao = new ProjectDAO();
-		List<Project> allProjects = pdao.allProjects();		//TODO lav pdao.allProjects() der returnerer alle projekter
+		List<Project> allProjects = pdao.getAll();
 		List<Project> projects;
 		for (Project project:allProjects)		//Kigger alle projekter igennem og tilføjer alle der ikke er tilføjet en gruppe til en list
 			if (project.getGroup() == null)

@@ -22,11 +22,9 @@ public class TestSelectTask {
 		Task task3 = new Task(1231);
 
 		task1.setTitle("gør rent");
-
 		task2.setTitle("støvsug");
-
 		task3.setTitle("mug ud i stalden");
-
+		
 		taskList = new ArrayList<Task>();
 		taskList.add(task1);
 		taskList.add(task2);
