@@ -196,6 +196,10 @@ public abstract class DAOFactory {
 		return new PermissionLevelDAO(this);
 	}
 	
+	public GeneralDAO getGeneralDAO() {
+		return new GeneralDAO(this);
+	}
+	
 	// You can add more DAO implementation getters here.
 
 }

@@ -61,7 +61,7 @@ public class Group extends BaseModel {
 	}
 
 	public void setOwner(User owner) {
-		this.ownerId = owner.getUserId();
+		this.ownerId = (owner == null) ? 0 : owner.getUserId();
 		this.owner = owner;
 	}
 	

@@ -59,7 +59,7 @@ public class Project extends BaseModel {
 	}
 
 	public void setOwner(User owner) {
-		this.ownerId = owner.getUserId();
+		this.ownerId = (owner == null) ? 0 : owner.getUserId();
 		this.owner = owner;
 	}
 	
@@ -75,7 +75,7 @@ public class Project extends BaseModel {
 	}
 
 	public void setGroup(Group group) {
-		this.groupId = group.getGroupId();
+		this.groupId = (group == null) ? 0 : group.getGroupId();
 		this.group = group;
 	}
 	

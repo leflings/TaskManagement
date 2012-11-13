@@ -140,7 +140,7 @@ public class Task extends BaseModel {
 	}
 
 	public void setOwner(User owner) {
-		this.ownerId = owner.getUserId();
+		this.ownerId = (owner == null) ? 0 : owner.getUserId();
 		this.owner = owner;
 	}
 
@@ -156,7 +156,7 @@ public class Task extends BaseModel {
 	}
 
 	public void setProject(Project project) {
-		this.projectId = project.getProjectId();
+		this.projectId = (project == null) ? 0 : project.getProjectId();
 		this.project = project;
 	}
 
@@ -172,7 +172,7 @@ public class Task extends BaseModel {
 	}
 
 	public void setGroup(Group group) {
-		this.groupId = group.getGroupId();
+		this.groupId = (group == null) ? 0 : group.getGroupId();
 		this.group = group;
 	}
 
@@ -188,7 +188,7 @@ public class Task extends BaseModel {
 	}
 
 	public void setParentTask(Task parentTask) {
-		this.parentTaskId = parentTask.getTaskId();
+		this.parentTaskId = (parentTask == null) ? 0 : parentTask.getTaskId();
 		this.parentTask = parentTask;
 	}
 
@@ -204,7 +204,7 @@ public class Task extends BaseModel {
 	}
 	
 	public void setRootTask(Task rootTask) {
-		this.rootTaskId = rootTask.getTaskId();
+		this.rootTaskId = (rootTask == null) ? 0 : rootTask.getTaskId();
 		this.rootTask = rootTask;
 	}
 	

@@ -26,7 +26,7 @@ public class EditGroupMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			group.setName(SelectUtilities.inputEdit(edit.editName()));
+			group.setTitle(SelectUtilities.inputEdit(edit.editName()));
 			DAOFactory.getInstance().getGroupDAO().update(group);
 		}
 	});
@@ -35,7 +35,7 @@ public class EditGroupMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			group.setName(SelectUtilities.inputEdit(edit.editDescription()));
+			group.setTitle(SelectUtilities.inputEdit(edit.editDescription()));
 			DAOFactory.getInstance().getGroupDAO().update(group);
 		}
 	});
@@ -46,9 +46,9 @@ public class EditGroupMenu extends TextMenu {
 		public void run() {
 			edit.addUser();
 			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			SelectUser su = new SelectUser(udao.getByNotInGroup(group));		//TODO getByNotInGroup
+			SelectUser su = new SelectUser(udao.getByNotInGroup(group));
 			su.print();
-			PermissionLevel permissionLevel; //TODO hvordan skal dette besluttes?
+			PermissionLevel permissionLevel = PermissionLevel.USER; //TODO hvordan skal dette besluttes?
 			DAOFactory.getInstance().getGroupMembershipDAO().addMember(group, su.getResult(), permissionLevel);
 		}
 	});
@@ -78,10 +78,10 @@ public class EditGroupMenu extends TextMenu {
 		public void run() {
 			edit.addProject();
 			ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
-			List<Project> projects = pdao.getNotInGroup();	//TODO opret metode i projectdao getNotInGroup()
+			List<Project> projects = pdao.getByNotInGroup();
 			SelectProject sp = new SelectProject(projects);
 			sp.print();
-			DAOFactory.getInstance().getGroupProjectDAO().addProject(group, sp.getResult());	//TODO tilføj klasse groupProjectDAO med metoder tilsvarende til GroupMembershipDAO
+			DAOFactory.getInstance().getGeneralDAO().addProjectToGroup(group, sp.getResult());
 		}
 	});
 	
@@ -94,7 +94,7 @@ public class EditGroupMenu extends TextMenu {
 			List<Project> projects = pdao.getByGroup(group);
 			SelectProject sp = new SelectProject(projects);
 			sp.print();
-			DAOFactory.getInstance().getGroupProjectDAO().removeProject(group, sp.getResult());	//TODO tilføj klasse groupProjectDAO med metoder tilsvarende til GroupMembershipDAO
+			DAOFactory.getInstance().getGeneralDAO().removeProjectFromGroup(group, sp.getResult());
 		}
 	});
 	
@@ -112,10 +112,10 @@ public class EditGroupMenu extends TextMenu {
 		public void run() {
 			edit.addTask();
 			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
-			List<Task> tasks = tdao.getAllNotInGroup();	//TODO finder alle tasks der ikke er i en gruppe
+			List<Task> tasks = tdao.getTasksWithoutGroup();
 			SelectTask st = new SelectTask(tasks);
 			st.print();
-			DAOFactory.getInstance().getGroupTaskDAO().addTask(group, st.getResult());	//TODO opret klassen GroupTaskDAO med metoder tilsvarende til GroupMembershipDAO
+			DAOFactory.getInstance().getGeneralDAO().addTaskToGroup(group, st.getResult());
 		}
 	});
 	
@@ -128,7 +128,7 @@ public class EditGroupMenu extends TextMenu {
 			List<Task> tasks = tdao.getByGroup(group);
 			SelectTask st = new SelectTask(tasks);
 			st.print();
-			DAOFactory.getInstance().getGroupTaskDAO().removeTask(group, st.getResult());	//TODO opret klassen GroupTaskDAO med metoder tilsvarende til GroupMembershipDAO
+			DAOFactory.getInstance().getGeneralDAO().removeTaskFromGroup(group, st.getResult());
 		}
 	});
 	

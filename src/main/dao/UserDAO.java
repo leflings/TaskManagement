@@ -25,6 +25,8 @@ public class UserDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_USERNAME = "SELECT * FROM User WHERE u_Username = ?";
 	private static final String SQL_FIND = "SELECT * FROM User";
 	private static final String SQL_FIND_BY_LOGIN = "SELECT * FROM User WHERE u_Username = ? AND u_Password = ?";
+	
+	private static final String SQL_FIND_BY_NOT_IN_GROUP = "SELECT u.* FROM User u WHERE u.u_UserId NOT IN (SELECT gm.gm_UserId FROM GroupMembership gm WHERE gm.gm_GroupId = ?) AND u.u_UserId NOT IN (SELECT g.g_Owner_UserId FROM `Group` g WHERE g.g_GroupId = ?)";
 
 	private static final String SQL_INSERT = "INSERT INTO User (u_Username, u_Name, u_Email, u_Password) VALUES (?, ?, ?, ?)";
 	private static final String SQL_UPDATE = "UPDATE User SET u_Username = ?, u_Name = ?, u_Email = ? WHERE u_UserId = ?";
@@ -107,6 +109,10 @@ public class UserDAO extends BaseDAO {
 
 	public List<User> getByTaskAssignment(Task task) {
 		return findMany(SQL_FIND_BY_TASK_ASSIGNMENT, task.getTaskId());
+	}
+	
+	public List<User> getByNotInGroup(Group group) {
+		return findMany(SQL_FIND_BY_NOT_IN_GROUP, group.getGroupId(), group.getGroupId());
 	}
 
 	public void update(User user) {
