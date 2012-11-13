@@ -67,7 +67,7 @@ public class UserIOUtil {
 		try {
 			hours = Float.parseFloat(input);
 		} catch (NumberFormatException e) {
-			System.err.println("Der er sket en fejl, prøv igen");
+			System.err.println("Der er sket en fejl, prøv igen:");
 			return askForDuration();
 		}
 		int minutes = (int) (hours * 60);
