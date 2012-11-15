@@ -15,8 +15,8 @@ public class GroupMembershipDAO extends BaseDAO {
 //	| PermissionLevel | int(11) | NO   |     | NULL    |       |
 //	+-----------------+---------+------+-----+---------+-------+
 
-	private static final String SQL_ADD_MEMBER = "INSERT INTO GroupMembership(Group_GroupId, User_UserId, PermissionLevel) VALUES (?, ?, ?)";
-	private static final String SQL_REMOVE_MEMBER = "DELETE FROM GroupMembership WHERE Group_GroupId = ? AND User_UserId = ?";
+	private static final String SQL_ADD_MEMBER = "INSERT INTO GroupMembership(gm_GroupId, gm_UserId, gm_PermissionLevel) VALUES (?, ?, ?)";
+	private static final String SQL_REMOVE_MEMBER = "DELETE FROM GroupMembership WHERE gm_GroupId = ? AND gm_UserId = ?";
 
 	protected GroupMembershipDAO(DAOFactory daoFactory) {
 		super(daoFactory);

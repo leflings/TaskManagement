@@ -13,5 +13,14 @@ public enum Status {
 	public int getCode() {
 		return code;
 	}
+	
+	public Status fromCode(int code) {
+		for(Status pl : Status.values()) {
+			if(pl.getCode() == code) {
+				return pl;
+			}
+		}
+		throw new IllegalArgumentException("No Enum specified for this code");
+	}
 
 }

@@ -19,7 +19,7 @@ public class SelectGroup implements BaseView {
 	@Override
 	public void print() {
 		for (int i = 0 ; i < groups.size(); i++) {
-			SelectUtilities.printSelectLine(i+1,groups.get(i).getName() + " (id: " + groups.get(i).getGroupId() + ")");		
+			SelectUtilities.printSelectLine(i+1,groups.get(i).getTitle() + " (id: " + groups.get(i).getGroupId() + ")");		
 		}
 		choice = SelectUtilities.selectChoice("Vælg fra ovenstående liste:");	
 	}

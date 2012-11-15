@@ -38,7 +38,7 @@ public class TimeEntry extends BaseModel {
 	}
 
 	public void setTask(Task task) {
-		this.taskId = task.getTaskId();
+		this.taskId = (task == null) ? 0 : task.getTaskId();
 		this.task = task;
 	}
 	
@@ -54,7 +54,7 @@ public class TimeEntry extends BaseModel {
 	}
 
 	public void setUser(User user) {
-		this.userId = user.getUserId();
+		this.userId = (user == null) ? 0 : user.getUserId();
 		this.user = user;
 	}
 	

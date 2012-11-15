@@ -60,7 +60,7 @@ public class EditProjectController {
 	}
 
 	private void setName() {
-		project.setProjectName(SelectUtilities.inputEdit(edit.editName()));
+		project.setTitle(SelectUtilities.inputEdit(edit.editName()));
 	}
 
 	private void setDescription() {

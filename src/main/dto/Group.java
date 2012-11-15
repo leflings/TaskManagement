@@ -5,7 +5,7 @@ import java.util.List;
 public class Group extends BaseModel {
 
 	private int groupId;
-	private String name;
+	private String title;
 	private String description;
 	private int ownerId;
 	private User owner;
@@ -37,12 +37,12 @@ public class Group extends BaseModel {
 		}
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -61,7 +61,7 @@ public class Group extends BaseModel {
 	}
 
 	public void setOwner(User owner) {
-		this.ownerId = owner.getUserId();
+		this.ownerId = (owner == null) ? 0 : owner.getUserId();
 		this.owner = owner;
 	}
 	

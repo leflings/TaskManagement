@@ -1,0 +1,45 @@
+package main.dao;
+
+import main.dto.Group;
+import main.dto.Project;
+import main.dto.Task;
+
+public class GeneralDAO extends BaseDAO {
+
+	protected GeneralDAO(DAOFactory daoFactory) {
+		super(daoFactory);
+	}
+	
+	public void addTaskToGroup(Group group, Task task) {
+		if(task.getProject() == null && !group.getTasks().contains(task)) {
+			task.setGroup(group);
+			group.getTasks().add(task);
+			DAOFactory.getInstance().getTaskDAO().update(task);
+		}
+	}
+	
+	public void removeTaskFromGroup(Group group, Task task) {
+		if(task.getGroup().equals(group) && group.getTasks().contains(task)) {
+			task.setGroup(null);
+			group.getTasks().remove(task);
+			DAOFactory.getInstance().getTaskDAO().update(task);
+		}
+	}
+	
+	public void addProjectToGroup(Group group, Project project) {
+		if(!group.getProjects().contains(project) && project.getGroup() == null) {
+			project.setGroup(group);
+			group.getProjects().add(project);
+			DAOFactory.getInstance().getProjectDAO().update(project);
+		}
+	}
+	
+	public void removeProjectFromGroup(Group group, Project project) {
+		if(group.getProjects().contains(project) && project.getGroup() != null) {
+			project.setGroup(null);
+			group.getProjects().remove(project);
+			DAOFactory.getInstance().getProjectDAO().update(project);
+		}
+	}
+
+}

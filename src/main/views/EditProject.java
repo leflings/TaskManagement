@@ -31,7 +31,7 @@ public class EditProject implements BaseView {
 	}
 	
 	public String editName() {
-		return "Det nuværende projektnavn er: " + project.getProjectName() + "\nIndtast det nye projektnavn: ";
+		return "Det nuværende projektnavn er: " + project.getTitle() + "\nIndtast det nye projektnavn: ";
 	}
 	
 	public String editDescription() {
@@ -56,7 +56,7 @@ public class EditProject implements BaseView {
 	}
 	
 	public String removeFromGroup() {
-		return "Er du sikker på du vil fjerne dette projekt fra gruppen: " + project.getGroup().getName();
+		return "Er du sikker på du vil fjerne dette projekt fra gruppen: " + project.getGroup().getTitle();
 	}
 	
 	public void addTask() {

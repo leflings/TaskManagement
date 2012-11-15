@@ -21,20 +21,20 @@ import main.exceptions.DAOException;
 
 public class TaskDAO extends BaseDAO {
 
-	private static final String SQL_FIND_BY_COLLABORATION = "SELECT t.* FROM Task t INNER JOIN TaskAssignment ta ON ta.Task_TaskId = t.TaskId AND ta.User_UserId = ?";
-	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Task WHERE Owner_UserId = ?";
-	private static final String SQL_FIND_BY_PARENT_ID = "SELECT * FROM Task WHERE ParentId = ?";
-	private static final String SQL_FIND_BY_ROOT_ID = "SELECT * FROM Task WHERE RootId = ?";
-	private static final String SQL_FIND_BY_ID = "SELECT * FROM Task WHERE TaskId = ?";
+	private static final String SQL_FIND_BY_COLLABORATION = "SELECT t.* FROM Task t INNER JOIN TaskAssignment ta ON ta.ta_TaskId = t.t_TaskId AND ta.ta_UserId = ?";
+	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Task WHERE t_Owner_UserId = ?";
+	private static final String SQL_FIND_BY_PARENT_ID = "SELECT * FROM Task WHERE t_Parent_TaskId = ?";
+	private static final String SQL_FIND_BY_ROOT_ID = "SELECT * FROM Task WHERE t_Root_TaskId = ?";
+	private static final String SQL_FIND_BY_ID = "SELECT * FROM Task WHERE t_TaskId = ?";
 	private static final String SQL_FIND_ALL = "SELECT * FROM Task";
-	private static final String SQL_FIND_BY_PROJECT = "SELECT * FROM Task WHERE Project_ProjectId = ?";
-	private static final String SQL_FIND_BY_GROUP = "SELECT * FROM Task WHERE Group_GroupId = ?";
+	private static final String SQL_FIND_BY_PROJECT = "SELECT * FROM Task WHERE t_ProjectId = ?";
+	private static final String SQL_FIND_BY_GROUP = "SELECT * FROM Task WHERE t_GroupId = ?";
 	
-	private static final String SQL_FIND_TASKS_WITHOUT_GROUP = "SELECT * FROM Task WHERE Group_GroupId IS NULL";
-	private static final String SQL_FIND_TASKS_WITHOUT_PROJECT = "SELECT * FROM Task WHERE Project_ProjectId IS NULL";
+	private static final String SQL_FIND_TASKS_WITHOUT_GROUP = "SELECT * FROM Task WHERE t_GroupId IS NULL";
+	private static final String SQL_FIND_TASKS_WITHOUT_PROJECT = "SELECT * FROM Task WHERE t_ProjectId IS NULL";
 	
-	private static final String SQL_UPDATE = "UPDATE Task SET Title = ?, Description = ?, Priority = ?, Status = ?, Deadline = ?, Owner_UserId = ?, EstimatedTime = ?, Updated = CURRENT_TIMESTAMP, Group_GroupId = ?, Project_ProjectId = ?, ParentId = ?, RootId = ? WHERE TaskId = ?";
-	private static final String SQL_INSERT = "INSERT INTO Task (Title, Description, Priority, Status, Deadline, Owner_UserId, EstimatedTime, Group_GroupId, Project_ProjectId, ParentId, RootId) VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_UPDATE = "UPDATE Task SET t_Title = ?, t_Description = ?, t_Priority = ?, t_Status = ?, t_Deadline = ?, t_Owner_UserId = ?, t_EstimatedTime = ?, t_Updated = CURRENT_TIMESTAMP, t_GroupId = ?, t_ProjectId = ?, t_Parent_TaskId = ?, t_Root_TaskId = ? WHERE t_TaskId = ?";
+	private static final String SQL_INSERT = "INSERT INTO Task (t_Title, t_Description, t_Priority, t_Status, t_Deadline, t_Owner_UserId, t_EstimatedTime, t_GroupId, t_ProjectId, t_Parent_TaskId, t_Task_TaskId) VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)";
 
 	protected TaskDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -194,21 +194,21 @@ public class TaskDAO extends BaseDAO {
 	}
 
 	private static Task map(ResultSet rs) throws SQLException {
-		Task task = new Task(rs.getInt("TaskId"));
-		task.setTitle(rs.getString("Title"));
-		task.setDescription(rs.getString("Description"));
-		task.setPriority(Priority.values()[rs.getInt("Priority")]);
-		task.setStatus(Status.values()[rs.getInt("Status")]);
-		task.setDeadline(dateFromSqlTimestamp(rs.getTimestamp("Deadline")));
-		task.setOwner(rs.getInt("Owner_UserId"));
-		task.setEstimatedTime(rs.getInt("EstimatedTime"));
-		task.setCreatedAt(dateFromSqlTimestamp(rs.getTimestamp("Created")));
-		task.setUpdatedAt(dateFromSqlTimestamp(rs.getTimestamp("Updated")));
+		Task task = new Task(rs.getInt("t_TaskId"));
+		task.setTitle(rs.getString("t_Title"));
+		task.setDescription(rs.getString("t_Description"));
+		task.setPriority(Priority.values()[rs.getInt("t_Priority")]);
+		task.setStatus(Status.values()[rs.getInt("t_Status")]);
+		task.setDeadline(dateFromSqlTimestamp(rs.getTimestamp("t_Deadline")));
+		task.setOwner(rs.getInt("t_Owner_UserId"));
+		task.setEstimatedTime(rs.getInt("t_EstimatedTime"));
+		task.setCreatedAt(dateFromSqlTimestamp(rs.getTimestamp("t_Created")));
+		task.setUpdatedAt(dateFromSqlTimestamp(rs.getTimestamp("t_Updated")));
 
-		task.setGroup(rs.getInt("Group_GroupId"));
-		task.setProject(rs.getInt("Project_ProjectId"));
-		task.setParentTask(rs.getInt("ParentId"));
-		task.setRootTask(rs.getInt("RootId"));
+		task.setGroup(rs.getInt("t_GroupId"));
+		task.setProject(rs.getInt("t_ProjectId"));
+		task.setParentTask(rs.getInt("t_Parent_TaskId"));
+		task.setRootTask(rs.getInt("t_Root_TaskId"));
 
 		return task;
 	}

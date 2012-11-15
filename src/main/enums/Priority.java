@@ -13,5 +13,14 @@ public enum Priority {
 	public int getCode() {
 		return code;
 	}
+	
+	public Priority fromCode(int code) {
+		for(Priority pl : Priority.values()) {
+			if(pl.getCode() == code) {
+				return pl;
+			}
+		}
+		throw new IllegalArgumentException("No Enum specified for this code");
+	}
 
 }
