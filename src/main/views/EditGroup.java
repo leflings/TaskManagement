@@ -1,34 +1,13 @@
-	package main.views;
-
-import java.util.List;
+package main.views;
 
 import main.dto.Group;
-import main.utilities.SelectUtilities;
 
-
-public class EditGroup implements BaseView {
+public class EditGroup {
 
 	Group group;
 
 	public EditGroup(Group group) {
 		this.group = group;
-	}
-	
-	@Override
-	public void print() {
-		System.out.println(	"[ 1] : Rediger gruppens navn\n" +
-							"[ 2] : Rediger beskrivelsen af gruppen\n" +
-							"[ 3] : Tilføj bruger til gruppen\n" +
-							"[ 4] : Fjern bruger fra gruppen\n" +
-							"[ 5] : Vælg en ny ejer af gruppen\n" +
-							"[ 6] : Tilføj projekt til gruppen\n" +
-							"[ 7] : Fjern projekt fra gruppen\n" +
-							"[ 8] : Tilføj opgave til gruppen\n" +
-							"[ 9] : Fjern opgave fra gruppen\n");
-	}
-	
-	public int choose() {
-		return SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 	}
 	
 	public String editName() {
