@@ -64,7 +64,19 @@ public class EditGroupMenu extends TextMenu {
 		}
 	});
 	
-	private TextMenuItem createProjects = new TextMenuItem("Opret et projekt i denne gruppe", new Runnable() {
+	private TextMenuItem editOwner = new TextMenuItem("Vælg en ny ejer af gruppen", new Runnable() {
+		
+		@Override
+		public void run() {
+			edit.editOwner();
+			SelectUser su = new SelectUser(group.getMembers());	//TODO lav members i group til List i stedet for set
+			su.print();
+			group.setOwner(su.getResult());
+			DAOFactory.getInstance().getGroupDAO().update(group);
+		}
+	});
+	
+	private TextMenuItem createProject = new TextMenuItem("Opret et projekt i denne gruppe", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -132,12 +144,22 @@ public class EditGroupMenu extends TextMenu {
 		}
 	});
 	
+	private TextMenuItem deleteGroup = new TextMenuItem("Slet denne gruppe", new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	
 	
 	
 	public EditGroupMenu(Group group) {
 		super("User menu", true, false);
 		this.group = group;
 		edit = new EditGroup(group);
-		addItems();
+		addItems(editGroupTitle, editGroupDescription, addMember, removeMember, editOwner, 
+				createProject, addProject, removeProject, createTask, addTask, removeTask, deleteGroup);
 	}
 }
