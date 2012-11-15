@@ -1,33 +1,13 @@
 package main.views;
 
-import java.util.List;
-
 import main.dto.Project;
-import main.utilities.SelectUtilities;
 
-
-public class EditProject implements BaseView {
+public class EditProject {
 	
 	Project project;
 	
 	public EditProject(Project project) {
 		this.project = project;
-	}
-	
-	@Override
-	public void print() {		
-		System.out.println(	"[ 1] : Rediger projektets navn\n" +
-							"[ 2] : Rediger beskrivelsen af projektet\n" +
-							"[ 3] : Tilføj bruger til projektet\n" +
-							"[ 4] : Fjern bruger fra projektet\n" +
-							"[ 5] : Vælg en ny ejer af projektet\n" +
-							"[ 6] : Knyt projektet til en gruppe\n" +			//TODO skal nok håndteres på en pænere måde
-							"[ 7] : Fjern knytningen til en gruppe\n" +
-							"[ 8] : Tilføj opgave til projektet\n" +
-							"[ 9] : Fjern opgave fra projektet\n");}
-	
-	public int choose() {
-		return SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 	}
 	
 	public String editName() {

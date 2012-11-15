@@ -97,7 +97,7 @@ public class EditGroupMenu extends TextMenu {
 		}
 	});
 	
-	private TextMenuItem removeProject = new TextMenuItem("Tilføj et project til gruppen", new Runnable() {
+	private TextMenuItem removeProject = new TextMenuItem("Fjern et project fra gruppen", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -156,7 +156,7 @@ public class EditGroupMenu extends TextMenu {
 	
 	
 	public EditGroupMenu(Group group) {
-		super("User menu", true, false);
+		super("Group menu", true, false);
 		this.group = group;
 		edit = new EditGroup(group);
 		addItems(editGroupTitle, editGroupDescription, addMember, removeMember, editOwner, 

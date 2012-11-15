@@ -1,27 +1,13 @@
 package main.views;
 
 import main.dto.User;
-import main.utilities.SelectUtilities;
 
-
-
-public class EditUser implements BaseView {
+public class EditUser {
 
 	User user;
 
 	public EditUser(User user) {
 		this.user = user;
-	}
-
-	public void print() {
-		System.out.println(	"[ 1] : Rediger navn" +
-							"[ 2] : Rediger brugernavn" +
-							"[ 3] : Rediger e-mail" +
-							"[ 4] : Rediger password");
-	}
-		
-	public int choose() {
-		return SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 	}
 	
 	public String editName() {

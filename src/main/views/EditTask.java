@@ -1,30 +1,13 @@
 package main.views;
 
-import java.util.List;
-
 import main.dto.Task;
-import main.dto.User;
-import main.utilities.SelectUtilities;
 
-
-public class EditTask implements BaseView {		//TODO overvej om edit views skal implementere BaseView
+public class EditTask {		//TODO overvej om edit views skal implementere BaseView
 
 	Task task;
 
 	public EditTask(Task task) {
 		this.task = task;
-	}
-
-	@Override
-	public void print() {
-		System.out.println(	"[ 1] : Rediger navn" +
-							"[ 2] : Rediger beskrivelsen af opgaven" +
-							"[ 3] : Rediger e-mail" +
-							"[ 4] : Rediger password");
-	}
-
-	public int choose() {
-		return SelectUtilities.selectChoice("Vælg fra ovenstående liste:");
 	}
 
 	public String editName() {
@@ -35,34 +18,33 @@ public class EditTask implements BaseView {		//TODO overvej om edit views skal i
 		return "Den nuværende beskrivelse af opgaven er: " + task.getDescription() + "\nIndtast din nye beskrivelse: ";
 	}
 
-	
-	
-	public Task getTask() {
-		return task;
-	}
-
 	public void addUser() {
-		
+		System.out.println("Vælg hvem du ønsker at tilføje til opgaven");
 	}
 
 	public void removeUser() {
+		System.out.println("Vælg hvem du ønsker at fjerne fra opgaven");
 	}
 
 	public void editOwner() {
+		System.out.println("Den nuværende ejer af opgaven er: " + task.getOwner() + 
+				"\nVælg hvem du ønsker den nye ejer skal være: ");
 	}
 
 	public void addToGroup() {
+		System.out.println("Vælg hvilken gruppe du ønsker at knytte denne opgave til");
 	}
 
 	public String removeFromGroup() {
-		return null;
+		return "Er du sikker på du vil fjerne denne opgave fra gruppen: " + task.getGroup().getTitle();
 	}
 
 	public void addToProject() {
+		System.out.println("Vælg hvilket projekt du ønsker at knytte denne opgave til");
 	}
 	
 	public String removeFromProject() {
-		return null;
+		return "Er du sikker på du vil fjerne denne opgave fra projektet" + task.getProject().getTitle();
 	}
 
 	public void addChildTask() {
