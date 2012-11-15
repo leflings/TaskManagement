@@ -40,22 +40,6 @@ public class Application {
 				Login login = new Login();
 				setAuthenticatedUser(login.authenticate());
 			} else {
-				// TextMenuItem item = new TextMenuItem("Opret bruger", new
-				// Runnable() {
-				// public void run() {
-				// System.out.println("Opret bruger du ved");
-				// }
-				// });
-				//
-				// TextMenu userMenu = new TextMenu("User menu", true, false,
-				// item);
-				// TextMenu projectMenu = new TextMenu("Project menu", true,
-				// false);
-				// TextMenu taskMenu = new TextMenu("Task menu", true, false);
-				// TextMenu groupMenu = new TextMenu("Group menu", true, false);
-				// TextMenu mainMenu = new TextMenu("Main menu", false, true,
-				// userMenu, taskMenu, groupMenu, projectMenu);
-
 				MainMenu mainMenu = new MainMenu();
 
 				mainMenu.run();
