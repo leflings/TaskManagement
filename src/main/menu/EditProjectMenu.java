@@ -43,7 +43,7 @@ public class EditProjectMenu extends TextMenu {
 		public void run() {
 			edit.addUser();
 			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			SelectUser su = new SelectUser(udao.getByNotInProject(project));		//TODO udao.allUsers() returnerer alle users i en List
+			SelectUser su = new SelectUser(udao.getByNotInProject(project));
 			su.print();
 			DAOFactory.getInstance().getProjectMembershipDAO().addMember(project, su.getResult());
 		}

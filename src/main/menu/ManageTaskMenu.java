@@ -1,10 +1,15 @@
 package main.menu;
 
+import main.Application;
+import main.views.SelectTask;
+
 public class ManageTaskMenu extends TextMenu {
 	
 	private TextMenuItem viewTasks = new TextMenuItem("View tasks", new Runnable() {
 		public void run() {
-			System.out.println("En oversigt over tasks");
+			SelectTask st = new SelectTask(Application.getAuthenticatedUser().getTasks());
+			st.print();
+			new EditTaskMenu(st.getResult()).run();
 		}
 	});
 	private TextMenuItem createTask = new TextMenuItem("Create task", new Runnable() {

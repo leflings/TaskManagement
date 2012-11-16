@@ -3,8 +3,7 @@ package main;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import main.dto.User;
-import main.menu.Login;
-import main.menu.MainMenu;
+import main.menu.WelcomeMenu;
 
 public class Application {
 
@@ -35,19 +34,7 @@ public class Application {
 	}
 
 	public void Run() {
-		while (true) {
-			if (!isAuthenticated()) {
-				Login login = new Login();
-				setAuthenticatedUser(login.authenticate());
-			} else {
-				MainMenu mainMenu = new MainMenu();
-
-				mainMenu.run();
-
-			}
-
-		}
-
+		new WelcomeMenu().run();
 	}
 
 }

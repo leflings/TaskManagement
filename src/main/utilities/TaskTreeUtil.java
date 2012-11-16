@@ -8,14 +8,14 @@ import main.dto.Task;
 
 public class TaskTreeUtil {
 
-	private Task task;
+	private Task selectedTask;
 	
 	public TaskTreeUtil(Task task) {
-		this.task = task;
+		this.selectedTask = task;
 	}
 	
 	public void printTaskTree() {
-		Task rootTask = (task.getRootTask() == null) ? task : task.getRootTask();
+		Task rootTask = (selectedTask.getRootTask() == null) ? selectedTask : selectedTask.getRootTask();
 		printChildTasks(rootTask, 0);
 	}
 	
@@ -27,8 +27,8 @@ public class TaskTreeUtil {
 	}
 	
 	private void printTask(Task task, int level) {
-		String format = "%" + (1 + level*10) + "s%s%n";
-		System.out.format(format, "", task.getTitle());
+		String format = "%-" + (3 + level*3) + "s%s%n";
+		System.out.format(format, selectedTask.equals(task) ? ">>" : "", task.getTitle());
 	}
 	
 }

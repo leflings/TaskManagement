@@ -87,7 +87,7 @@ public class GroupDAO extends BaseDAO {
 	}
 
 	public List<Group> getAll() {
-		return findMany(SQL_FIND_ALL, null);
+		return findMany(SQL_FIND_ALL);
 	}
 	
 	public void insert(Group group) {

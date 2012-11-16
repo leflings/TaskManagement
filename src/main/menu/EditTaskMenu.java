@@ -43,7 +43,7 @@ public class EditTaskMenu extends TextMenu {
 		public void run() {
 			edit.addUser();
 			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			SelectUser su = new SelectUser(udao.getByNotInTask());		//TODO metode mangler
+			SelectUser su = new SelectUser(udao.getByNotAssociatedWithTask(task));		//TODO metode mangler
 			su.print();
 			DAOFactory.getInstance().getTaskAssignmentDAO().addAssignemnt(task, su.getResult());
 		}
@@ -122,18 +122,18 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 	
-	TextMenuItem addChildTask = new TextMenuItem("Tilføj en underopgave", new Runnable() {
-		
-		@Override
-		public void run() {
-			edit.addChildTask();
-			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
-			List<Task> tasks = tdao.getByNoParent();
-			SelectTask st = new SelectTask(tasks);
-			st.print();
-			DAOFactory.getInstance().getGeneralDAO().addChildToParent(st.getResult(), task);
-		}
-	});
+//	TextMenuItem addChildTask = new TextMenuItem("Tilføj en underopgave", new Runnable() {
+//		
+//		@Override
+//		public void run() {
+//			edit.addChildTask();
+//			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
+//			List<Task> tasks = tdao.getByNoParent();
+//			SelectTask st = new SelectTask(tasks);
+//			st.print();
+//			DAOFactory.getInstance().getGeneralDAO().addChildToParent(st.getResult(), task);
+//		}
+//	});
 	
 	TextMenuItem removeChildTask = new TextMenuItem("Fjern en underopgave", new Runnable() {
 		
