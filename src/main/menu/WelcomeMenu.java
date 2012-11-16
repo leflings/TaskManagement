@@ -7,16 +7,6 @@ import main.dao.DAOFactory;
 import main.dto.User;
 
 public class WelcomeMenu extends TextMenu {
-
-	private TextMenuItem createUser = new TextMenuItem("Opret bruger", new Runnable() {
-
-		@Override
-		public void run() {
-			System.out.println("Opret bruger her");
-
-		}
-	});
-
 	private TextMenuItem login = new TextMenuItem("Login", new Runnable() {
 		@Override
 		public void run() {
@@ -49,7 +39,7 @@ public class WelcomeMenu extends TextMenu {
 	public WelcomeMenu() {
 		super("Velkommen", false, true);
 		scanner = new Scanner(System.in);
-		addItems(createUser, login);
+		addItems(new CreateUserMenuItem(), login);
 	}
 
 }

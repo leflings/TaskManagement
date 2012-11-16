@@ -49,7 +49,7 @@ public class TextMenu extends TextMenuItem {
 		for (TextMenuItem item : items) {
 			System.out.format("[%2s] : %s%n", option++, item.getTitle());
 		}
-		System.out.print("select option: ");
+		System.out.print("Indtast valg: ");
 		System.out.flush();
 	}
 
@@ -70,7 +70,7 @@ public class TextMenu extends TextMenuItem {
 			} catch (NumberFormatException e) {
 			}
 
-			System.out.println("not a valid menu option: " + line);
+			System.out.println("Ikke et gyldigt valg: " + line);
 		}
 	}
 
