@@ -1,10 +1,9 @@
-package main.menu;
-
-import java.util.Scanner;
+package main.menu.menuitems;
 
 import main.dao.DAOFactory;
 import main.dao.UserDAO;
 import main.dto.User;
+import main.menu.TextMenuItem;
 import main.utilities.UserIOUtil;
 
 public class CreateUserMenuItem extends TextMenuItem {
@@ -12,7 +11,6 @@ public class CreateUserMenuItem extends TextMenuItem {
 	private Runnable exec = new Runnable() {
 		public void run() {
 			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			Scanner scanner = new Scanner(System.in);
 			String username, name, email, password;
 			
 			username = UserIOUtil.getNullableString("Indtast brugernavn (angiv blank brugernavn for at vende tilbage");
