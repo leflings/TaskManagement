@@ -8,6 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TextMenu extends TextMenuItem {
+	
+	private static final int MENU_COLUMN_WIDTH = 30;
 
 	private static final TextMenuItem quit = new TextMenuItem("afslut", new Runnable() {
 		public void run() {
@@ -45,12 +47,35 @@ public class TextMenu extends TextMenuItem {
 	private void display() {
 
 		int option = 0;
+		int columnLength = items.size() / 3 + (items.size() % 3 == 0 ? 0 : 1);
+		int rows = Math.max(3, columnLength);
+		String rowFormat = "[%2d] : %-"+MENU_COLUMN_WIDTH+"s";
 		System.out.println("\n== " + getTitle() + " ==");
-		for (TextMenuItem item : items) {
-			System.out.format("[%2s] : %s%n", option++, item.getTitle());
+		for (int i = 0; i < rows; i++) {
+			StringBuilder sb = new StringBuilder();
+			if (items.size() != 0) {
+				sb.append(String.format(rowFormat, i, getTruncatedTitle(i)));
+			}
+			if (items.size() > i + rows) {
+				// two columns
+				sb.append("  " + String.format(rowFormat, rows + i, getTruncatedTitle(rows + i)));
+			}
+			if (items.size() > i + (2 * rows)) {
+				// three columns
+				sb.append("  " + String.format(rowFormat, 2 * rows + i, getTruncatedTitle(2 * rows + i)));
+			}
+			String output = sb.toString();
+			System.out.println(output);
 		}
+
 		System.out.print("Indtast valg: ");
 		System.out.flush();
+	}
+	
+	private String getTruncatedTitle(int itemId) {
+		String title = items.get(itemId).getTitle();
+		int cutoff = Math.min(MENU_COLUMN_WIDTH-1, title.length());
+		return title.substring(0, cutoff);
 	}
 
 	private TextMenuItem prompt() throws IOException {

@@ -8,16 +8,33 @@ import main.dao.TaskDAO;
 import main.dao.UserDAO;
 import main.dto.Task;
 import main.utilities.SelectUtilities;
+import main.utilities.TaskTreeUtil;
 import main.views.EditTask;
 import main.views.SelectGroup;
 import main.views.SelectProject;
 import main.views.SelectTask;
 import main.views.SelectUser;
+import main.views.ViewTask;
 
 public class EditTaskMenu extends TextMenu {
 
 	Task task;
 	EditTask edit;
+	
+	TextMenuItem showShortInfo = new TextMenuItem("Vis kort info", new Runnable() {
+		
+		public void run() {
+			new ViewTask(task).displayShortInfo();
+		}
+	});
+	
+	TextMenuItem showTaskTree = new TextMenuItem("Vis opgave hieraki", new Runnable() {
+		
+		@Override
+		public void run() {
+			new TaskTreeUtil(task).printTaskTree();
+		}
+	});
 	
 	TextMenuItem editTitle = new TextMenuItem("Rediger titel", new Runnable() {
 		
@@ -150,7 +167,7 @@ public class EditTaskMenu extends TextMenu {
 		super("Opgave menu", true, false);
 		this.task = task;
 		edit = new EditTask(task);
-		addItems(editTitle, editDescription, addMember, removeMember, editOwner, 
+		addItems(showShortInfo, showTaskTree, editTitle, editDescription, addMember, removeMember, editOwner, 
 				addToGroup, removeFromGroup, addToProject, removeFromProject, createTask);
 	}
 }

@@ -15,6 +15,7 @@ public class TaskTreeUtil {
 	}
 	
 	public void printTaskTree() {
+		System.out.println("\n=== Opgave hieraki ===");
 		Task rootTask = (selectedTask.getRootTask() == null) ? selectedTask : selectedTask.getRootTask();
 		printChildTasks(rootTask, 0);
 	}
@@ -27,7 +28,7 @@ public class TaskTreeUtil {
 	}
 	
 	private void printTask(Task task, int level) {
-		String format = "%-" + (3 + level*3) + "s%s%n";
+		String format = "%-" + (2 + level*4) + "s%s%n";
 		System.out.format(format, selectedTask.equals(task) ? ">>" : "", task.getTitle());
 	}
 	

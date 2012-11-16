@@ -104,6 +104,11 @@ public class User extends BaseModel {
         return (userId != 0) ? (this.getClass().hashCode() + userId) : super.hashCode();
     }
 
+    @Override
+    public String toString() {
+    	return this.name;
+    }
+    
 	@Override
 	public int getId() {
 		return userId;

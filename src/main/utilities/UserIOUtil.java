@@ -31,6 +31,21 @@ public class UserIOUtil {
 		}
 	}
 	
+	public static String join(Object[] items, String seperator) {
+		StringBuilder sb = new StringBuilder();
+		seperator += " ";
+		boolean isFirst = true;
+		for(Object o : items) {
+			if(!isFirst) {
+				sb.append(seperator);
+			}
+			sb.append(o.toString());
+			isFirst = false;
+		}
+		
+		return sb.toString();
+	}
+	
 	public static String getNullableString(String prompt) {
 		System.out.format("%s > ", prompt);
 		String input;
