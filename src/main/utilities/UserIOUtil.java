@@ -30,6 +30,25 @@ public class UserIOUtil {
 
 		}
 	}
+	
+	public static String getNullableString(String prompt) {
+		System.out.format("%s > ", prompt);
+		String input;
+		input = sc.nextLine();
+		return (input.length() == 0) ? null : input;
+	}
+	
+	public static String getNonEmptyString(String prompt) {
+		System.out.format("%s > ", prompt);
+		String input;
+		input = sc.nextLine();
+		while(input.length() == 0) {
+			System.out.format("Skal udfyldes. %s > ", prompt);
+			input = sc.nextLine();
+		}
+		return input;
+	}
+	
 
 	public static Date askForDate() {
 		Date convertedDate = null;

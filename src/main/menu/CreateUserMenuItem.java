@@ -5,6 +5,7 @@ import java.util.Scanner;
 import main.dao.DAOFactory;
 import main.dao.UserDAO;
 import main.dto.User;
+import main.utilities.UserIOUtil;
 
 public class CreateUserMenuItem extends TextMenuItem {
 
@@ -13,18 +14,16 @@ public class CreateUserMenuItem extends TextMenuItem {
 			UserDAO udao = DAOFactory.getInstance().getUserDAO();
 			Scanner scanner = new Scanner(System.in);
 			String username, name, email, password;
-			System.out.print("Indtast brugernavn >");
-			username = scanner.nextLine();
-			while(username.length() == 0 || udao.getByUsername(username) != null) {
-				System.out.print("Brugernavn allerede taget. Indtast brugernavn >");
-				username = scanner.nextLine();
+			
+			username = UserIOUtil.getNullableString("Indtast brugernavn (angiv blank brugernavn for at vende tilbage");
+			while(username != null && udao.getByUsername(username) != null) {
+				username = UserIOUtil.getNullableString("Brugernavn allerede taget. Indtast brugernavn");
 			}
-			System.out.print("Indtast password >");
-			password = scanner.nextLine();
-			System.out.print("Indtast fulde navn >");
-			name = scanner.nextLine();
-			System.out.print("Indtast email-adresse >");
-			email = scanner.nextLine();
+			if(username == null) { return; }
+			
+			password = UserIOUtil.getNonEmptyString("Indtast password");
+			name = UserIOUtil.getNonEmptyString("Indtast fulde navn");
+			email = UserIOUtil.getNonEmptyString("Indtast email-adresse");
 			
 			User user = new User();
 			user.setUsername(username);
