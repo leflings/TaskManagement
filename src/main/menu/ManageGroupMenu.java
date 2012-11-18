@@ -10,7 +10,7 @@ public class ManageGroupMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Group group = SelectItem.getSelection(Application.getAuthenticatedUser().getGroups());
+			Group group = SelectItem.getSelection(Application.User().getGroups());
 			if(group != null) {
 				new EditGroupMenu(group).run();
 			}

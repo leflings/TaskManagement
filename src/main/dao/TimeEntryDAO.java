@@ -24,6 +24,7 @@ public class TimeEntryDAO {
 		this.daoFactory = daoFactory;
 	}
 
+	@SuppressWarnings("unused")
 	private TimeEntry find(String sql, Object ... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

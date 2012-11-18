@@ -93,7 +93,7 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addToGroup();
-			Group group = SelectItem.getSelection(Application.getAuthenticatedUser().getGroups());
+			Group group = SelectItem.getSelection(Application.User().getGroups());
 			if (group != null) {
 				DAOFactory.getInstance().getGeneralDAO().addTaskToGroup(group, task);
 			}

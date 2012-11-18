@@ -1,6 +1,8 @@
 package main.dao;
 
-import static main.dao.DAOUtil.*;
+import static main.dao.DAOUtil.close;
+import static main.dao.DAOUtil.prepareStatement;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +10,6 @@ import java.sql.SQLException;
 
 import main.dto.Group;
 import main.dto.Project;
-import main.dto.Task;
 import main.dto.User;
 import main.enums.PermissionLevel;
 import main.exceptions.DAOException;
@@ -22,10 +23,6 @@ public class PermissionLevelDAO extends BaseDAO {
 		super(daoFactory);
 	}
 	
-	private PermissionLevel find(String sql) {
-		return find(sql, new Object[0]);
-	}
-
 	private PermissionLevel find(String sql, Object... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

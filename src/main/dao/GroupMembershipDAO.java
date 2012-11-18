@@ -5,7 +5,6 @@ import main.dto.User;
 import main.enums.PermissionLevel;
 
 public class GroupMembershipDAO extends BaseDAO {
-	private DAOFactory daoFactory;
 	
 //	+-----------------+---------+------+-----+---------+-------+
 //	| Field           | Type    | Null | Key | Default | Extra |

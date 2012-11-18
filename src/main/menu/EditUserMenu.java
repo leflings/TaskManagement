@@ -15,8 +15,8 @@ public class EditUserMenu extends TextMenu {
 		public void run() {
 //			EditUserController euc = new EditUserController(Application.getAuthenticatedUser());
 //			euc.editUser();
-			Application.getAuthenticatedUser().setName(SelectUtilities.inputEdit(edit.editName()));
-			DAOFactory.getInstance().getUserDAO().update(Application.getAuthenticatedUser());
+			Application.User().setName(SelectUtilities.inputEdit(edit.editName()));
+			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});
 	
@@ -24,8 +24,8 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.getAuthenticatedUser().setName(SelectUtilities.inputEdit(edit.editUserName()));
-			DAOFactory.getInstance().getUserDAO().update(Application.getAuthenticatedUser());
+			Application.User().setName(SelectUtilities.inputEdit(edit.editUserName()));
+			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});
 	
@@ -33,8 +33,8 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.getAuthenticatedUser().setName(SelectUtilities.inputEdit(edit.editEmail()));
-			DAOFactory.getInstance().getUserDAO().update(Application.getAuthenticatedUser());
+			Application.User().setName(SelectUtilities.inputEdit(edit.editEmail()));
+			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});
 	
@@ -42,14 +42,14 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.getAuthenticatedUser().setName(SelectUtilities.inputEdit(edit.editPassword()));
-			DAOFactory.getInstance().getUserDAO().update(Application.getAuthenticatedUser());
+			Application.User().setName(SelectUtilities.inputEdit(edit.editPassword()));
+			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});
 	
 	public EditUserMenu() {
 		super("User menu", true, false);
-		edit = new EditUser(Application.getAuthenticatedUser());
+		edit = new EditUser(Application.User());
 		addItems(editName, editUserName, editEmail, editPassword);
 	}
 }

@@ -39,10 +39,6 @@ public class TaskDAO extends BaseDAO {
 	protected TaskDAO(DAOFactory daoFactory) {
 		super(daoFactory);
 	}
-	
-	private Task find(String sql) {
-		return find(sql, new Object[0]);
-	}
 
 	private Task find(String sql, Object... values) {
 		Connection connection = null;

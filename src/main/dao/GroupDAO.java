@@ -15,8 +15,6 @@ import main.dto.User;
 import main.exceptions.DAOException;
 
 public class GroupDAO extends BaseDAO {
-	private static final String SQL_REMOVE_MEMBER = "DELETE FROM GroupMembership WHERE gm_UserId = ? AND gm_GroupId = ?";
-	private static final String SQL_ADD_MEMBER = "INSERT INTO GroupMembership VALUES (?, ?, ?)";
 	private static final String SQL_FIND_ALL = "SELECT * FROM `Group`";
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM `Group` WHERE g_GroupId = ?";
 	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT g.* FROM `Group` g INNER JOIN GroupMembership gm ON gm.gm_GroupId = g.g_GroupId AND gm.gm_UserId = ?";

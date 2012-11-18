@@ -32,10 +32,6 @@ public class ProjectDAO extends BaseDAO {
 		super(daoFactory);
 	}
 	
-	private Project find(String sql) {
-		return find(sql, new Object[0]);
-	}
-
 	private Project find(String sql, Object ... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;

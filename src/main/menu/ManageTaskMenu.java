@@ -8,7 +8,7 @@ public class ManageTaskMenu extends TextMenu {
 
 	private TextMenuItem viewTasks = new TextMenuItem("View tasks", new Runnable() {
 		public void run() {
-			Task task = SelectItem.getSelection(Application.getAuthenticatedUser().getTasks());
+			Task task = SelectItem.getSelection(Application.User().getTasks());
 			if(task != null) {
 				new EditTaskMenu(task).run();
 			}

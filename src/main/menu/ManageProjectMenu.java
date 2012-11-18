@@ -8,7 +8,7 @@ public class ManageProjectMenu extends TextMenu {
 
 	private TextMenuItem viewProjects = new TextMenuItem("View projects", new Runnable() {
 		public void run() {
-			Project project = SelectItem.getSelection(Application.getAuthenticatedUser().getProjects());
+			Project project = SelectItem.getSelection(Application.User().getProjects());
 			if(project != null) {
 				new EditProjectMenu(project).run();
 			}

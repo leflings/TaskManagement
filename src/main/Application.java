@@ -10,7 +10,7 @@ public class Application {
 	private static User authenticatedUser;
 	private static final AtomicBoolean AUTHENTICATED = new AtomicBoolean(false);
 
-	public static User getAuthenticatedUser() {
+	public static User User() {
 		return authenticatedUser;
 	}
 

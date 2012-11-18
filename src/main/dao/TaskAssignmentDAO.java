@@ -1,16 +1,7 @@
 package main.dao;
 
-import static main.dao.DAOUtil.close;
-import static main.dao.DAOUtil.prepareStatement;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import main.dto.Task;
 import main.dto.User;
-import main.exceptions.DAOException;
 
 public class TaskAssignmentDAO extends BaseDAO {
 	
