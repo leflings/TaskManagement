@@ -3,16 +3,14 @@ package main.menu;
 import java.util.List;
 
 import main.dao.DAOFactory;
-import main.dao.GroupDAO;
 import main.dao.TaskDAO;
 import main.dao.UserDAO;
 import main.dto.Project;
 import main.dto.Task;
+import main.dto.User;
 import main.utilities.SelectUtilities;
 import main.views.EditProject;
-import main.views.SelectGroup;
-import main.views.SelectTask;
-import main.views.SelectUser;
+import main.views.SelectItem;
 
 public class EditProjectMenu extends TextMenu {
 
@@ -43,9 +41,10 @@ public class EditProjectMenu extends TextMenu {
 		public void run() {
 			edit.addUser();
 			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			SelectUser su = new SelectUser(udao.getByNotInProject(project));
-			su.print();
-			DAOFactory.getInstance().getProjectMembershipDAO().addMember(project, su.getResult());
+			User user = SelectItem.getSelection(udao.getByNotInProject(project));
+			if(user != null) {
+				DAOFactory.getInstance().getProjectMembershipDAO().addMember(project, user);
+			}
 		}
 	});
 	
@@ -54,9 +53,10 @@ public class EditProjectMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.removeUser();
-			SelectUser su = new SelectUser(project.getMembers());
-			su.print();
-			DAOFactory.getInstance().getProjectMembershipDAO().removeMember(project, su.getResult());
+			User user = SelectItem.getSelection(project.getMembers());
+			if(user != null) {
+				DAOFactory.getInstance().getProjectMembershipDAO().removeMember(project, user);
+			}
 		}
 	});
 	
@@ -65,10 +65,11 @@ public class EditProjectMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.editOwner();
-			SelectUser su = new SelectUser(project.getMembers());
-			su.print();
-			project.setOwner(su.getResult());
-			DAOFactory.getInstance().getProjectDAO().update(project);
+			User user = SelectItem.getSelection(project.getMembers());
+			if(user != null) {
+				project.setOwner(user);
+				DAOFactory.getInstance().getProjectDAO().update(project);
+			}
 		}
 	});
 	
@@ -77,10 +78,10 @@ public class EditProjectMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addToGroup();
-			GroupDAO gdao = DAOFactory.getInstance().getGroupDAO();
-			SelectGroup sg = new SelectGroup(gdao.getAll());	//TODO gdao.allGroups returnerer alle groups
-			sg.print();
-			DAOFactory.getInstance().getGeneralDAO().addProjectToGroup(sg.getResult(), project);
+//			GroupDAO gdao = DAOFactory.getInstance().getGroupDAO();
+//			SelectGroup sg = new SelectGroup(gdao.getAll());	//TODO gdao.allGroups returnerer alle groups
+//			sg.print();
+//			DAOFactory.getInstance().getGeneralDAO().addProjectToGroup(sg.getResult(), project);
 		}
 	});
 	
@@ -109,9 +110,10 @@ public class EditProjectMenu extends TextMenu {
 			edit.addTask();
 			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
 			List<Task> tasks = tdao.getAll();
-			SelectTask st = new SelectTask(tasks);
-			st.print();
-			DAOFactory.getInstance().getGeneralDAO().addTaskToProject(project, st.getResult());
+			Task task = SelectItem.getSelection(tasks);
+			if(task != null ) {
+				DAOFactory.getInstance().getGeneralDAO().addTaskToProject(project, task);
+			}
 		}
 	});
 	
@@ -120,9 +122,10 @@ public class EditProjectMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.removeTask();
-			SelectTask st = new SelectTask(project.getTasks());
-			st.print();
-			DAOFactory.getInstance().getGeneralDAO().removeTaskFromProject(project, st.getResult());
+			Task task = SelectItem.getSelection(project.getTasks());
+			if(task != null) {
+				DAOFactory.getInstance().getGeneralDAO().removeTaskFromProject(project, task);
+			}
 		}
 	});
 	
@@ -130,7 +133,14 @@ public class EditProjectMenu extends TextMenu {
 		super("Project menu", true, false);
 		this.project = project;
 		edit = new EditProject(project);
-		addItems(editTitle, editDescription, addMember, removeMember, editOwner, 
-				addToGroup, removeFromGroup, createTask, addTask, removeTask);
+		addItems(editTitle,
+				editDescription,
+				addMember,
+				removeMember,
+				editOwner, 
+				(project.getGroup() == null ? addToGroup : removeFromGroup),
+				createTask,
+				addTask,
+				removeTask);
 	}
 }

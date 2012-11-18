@@ -1,16 +1,17 @@
 package main.menu;
 
 import main.Application;
-import main.views.SelectProject;
+import main.dto.Project;
+import main.views.SelectItem;
 
 public class ManageProjectMenu extends TextMenu {
 
 	private TextMenuItem viewProjects = new TextMenuItem("View projects", new Runnable() {
 		public void run() {
-			System.out.println("En oversigt over projects");
-			SelectProject sp = new SelectProject(Application.getAuthenticatedUser().getProjects());
-			sp.print();
-			new EditProjectMenu(sp.getResult()).run();
+			Project project = SelectItem.getSelection(Application.getAuthenticatedUser().getProjects());
+			if(project != null) {
+				new EditProjectMenu(project).run();
+			}
 		}
 	});
 	private TextMenuItem searchProjects = new TextMenuItem("Search projects", new Runnable() {

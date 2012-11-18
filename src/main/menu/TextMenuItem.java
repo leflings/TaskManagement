@@ -3,7 +3,7 @@ package main.menu;
 public class TextMenuItem implements Runnable {
 
 	private String title;
-	private Runnable exec;
+	protected Runnable exec;
 	
 	protected TextMenuItem(String title) {
 		this(title, null);

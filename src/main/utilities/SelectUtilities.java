@@ -26,13 +26,13 @@ public class SelectUtilities {
 
 	public static boolean confirm(String text) {		//TODO evt lav denne metode om
 		Scanner scan = new Scanner(System.in);
-		System.out.format("s%", text);
+		System.out.format("%s", text);
 		System.out.println(	"[1] : Yes\n" +
 							"[2] : No\n");
-		int choice = scan.nextInt();
-		if (choice == 1)
+		String choice = scan.nextLine();
+		if (choice.equals("1"))
 			return true;
-		else if (choice == 0)
+		else if (choice.equals("0"))
 			return false;
 		else
 			return confirm("Invalid choice, try again: ");

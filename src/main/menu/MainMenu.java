@@ -1,6 +1,5 @@
 package main.menu;
 
-import java.util.prefs.BackingStoreException;
 
 public class MainMenu extends TextMenu {
 

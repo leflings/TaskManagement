@@ -46,7 +46,6 @@ public class TextMenu extends TextMenuItem {
 
 	private void display() {
 
-		int option = 0;
 		int columnLength = items.size() / 3 + (items.size() % 3 == 0 ? 0 : 1);
 		int rows = Math.max(3, columnLength);
 		String rowFormat = "[%2d] : %-"+MENU_COLUMN_WIDTH+"s";

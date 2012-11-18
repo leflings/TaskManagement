@@ -1,9 +1,5 @@
 package main.utilities;
 
-import java.util.List;
-import java.util.Stack;
-
-import main.dao.DAOFactory;
 import main.dto.Task;
 
 public class TaskTreeUtil {

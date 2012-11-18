@@ -1,10 +1,5 @@
 package main.menu;
 
-import java.util.Scanner;
-
-import main.Application;
-import main.dao.DAOFactory;
-import main.dto.User;
 import main.menu.menuitems.CreateUserMenuItem;
 import main.menu.menuitems.LoginMenuItem;
 

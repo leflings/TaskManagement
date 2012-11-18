@@ -1,15 +1,20 @@
 package main.menu;
 
 import main.Application;
-import main.views.SelectGroup;
+import main.dto.Group;
+import main.views.SelectItem;
 
 public class ManageGroupMenu extends TextMenu {
 
 	private TextMenuItem viewGroups = new TextMenuItem("View Groups", new Runnable() {
+		
+		@Override
 		public void run() {
-			SelectGroup sg = new SelectGroup(Application.getAuthenticatedUser().getGroups());
-			sg.print();
-			new EditGroupMenu(sg.getResult()).run();
+			Group group = SelectItem.getSelection(Application.getAuthenticatedUser().getGroups());
+			if(group != null) {
+				new EditGroupMenu(group).run();
+			}
+			
 		}
 	});
 	private TextMenuItem searchGroups = new TextMenuItem("Search Groups", new Runnable() {
