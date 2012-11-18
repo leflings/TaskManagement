@@ -7,9 +7,9 @@ import main.dto.Group;
 import main.dto.Task;
 import main.dto.User;
 import main.utilities.SelectUtilities;
-import main.utilities.TaskTreeUtil;
 import main.views.EditTask;
 import main.views.SelectItem;
+import main.views.ViewTaskTree;
 import main.views.ViewTask;
 
 public class EditTaskMenu extends TextMenu {
@@ -28,7 +28,7 @@ public class EditTaskMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			new TaskTreeUtil(task).printTaskTree();
+			new ViewTaskTree(task).printTaskTree();
 		}
 	});
 

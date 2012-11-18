@@ -1,12 +1,12 @@
-package main.utilities;
+package main.views;
 
 import main.dto.Task;
 
-public class TaskTreeUtil {
+public class ViewTaskTree {
 
 	private Task selectedTask;
 	
-	public TaskTreeUtil(Task task) {
+	public ViewTaskTree(Task task) {
 		this.selectedTask = task;
 	}
 	

@@ -32,7 +32,7 @@ public class SelectUtilities {
 		String choice = scan.nextLine();
 		if (choice.equals("1"))
 			return true;
-		else if (choice.equals("0"))
+		else if (choice.equals("2"))
 			return false;
 		else
 			return confirm("Invalid choice, try again: ");
