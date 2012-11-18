@@ -98,6 +98,11 @@ public class Project extends BaseModel {
 		return members;
 	}
 	
+	@Override
+	public String toString() {
+		return getTitle();
+	}
+	
     @Override
     public boolean equals(Object other) {
     	return (other instanceof Project) && (other != null) ? getProjectId() == (((Project) other).getProjectId()) : (other == this);

@@ -91,6 +91,11 @@ public class Group extends BaseModel {
 		return members;
 	}
 	
+	@Override
+	public String toString() {
+		return getTitle();
+	}
+	
     @Override
     public boolean equals(Object other) {
     	return (other instanceof Group) && (other != null) ? getGroupId() == (((Group) other).getGroupId()) : (other == this);

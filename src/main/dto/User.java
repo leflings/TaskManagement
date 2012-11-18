@@ -106,7 +106,7 @@ public class User extends BaseModel {
 
     @Override
     public String toString() {
-    	return this.name;
+    	return getName();
     }
     
 	@Override

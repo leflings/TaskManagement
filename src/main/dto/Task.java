@@ -233,6 +233,11 @@ public class Task extends BaseModel {
 		return timeEntries;
 	}
 	
+	@Override
+	public String toString() {
+		return getTitle();
+	}
+	
     @Override
     public boolean equals(Object other) {
     	return (other instanceof Task) && (other != null) ? getTaskId() == (((Task) other).getTaskId()) : (other == this);

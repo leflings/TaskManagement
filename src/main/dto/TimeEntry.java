@@ -2,6 +2,8 @@ package main.dto;
 
 import java.util.Date;
 
+import main.utilities.UserIOUtil;
+
 public class TimeEntry extends BaseModel {
 	private int timeEntryId;
 	private int taskId;
@@ -78,6 +80,11 @@ public class TimeEntry extends BaseModel {
 		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("[%s -> %s : %s]", getUser(), getTask(), UserIOUtil.printDate(getDate()));
+	}
+	
     @Override
     public boolean equals(Object other) {
     	return (other instanceof TimeEntry) && (other != null) ? getTimeEntryId() == (((TimeEntry) other).getTimeEntryId()) : (other == this);
