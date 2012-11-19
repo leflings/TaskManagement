@@ -109,7 +109,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem addToProject = new TextMenuItem("Tilføj til en projekt", new Runnable() {
+	TextMenuItem addToProject = new TextMenuItem("Tilføj til et projekt", new Runnable() {
 
 		@Override
 		public void run() {
