@@ -6,7 +6,7 @@ import main.views.SelectItem;
 
 public class ManageGroupMenu extends TextMenu {
 
-	private TextMenuItem viewGroups = new TextMenuItem("View Groups", new Runnable() {
+	private TextMenuItem viewGroups = new TextMenuItem("Vis grupper", new Runnable() {
 		
 		@Override
 		public void run() {

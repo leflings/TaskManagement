@@ -11,8 +11,9 @@ public class MainMenu extends TextMenu {
 		EditUserMenu editUserMenu = new EditUserMenu();
 		ManageGroupMenu manageGroupMenu = new ManageGroupMenu();
 		ManageProjectMenu manageProjectMenu = new ManageProjectMenu();
+		ManageTimeEntryMenu manageTimeEntryMenu = new ManageTimeEntryMenu();
 		
-		addItems(logout, editUserMenu, manageTaskMenu, manageGroupMenu, manageProjectMenu);
+		addItems(logout, editUserMenu, manageTaskMenu, manageGroupMenu, manageProjectMenu, manageTimeEntryMenu);
 	}
 
 }

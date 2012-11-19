@@ -88,10 +88,10 @@ public class User extends BaseModel {
 	}
 	
 	public List<TimeEntry> getTimeEntries() {
-		if(timeEntries == null) {
-			timeEntries = getFactory().getTimeEntryDAO().getByUser(this);
-		}
-		return timeEntries;
+//		if(timeEntries == null) {
+//			timeEntries = getFactory().getTimeEntryDAO().getByUser(this);
+//		}
+		return getFactory().getTimeEntryDAO().getByUser(this);
 	}
 
     @Override

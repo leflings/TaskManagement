@@ -1,6 +1,7 @@
 package main.dao;
 
 import static main.dao.DAOUtil.*;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +14,16 @@ import main.dto.TimeEntry;
 import main.dto.User;
 import main.exceptions.DAOException;
 
-public class TimeEntryDAO {
-	private DAOFactory daoFactory;
+public class TimeEntryDAO extends BaseDAO {
 
 	private static final String SQL_FIND_ALL = "SELECT * FROM TimeEntry";
 	private static final String SQL_FIND_BY_USER = "SELECT * FROM TimeEntry WHERE te_UserId = ?";
 	private static final String SQL_FIND_BY_TASK = "SELECT * FROM TimeEntry WHERE te_TaskId = ?";
+	private static final String SQL_INSERT = "INSERT INTO TimeEntry(te_TaskId, te_UserId, te_Duration, te_Date) VALUES (?, ?, ?, ?)";
+	private static final String SQL_DELETE = "DELETE FROM TimeEntry WHERE te_TimeEntryId = ?";
 
 	protected TimeEntryDAO(DAOFactory daoFactory) {
-		this.daoFactory = daoFactory;
+		super(daoFactory);
 	}
 
 	@SuppressWarnings("unused")
@@ -83,6 +85,45 @@ public class TimeEntryDAO {
 	
 	public List<TimeEntry> getByTask(Task task) {
 		return findMany(SQL_FIND_BY_TASK, task.getTaskId());
+	}
+	
+	public void delete(TimeEntry timeEntry) {
+		executeUpdate(SQL_DELETE, timeEntry.getId());
+	}
+	
+	public void insert(TimeEntry timeEntry) {
+		if (timeEntry.getId() != 0) {
+			throw new IllegalArgumentException("TimeEntry is already created. Id is not 0");
+		}
+		
+		Object[] values = {
+			timeEntry.getTask().getTaskId(),
+			timeEntry.getUser().getUserId(),
+			timeEntry.getDuration(),
+			sqlTimestampFromDate(timeEntry.getDate())
+		};
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet generatedKeys = null;
+
+		try {
+			connection = daoFactory.getConnection();
+			preparedStatement = prepareStatement(connection, SQL_INSERT, true, values);
+			int affectedRows = preparedStatement.executeUpdate();
+			if (affectedRows == 0) {
+				throw new DAOException("Creating task failed, no rows affected.");
+			}
+			generatedKeys = preparedStatement.getGeneratedKeys();
+			if (generatedKeys.next()) {
+				timeEntry.setTimeEntryId(generatedKeys.getInt(1));
+			} else {
+				throw new DAOException("Creating task failed, no generated key obtained.");
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			close(connection, preparedStatement, generatedKeys);
+		}
 	}
 	
 	private static TimeEntry map(ResultSet rs) throws SQLException {
