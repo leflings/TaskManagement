@@ -12,7 +12,7 @@ public class SelectItem {
 	
 	public static <T extends BaseModel> T getSelection(List<T> items) {
 		for (int i = 0; i < items.size(); i++) {
-			SelectUtilities.printSelectLine(i, items.get(i).toString());
+			SelectUtilities.printSelectLine(i+1, items.get(i).toString());
 		}
 		
 		String answer;
@@ -24,8 +24,8 @@ public class SelectItem {
 				System.out.print("Ugyldigt valg. ");
 				continue;
 			}
-			if(choice >= 0 && choice < items.size()) {
-				return (T) items.get(choice);
+			if(choice > 0 && choice <= items.size()) {
+				return (T) items.get(choice-1);
 			} else {
 				System.out.print("Ugyldigt valg. ");
 			}
