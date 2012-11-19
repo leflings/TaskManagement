@@ -1,28 +1,15 @@
 package main.dao;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 
-/**
- * Utility class for DAO's. This class contains commonly used DAO logic which is
- * been refactored in single static methods. As far it contains a
- * PreparedStatement values setter and several quiet close methods.
- * 
- * @author BalusC
- * @link http://balusc.blogspot.com/2008/07/dao-tutorial-data-layer.html
- */
 public final class DAOUtil {
 
-	// Constructors
-	// -------------------------------------------------------------------------------
-
 	private DAOUtil() {
-		// Utility class, hide constructor.
 	}
 
 	// Actions
@@ -69,17 +56,6 @@ public final class DAOUtil {
 		for (int i = 0; i < values.length; i++) {
 			preparedStatement.setObject(i + 1, values[i]);
 		}
-	}
-
-	/**
-	 * Converts the given java.util.Date to java.sql.Date.
-	 * 
-	 * @param date
-	 *            The java.util.Date to be converted to java.sql.Date.
-	 * @return The converted java.sql.Date.
-	 */
-	public static Date toSqlDate(java.util.Date date) {
-		return (date != null) ? new Date(date.getTime()) : null;
 	}
 
 	public static Timestamp sqlTimestampFromDate(java.util.Date date) {

@@ -8,52 +8,27 @@ import main.exceptions.DAOConfigurationException;
 
 public class DAOProperties {
 
-	// Constants
-	// ----------------------------------------------------------------------------------
-
-	// Define which connection to use here. Add more as needed in dao.properties
 	public static final String CONNECTION_NAME = "dtu_localhost";
-	
 	private static final String PROPERTIES_FILE = "dao.properties";
 	private static final Properties PROPERTIES = new Properties();
 
 	static {
-		ClassLoader classLoader = Thread.currentThread()
-				.getContextClassLoader();
-		InputStream propertiesFile = classLoader
-				.getResourceAsStream(PROPERTIES_FILE);
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		InputStream propertiesFile = classLoader.getResourceAsStream(PROPERTIES_FILE);
 
 		if (propertiesFile == null) {
-			throw new DAOConfigurationException("Properties file '"
-					+ PROPERTIES_FILE + "' is missing in classpath.");
+			throw new DAOConfigurationException("Properties file '" + PROPERTIES_FILE + "' is missing in classpath.");
 		}
 
 		try {
 			PROPERTIES.load(propertiesFile);
 		} catch (IOException e) {
-			throw new DAOConfigurationException("Cannot load properties file '"
-					+ PROPERTIES_FILE + "'.", e);
+			throw new DAOConfigurationException("Cannot load properties file '" + PROPERTIES_FILE + "'.", e);
 		}
 	}
 
-	// Vars
-	// ---------------------------------------------------------------------------------------
-
 	private String specificKey;
 
-	// Constructors
-	// -------------------------------------------------------------------------------
-
-	/**
-	 * Construct a DAOProperties instance for the given specific key which is to
-	 * be used as property key prefix of the DAO properties file.
-	 * 
-	 * @param specificKey
-	 *            The specific key which is to be used as property key prefix.
-	 * @throws DAOConfigurationException
-	 *             During class initialization if the DAO properties file is
-	 *             missing in the classpath or cannot be loaded.
-	 */
 	public DAOProperties(String specificKey) throws DAOConfigurationException {
 		this.specificKey = specificKey;
 	}
@@ -78,16 +53,13 @@ public class DAOProperties {
 	 *             If the returned property value is null or empty while it is
 	 *             mandatory.
 	 */
-	public String getProperty(String key, boolean mandatory)
-			throws DAOConfigurationException {
+	public String getProperty(String key, boolean mandatory) throws DAOConfigurationException {
 		String fullKey = specificKey + "." + key;
 		String property = PROPERTIES.getProperty(fullKey);
 
 		if (property == null || property.trim().length() == 0) {
 			if (mandatory) {
-				throw new DAOConfigurationException("Required property '"
-						+ fullKey + "'" + " is missing in properties file '"
-						+ PROPERTIES_FILE + "'.");
+				throw new DAOConfigurationException("Required property '" + fullKey + "'" + " is missing in properties file '" + PROPERTIES_FILE + "'.");
 			} else {
 				// Make empty value null. Empty Strings are evil.
 				property = null;
