@@ -22,7 +22,7 @@ public class ManageTimeEntryMenu extends TextMenu {
 	});
 	
 	public ManageTimeEntryMenu() {
-		super("Rediger timeregistreringer", true, false);
+		super("Adminstrer timeregistreringer", true, false);
 		addItems(new NewTimeEntryMenuItem(), deleteTimeEntry);
 	}
 
