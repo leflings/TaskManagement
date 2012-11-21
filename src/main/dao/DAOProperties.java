@@ -8,7 +8,7 @@ import main.exceptions.DAOConfigurationException;
 
 public class DAOProperties {
 
-	public static final String CONNECTION_NAME = "dtu_localhost";
+	public static final String CONNECTION_NAME = "dtu_remote_jesper";
 	private static final String PROPERTIES_FILE = "dao.properties";
 	private static final Properties PROPERTIES = new Properties();
 

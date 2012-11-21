@@ -3,6 +3,7 @@ package main.dao;
 import static main.dao.DAOUtil.close;
 import static main.dao.DAOUtil.prepareStatement;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -85,8 +86,34 @@ public class UserDAO extends BaseDAO {
 		return users;
 	}
 	
-	public User authenticate(String username, String password) {
-		return find(SQL_FIND_BY_LOGIN, username, password);
+//	public User authenticate(String username, String password) {
+//		return find(SQL_FIND_BY_LOGIN, username, password);
+//	}
+	/**
+	 * Bruges til stored procedure!
+	 */
+	public User authenticate(String username, String password){
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		User user = null;
+		try {
+			connection = daoFactory.getConnection();
+			CallableStatement proc = connection.prepareCall("{call Login(?,?) }");
+			proc.setString(1, username);
+			proc.setString(2, password);
+	
+			resultSet = proc.executeQuery();
+			if (resultSet.next()) {
+				user = map(resultSet);
+			}
+		} catch (SQLException e) {
+			throw new DAOException(e);
+		} finally {
+			close(connection, preparedStatement, resultSet);
+		}
+
+		return user;
 	}
 
 	public User getById(int userId) {
