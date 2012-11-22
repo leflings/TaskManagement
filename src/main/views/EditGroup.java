@@ -46,4 +46,8 @@ public class EditGroup {
 	public void removeTask() {
 		System.out.println("Vælg hvilken opgave du ønsker at fjerne fra gruppen");
 	}
+
+	public String deleteGroup() {
+		return "Er du sikker på at du ønsker at slette denne gruppe?";
+	}
 }

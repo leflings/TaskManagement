@@ -1,12 +1,17 @@
 package main.menu;
 
+import java.util.Date;
+
 import main.Application;
 import main.dao.DAOFactory;
 import main.dao.UserDAO;
 import main.dto.Group;
 import main.dto.Task;
 import main.dto.User;
+import main.enums.Status;
+import main.menu.menuitems.CreateTaskMenuItem;
 import main.utilities.SelectUtilities;
+import main.utilities.UserIOUtil;
 import main.views.EditTask;
 import main.views.SelectItem;
 import main.views.ViewTaskTree;
@@ -14,17 +19,17 @@ import main.views.ViewTask;
 
 public class EditTaskMenu extends TextMenu {
 
-	Task task;
-	EditTask edit;
+	private Task task;
+	private EditTask edit;
 
-	TextMenuItem showShortInfo = new TextMenuItem("Vis kort info", new Runnable() {
+	private TextMenuItem showShortInfo = new TextMenuItem("Vis kort info", new Runnable() {
 
 		public void run() {
 			new ViewTask(task).displayShortInfo();
 		}
 	});
 
-	TextMenuItem showTaskTree = new TextMenuItem("Vis opgave hieraki", new Runnable() {
+	private TextMenuItem showTaskTree = new TextMenuItem("Vis opgave hieraki", new Runnable() {
 
 		@Override
 		public void run() {
@@ -32,7 +37,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem editTitle = new TextMenuItem("Rediger titel", new Runnable() {
+	private TextMenuItem editTitle = new TextMenuItem("Rediger titel", new Runnable() {
 
 		@Override
 		public void run() {
@@ -41,7 +46,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem editDescription = new TextMenuItem("Rediger beskrivelse", new Runnable() {
+	private TextMenuItem editDescription = new TextMenuItem("Rediger beskrivelse", new Runnable() {
 
 		@Override
 		public void run() {
@@ -50,32 +55,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem addMember = new TextMenuItem("Tilføj medlem", new Runnable() {
-
-		@Override
-		public void run() {
-			edit.addUser();
-			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			User user = SelectItem.getSelection(udao.getByNotAssociatedWithTask(task));
-			if (user != null) {
-				DAOFactory.getInstance().getTaskAssignmentDAO().addAssignemnt(task, user);
-			}
-		}
-	});
-
-	TextMenuItem removeMember = new TextMenuItem("Fjern medlem", new Runnable() {
-
-		@Override
-		public void run() {
-			edit.removeUser();
-			User user = SelectItem.getSelection(task.getCollaborators());
-			if (user != null) {
-				DAOFactory.getInstance().getTaskAssignmentDAO().removeMember(task, user);
-			}
-		}
-	});
-
-	TextMenuItem editOwner = new TextMenuItem("Vælg en ny ejer", new Runnable() {
+	private TextMenuItem editOwner = new TextMenuItem("Vælg en ny ejer", new Runnable() {
 
 		@Override
 		public void run() {
@@ -88,7 +68,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem addToGroup = new TextMenuItem("Tilføj til en gruppe", new Runnable() {
+	private TextMenuItem addToGroup = new TextMenuItem("Tilføj til en gruppe", new Runnable() {
 
 		@Override
 		public void run() {
@@ -100,7 +80,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem removeFromGroup = new TextMenuItem("Fjern fra gruppen", new Runnable() {
+	private TextMenuItem removeFromGroup = new TextMenuItem("Fjern fra gruppen", new Runnable() {
 
 		@Override
 		public void run() {
@@ -109,7 +89,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem addToProject = new TextMenuItem("Tilføj til et projekt", new Runnable() {
+	private TextMenuItem addToProject = new TextMenuItem("Tilføj til et projekt", new Runnable() {
 
 		@Override
 		public void run() {
@@ -123,7 +103,7 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem removeFromProject = new TextMenuItem("Fjern fra projekt", new Runnable() {
+	private TextMenuItem removeFromProject = new TextMenuItem("Fjern fra projekt", new Runnable() {
 
 		@Override
 		public void run() {
@@ -132,13 +112,28 @@ public class EditTaskMenu extends TextMenu {
 		}
 	});
 
-	TextMenuItem createTask = new TextMenuItem("Opret opgave", new Runnable() {
-
+	private TextMenuItem editDeadline = new TextMenuItem("Rediger deadline", new Runnable() {
+		
 		@Override
 		public void run() {
+			Date deadline = UserIOUtil.askForDateAndTime();
+			if (deadline != null) {
+				task.setDeadline(deadline);
+				DAOFactory.getInstance().getTaskDAO().update(task);
+			}
 		}
 	});
-
+	
+	private TextMenuItem editStatus = new TextMenuItem("Rediger status", new Runnable() {
+		
+		@Override
+		public void run() {
+			Status status = null;
+			
+			task.setStatus(status);
+		}
+	});
+	
 	// TextMenuItem addChildTask = new TextMenuItem("Tilføj en underopgave", new
 	// Runnable() {
 	//
@@ -154,7 +149,7 @@ public class EditTaskMenu extends TextMenu {
 	// }
 	// });
 
-	TextMenuItem removeChildTask = new TextMenuItem("Fjern en underopgave", new Runnable() {
+	private TextMenuItem removeChildTask = new TextMenuItem("Fjern en underopgave", new Runnable() {
 
 		@Override
 		public void run() {
@@ -165,11 +160,31 @@ public class EditTaskMenu extends TextMenu {
 			// task);
 		}
 	});
+	
+	private TextMenuItem deleteTask = new TextMenuItem("Slet opgave", new Runnable() {
+		
+		@Override
+		public void run() {
+			if (SelectUtilities.confirm(edit.deleteTask()))
+				DAOFactory.getInstance().getTaskDAO().deleteTask();	//TODO mangler hvis vi skal være i stand til at slette tasks
+			
+		}
+	});
 
 	public EditTaskMenu(Task task) {
 		super("Opgave menu", true, false);
 		this.task = task;
 		edit = new EditTask(task);
-		addItems(showShortInfo, showTaskTree, editTitle, editDescription, addMember, removeMember, editOwner, addToGroup, removeFromGroup, addToProject, removeFromProject, createTask);
+		ManageMembersMenu manageMembers = new ManageMembersMenu(task);
+		addItems(showShortInfo, 
+				showTaskTree, 
+				editTitle, 
+				editDescription, 
+				manageMembers,
+				editOwner,
+				editDeadline,
+				(task.getGroup() == null ? addToGroup : removeFromGroup), 
+				(task.getProject() == null ? addToProject :	removeFromProject), 
+				new CreateTaskMenuItem(task));
 	}
 }

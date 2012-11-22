@@ -2,6 +2,7 @@ package main.menu;
 
 import main.Application;
 import main.dto.Task;
+import main.menu.menuitems.CreateTaskMenuItem;
 import main.views.SelectItem;
 
 public class ManageTaskMenu extends TextMenu {
@@ -14,15 +15,10 @@ public class ManageTaskMenu extends TextMenu {
 			}
 		}
 	});
-	private TextMenuItem createTask = new TextMenuItem("Create task", new Runnable() {
-		public void run() {
-			System.out.println("Dialog til at oprette");
-		}
-	});
 
 	public ManageTaskMenu() {
 		super("Manage tasks", true, false);
-		addItems(viewTasks, createTask);
+		addItems(viewTasks, new CreateTaskMenuItem());
 	}
 
 }

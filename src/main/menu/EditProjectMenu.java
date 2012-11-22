@@ -8,6 +8,7 @@ import main.dao.UserDAO;
 import main.dto.Project;
 import main.dto.Task;
 import main.dto.User;
+import main.menu.menuitems.CreateTaskMenuItem;
 import main.utilities.SelectUtilities;
 import main.views.EditProject;
 import main.views.SelectItem;
@@ -17,7 +18,7 @@ public class EditProjectMenu extends TextMenu {
 	Project project;
 	EditProject edit;
 	
-	TextMenuItem editTitle = new TextMenuItem("Rediger titel", new Runnable() {
+	private TextMenuItem editTitle = new TextMenuItem("Rediger titel", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -26,7 +27,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 	
-	TextMenuItem editDescription = new TextMenuItem("Rediger beskrivelse", new Runnable() {
+	private TextMenuItem editDescription = new TextMenuItem("Rediger beskrivelse", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -34,33 +35,8 @@ public class EditProjectMenu extends TextMenu {
 			DAOFactory.getInstance().getProjectDAO().update(project);
 		}
 	});
-	
-	TextMenuItem addMember = new TextMenuItem("Tilføj et medlem til projektet", new Runnable() {
 		
-		@Override
-		public void run() {
-			edit.addUser();
-			UserDAO udao = DAOFactory.getInstance().getUserDAO();
-			User user = SelectItem.getSelection(udao.getByNotInProject(project));
-			if(user != null) {
-				DAOFactory.getInstance().getProjectMembershipDAO().addMember(project, user);
-			}
-		}
-	});
-	
-	TextMenuItem removeMember = new TextMenuItem("Fjern et medlem fra projektet", new Runnable() {
-		
-		@Override
-		public void run() {
-			edit.removeUser();
-			User user = SelectItem.getSelection(project.getMembers());
-			if(user != null) {
-				DAOFactory.getInstance().getProjectMembershipDAO().removeMember(project, user);
-			}
-		}
-	});
-	
-	TextMenuItem editOwner = new TextMenuItem("Vælg en ny ejer af gruppen", new Runnable() {
+	private TextMenuItem editOwner = new TextMenuItem("Vælg en ny ejer af gruppen", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -73,7 +49,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 	
-	TextMenuItem addToGroup = new TextMenuItem("Tilføj dette projekt til en gruppe", new Runnable() {
+	private TextMenuItem addToGroup = new TextMenuItem("Tilføj dette projekt til en gruppe", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -85,7 +61,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 	
-	TextMenuItem removeFromGroup = new TextMenuItem("Fjern projektet fra gruppen", new Runnable() {
+	private TextMenuItem removeFromGroup = new TextMenuItem("Fjern projektet fra gruppen", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -94,16 +70,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 	
-	TextMenuItem createTask = new TextMenuItem("Opret en ny opgave", new Runnable() {
-		
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			
-		}
-	});
-	
-	TextMenuItem addTask = new TextMenuItem("Tilføj en opgave til projektet", new Runnable() {
+	private TextMenuItem addTask = new TextMenuItem("Tilføj en opgave til projektet", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -117,7 +84,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 	
-	TextMenuItem removeTask = new TextMenuItem("Fjern en opgave fra projektet", new Runnable() {
+	private TextMenuItem removeTask = new TextMenuItem("Fjern en opgave fra projektet", new Runnable() {
 		
 		@Override
 		public void run() {
@@ -133,13 +100,13 @@ public class EditProjectMenu extends TextMenu {
 		super("Project menu", true, false);
 		this.project = project;
 		edit = new EditProject(project);
+		ManageMembersMenu manageMembers = new ManageMembersMenu(project);
 		addItems(editTitle,
 				editDescription,
-				addMember,
-				removeMember,
+				manageMembers,
 				editOwner, 
 				(project.getGroup() == null ? addToGroup : removeFromGroup),
-				createTask,
+				new CreateTaskMenuItem(project),
 				addTask,
 				removeTask);
 	}

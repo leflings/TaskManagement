@@ -58,4 +58,8 @@ public class EditTask {		//TODO overvej om edit views skal implementere BaseView
 
 	public void removeFromParentTask() {
 	}
+
+	public String deleteTask() {
+		return "Er du sikker på du ønsker at slette denne opgave?";
+	}
 }
