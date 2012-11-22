@@ -1,8 +1,6 @@
 package main.menu.menuitems;
 
 import main.Application;
-import main.dao.DAOFactory;
-import main.dao.ProjectDAO;
 import main.dto.Group;
 import main.dto.Project;
 import main.menu.TextMenuItem;
@@ -16,7 +14,6 @@ public class CreateProjectMenuItem extends TextMenuItem {
 		
 		@Override
 		public void run() {
-			ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
 			String title, description;
 			
 			title = UserIOUtil.getNullableString("Indtast projektnavn (angiv blank projektnavn for at vende tilbage");
@@ -32,7 +29,7 @@ public class CreateProjectMenuItem extends TextMenuItem {
 			if (group != null)
 				project.setGroup(group);
 			
-			pdao.insert(project);
+			project.save();
 			
 			System.out.println("Projektet er nu oprettet");	
 		}

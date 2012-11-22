@@ -20,13 +20,13 @@ public class TextMenu extends TextMenuItem {
 		return exitLoop;
 	}
 
-	private static final TextMenuItem quit = new TextMenuItem("afslut", new Runnable() {
+	private static final TextMenuItem quit = new TextMenuItem("Afslut", new Runnable() {
 		public void run() {
 			System.exit(0);
 		}
 	});
 
-	private static final TextMenuItem back = new TextMenuItem("tilbage");
+	private static final TextMenuItem back = new TextMenuItem("Tilbage");
 
 	List<TextMenuItem> items;
 
@@ -56,7 +56,7 @@ public class TextMenu extends TextMenuItem {
 	private void display() {
 
 		int columnLength = items.size() / 3 + (items.size() % 3 == 0 ? 0 : 1);
-		int rows = Math.max(3, columnLength);
+		int rows = Math.min(Math.max(3, columnLength), items.size());
 		String rowFormat = "[%2d] : %-"+MENU_COLUMN_WIDTH+"s";
 		System.out.println("\n== " + getTitle() + " ==");
 		for (int i = 0; i < rows; i++) {

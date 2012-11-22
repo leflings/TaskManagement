@@ -3,9 +3,6 @@ package main.menu;
 import java.util.List;
 
 import main.dao.DAOFactory;
-import main.dao.GroupMembershipDAO;
-import main.dao.ProjectMembershipDAO;
-import main.dao.TaskAssignmentDAO;
 import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
@@ -26,7 +23,6 @@ public class ManageMembersMenu extends TextMenu {
 			List<User> nonmembers;
 			User user;
 			if (group != null) {
-				GroupMembershipDAO dao = DAOFactory.getInstance().getGroupMembershipDAO();
 				nonmembers = DAOFactory.getInstance().getUserDAO().getByNotInGroup(group);
 				user = SelectItem.getSelection(nonmembers);
 				if (user != null) {
@@ -34,7 +30,6 @@ public class ManageMembersMenu extends TextMenu {
 				}
 			}
 			else if (project != null) {
-				ProjectMembershipDAO dao = DAOFactory.getInstance().getProjectMembershipDAO();
 				nonmembers = DAOFactory.getInstance().getUserDAO().getByNotInProject(project);
 				user = SelectItem.getSelection(nonmembers);
 				if (user != null) {
@@ -42,7 +37,6 @@ public class ManageMembersMenu extends TextMenu {
 				}
 			}
 			else if (task != null) {
-				TaskAssignmentDAO dao = DAOFactory.getInstance().getTaskAssignmentDAO();
 				nonmembers = DAOFactory.getInstance().getUserDAO().getByNotAssociatedWithTask(task);
 				user = SelectItem.getSelection(nonmembers);
 				if (user != null)
@@ -58,25 +52,22 @@ public class ManageMembersMenu extends TextMenu {
 			List<User> members;
 			User user;
 			if (group != null) {
-				GroupMembershipDAO dao = DAOFactory.getInstance().getGroupMembershipDAO();
 				members = group.getMembers();
 				user = SelectItem.getSelection(members);
 				if (user != null)
-					dao.removeMember(group, user);
+					group.removeMember(user);
 			}
 			else if (project != null) {
-				ProjectMembershipDAO dao = DAOFactory.getInstance().getProjectMembershipDAO();
 				members = project.getMembers();
 				user = SelectItem.getSelection(members);
 				if (user != null)
-					dao.removeMember(project, user);
+					project.removeMember(user);
 			}
 			else if (task != null) {
-				TaskAssignmentDAO dao = DAOFactory.getInstance().getTaskAssignmentDAO();
 				members = task.getCollaborators();
 				user = SelectItem.getSelection(members);
 				if (user != null)
-					dao.removeMember(task, user);
+					task.removeCollaborator(user);
 			}
 		}
 	});

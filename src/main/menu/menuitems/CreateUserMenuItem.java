@@ -1,7 +1,6 @@
 package main.menu.menuitems;
 
 import main.dao.DAOFactory;
-import main.dao.UserDAO;
 import main.dto.User;
 import main.menu.TextMenuItem;
 import main.utilities.UserIOUtil;
@@ -10,11 +9,10 @@ public class CreateUserMenuItem extends TextMenuItem {
 
 	private Runnable exec = new Runnable() {
 		public void run() {
-			UserDAO udao = DAOFactory.getInstance().getUserDAO();
 			String username, name, email, password;
 			
 			username = UserIOUtil.getNullableString("Indtast brugernavn (angiv blank brugernavn for at vende tilbage");
-			while(username != null && udao.getByUsername(username) != null) {
+			while(username != null && DAOFactory.getInstance().getUserDAO().getByUsername(username) != null) {
 				username = UserIOUtil.getNullableString("Brugernavn allerede taget. Indtast brugernavn");
 			}
 			if(username == null) { return; }
@@ -29,7 +27,7 @@ public class CreateUserMenuItem extends TextMenuItem {
 			user.setPassword(password);
 			user.setEmail(email);
 			
-			udao.insert(user);
+			user.save();
 			
 			System.out.println("Bruger oprettet");
 		}

@@ -2,6 +2,7 @@ package main.menu;
 
 import java.util.List;
 
+import main.Application;
 import main.dao.DAOFactory;
 import main.dao.ProjectDAO;
 import main.dao.TaskDAO;
@@ -9,6 +10,7 @@ import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
 import main.dto.User;
+import main.enums.PermissionLevel;
 import main.menu.menuitems.CreateProjectMenuItem;
 import main.menu.menuitems.CreateTaskMenuItem;
 import main.utilities.SelectUtilities;
@@ -25,7 +27,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			group.setTitle(SelectUtilities.inputEdit(edit.editName()));
-			DAOFactory.getInstance().getGroupDAO().update(group);
+			group.save();
 		}
 	});
 
@@ -34,7 +36,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			group.setTitle(SelectUtilities.inputEdit(edit.editDescription()));
-			DAOFactory.getInstance().getGroupDAO().update(group);
+			group.save();
 		}
 	});
 	
@@ -45,9 +47,9 @@ public class EditGroupMenu extends TextMenu {
 			edit.editOwner();
 			User user = SelectItem.getSelection(group.getMembers());
 			if (user != null) {
+				group.removeMember(user);
 				group.setOwner(user);
-				DAOFactory.getInstance().getGroupDAO().update(group);
-				DAOFactory.getInstance().getGroupMembershipDAO().removeMember(group, user);
+				group.save();
 			}
 		}
 	});
@@ -61,7 +63,8 @@ public class EditGroupMenu extends TextMenu {
 			List<Project> projects = pdao.getByNotInGroup();
 			Project project = SelectItem.getSelection(projects);
 			if (project != null) {
-				DAOFactory.getInstance().getGeneralDAO().addProjectToGroup(group, project);
+				project.setGroup(group);
+				project.save();
 			}
 		}
 	});
@@ -75,7 +78,8 @@ public class EditGroupMenu extends TextMenu {
 			List<Project> projects = pdao.getByGroup(group);
 			Project project = SelectItem.getSelection(projects);
 			if (project != null) {
-				DAOFactory.getInstance().getGeneralDAO().removeProjectFromGroup(group, project);
+				project.setGroup(null);
+				project.save();
 			}
 		}
 	});
@@ -89,7 +93,8 @@ public class EditGroupMenu extends TextMenu {
 			List<Task> tasks = tdao.getTasksWithoutGroup();
 			Task task = SelectItem.getSelection(tasks);
 			if (task != null) {
-				DAOFactory.getInstance().getGeneralDAO().addTaskToGroup(group, task);
+				task.setGroup(group);
+				task.save();
 			}
 		}
 	});
@@ -103,7 +108,8 @@ public class EditGroupMenu extends TextMenu {
 			List<Task> tasks = tdao.getByGroup(group);
 			Task task = SelectItem.getSelection(tasks);
 			if (task != null) {
-				DAOFactory.getInstance().getGeneralDAO().removeTaskFromGroup(group, task);
+				task.setGroup(null);
+				task.save();
 			}
 		}
 	});
@@ -113,15 +119,16 @@ public class EditGroupMenu extends TextMenu {
 		this.group = group;
 		edit = new EditGroup(group);
 		ManageMembersMenu manageMembers = new ManageMembersMenu(group);
-		addItems(editGroupTitle, 
-				editGroupDescription, 
-				manageMembers, 
-				editOwner, 
-				new CreateProjectMenuItem(group),
-				addProject, 
-				removeProject, 
-				new CreateTaskMenuItem(group), 
-				addTask, 
-				removeTask);
+		PermissionLevel pl = group.getPermissionLevel(Application.User());
+		switch (pl) {
+		case OWNER:
+			addItems(editOwner, new CreateProjectMenuItem(group), addProject, removeProject);
+		case ADMIN:
+			addItems(manageMembers, editGroupTitle, editGroupDescription, new CreateTaskMenuItem(group));
+		case SUPERVISOR:
+		case USER:
+		default:
+			break;
+		}
 	}
 }

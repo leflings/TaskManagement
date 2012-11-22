@@ -1,9 +1,8 @@
 package main.menu.menuitems;
 
 import java.util.Date;
+
 import main.Application;
-import main.dao.DAOFactory;
-import main.dao.TaskDAO;
 import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
@@ -18,12 +17,12 @@ public class CreateTaskMenuItem extends TextMenuItem {
 	private Group group;
 	private Project project;
 	private Task parentTask;
+	private Task rootTask;
 	
 	private Runnable exec = new Runnable() {
 		
 		@Override
 		public void run() {
-			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
 			String title, description;
 			Priority priority;
 			Status status;
@@ -51,10 +50,10 @@ public class CreateTaskMenuItem extends TextMenuItem {
 				task.setProject(project);
 			if (parentTask != null) {
 				task.setParentTask(parentTask);
-				task.setRootTask(parentTask.getRootTask());
+				task.setRootTask(rootTask);
 			}
 			
-			tdao.insert(task);
+			task.save();
 			
 			System.out.println("Opgaven er nu oprettet");
 		}
@@ -80,6 +79,7 @@ public class CreateTaskMenuItem extends TextMenuItem {
 	public CreateTaskMenuItem(Task task) {
 		this();
 		this.parentTask = task;
+		this.rootTask = (parentTask.getRootTask() == null) ? task : parentTask.getRootTask();
 		if (task.getGroup() != null)
 			group = task.getGroup();
 		if (task.getProject() != null)

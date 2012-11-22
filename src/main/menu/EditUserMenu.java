@@ -1,7 +1,6 @@
 package main.menu;
 
 import main.Application;
-import main.dao.DAOFactory;
 import main.utilities.SelectUtilities;
 import main.views.EditUser;
 
@@ -16,7 +15,7 @@ public class EditUserMenu extends TextMenu {
 //			EditUserController euc = new EditUserController(Application.getAuthenticatedUser());
 //			euc.editUser();
 			Application.User().setName(SelectUtilities.inputEdit(edit.editName()));
-			DAOFactory.getInstance().getUserDAO().update(Application.User());
+			Application.User().save();
 		}
 	});
 	
@@ -25,7 +24,7 @@ public class EditUserMenu extends TextMenu {
 		@Override
 		public void run() {
 			Application.User().setUsername(SelectUtilities.inputEdit(edit.editUserName()));
-			DAOFactory.getInstance().getUserDAO().update(Application.User());
+			Application.User().save();
 		}
 	});
 	
@@ -34,7 +33,7 @@ public class EditUserMenu extends TextMenu {
 		@Override
 		public void run() {
 			Application.User().setEmail(SelectUtilities.inputEdit(edit.editEmail()));
-			DAOFactory.getInstance().getUserDAO().update(Application.User());
+			Application.User().save();
 		}
 	});
 	
@@ -43,7 +42,7 @@ public class EditUserMenu extends TextMenu {
 		@Override
 		public void run() {
 			Application.User().setPassword(SelectUtilities.inputEdit(edit.editPassword()));
-			DAOFactory.getInstance().getUserDAO().update(Application.User());
+			Application.User().save();
 		}
 	});
 	

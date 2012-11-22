@@ -4,20 +4,18 @@ import java.util.Date;
 
 import main.Application;
 import main.dao.DAOFactory;
-import main.dao.UserDAO;
 import main.dto.Group;
+import main.dto.Project;
 import main.dto.Task;
 import main.dto.User;
-import main.enums.Priority;
-import main.enums.Status;
 import main.menu.menuitems.CreateTaskMenuItem;
 import main.utilities.SelectUtilities;
 import main.utilities.UserIOUtil;
 import main.views.EditTask;
 import main.views.SelectEnum;
 import main.views.SelectItem;
-import main.views.ViewTaskTree;
 import main.views.ViewTask;
+import main.views.ViewTaskTree;
 
 public class EditTaskMenu extends TextMenu {
 
@@ -44,7 +42,7 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			task.setTitle(SelectUtilities.inputEdit(edit.editName()));
-			DAOFactory.getInstance().getTaskDAO().update(task);
+			task.save();
 		}
 	});
 
@@ -53,7 +51,7 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			task.setDescription(SelectUtilities.inputEdit(edit.editDescription()));
-			DAOFactory.getInstance().getTaskDAO().update(task);
+			task.save();
 		}
 	});
 
@@ -65,7 +63,7 @@ public class EditTaskMenu extends TextMenu {
 			User user = SelectItem.getSelection(task.getCollaborators());
 			if (user != null) {
 				task.setOwner(user);
-				DAOFactory.getInstance().getTaskDAO().update(task);
+				task.save();
 			}
 		}
 	});
@@ -77,7 +75,8 @@ public class EditTaskMenu extends TextMenu {
 			edit.addToGroup();
 			Group group = SelectItem.getSelection(Application.User().getGroups());
 			if (group != null) {
-				DAOFactory.getInstance().getGeneralDAO().addTaskToGroup(group, task);
+				task.setGroup(group);
+				task.save();
 			}
 		}
 	});
@@ -86,8 +85,10 @@ public class EditTaskMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			if (SelectUtilities.confirm(edit.removeFromGroup()))
-				DAOFactory.getInstance().getGeneralDAO().removeTaskFromGroup(task.getGroup(), task);
+			if (SelectUtilities.confirm(edit.removeFromGroup())) {
+				task.setGroup(null);
+				task.save();
+			}
 		}
 	});
 
@@ -96,12 +97,11 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addToProject();
-			// ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
-			// SelectProject sp = new SelectProject(pdao.getAll()); //TODO
-			// pdao.allProjects metode skal oprettes
-			// sp.print();
-			// DAOFactory.getInstance().getGeneralDAO().addTaskToProject(sp.getResult(),
-			// task);
+			Project project = SelectItem.getSelection(Application.User().getProjects());
+			if(project != null) {
+				task.setProject(project);
+				task.save();
+			}
 		}
 	});
 
@@ -109,8 +109,10 @@ public class EditTaskMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			if (SelectUtilities.confirm(edit.removeFromProject()))
-				DAOFactory.getInstance().getGeneralDAO().removeTaskFromProject(task.getProject(), task);
+			if (SelectUtilities.confirm(edit.removeFromProject())) {
+				task.setProject(null);
+				task.save();
+			}
 		}
 	});
 
@@ -120,10 +122,8 @@ public class EditTaskMenu extends TextMenu {
 		public void run() {
 			edit.editDeadline();
 			Date deadline = UserIOUtil.askForDateAndTime();
-			if (deadline != null) {
-				task.setDeadline(deadline);
-				DAOFactory.getInstance().getTaskDAO().update(task);
-			}
+			task.setDeadline(deadline);
+			task.save();
 		}
 	});
 
@@ -132,11 +132,8 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.editStatus();
-			Status status = SelectEnum.getStatus();
-			if (status != null) {
-				task.setStatus(status);
-				DAOFactory.getInstance().getTaskDAO().update(task);
-			}
+			task.setStatus(SelectEnum.getStatus());
+			task.save();
 		}
 	});
 
@@ -145,11 +142,8 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.editPriority();
-			Priority priority = SelectEnum.getPriority();
-			if (priority != null) {
-				task.setPriority(priority);
-				DAOFactory.getInstance().getTaskDAO().update(task);
-			}
+			task.setPriority(SelectEnum.getPriority());
+			task.save();
 		}
 	});
 
@@ -169,7 +163,11 @@ public class EditTaskMenu extends TextMenu {
 		this.task = task;
 		edit = new EditTask(task);
 		ManageMembersMenu manageMembers = new ManageMembersMenu(task);
-		addItems(showShortInfo, showTaskTree, editTitle, editDescription, manageMembers, editOwner, editStatus, editPriority, editDeadline, (task.getGroup() == null ? addToGroup : removeFromGroup),
-				(task.getProject() == null ? addToProject : removeFromProject), new CreateTaskMenuItem(task), deleteTask);
+		addItems(showShortInfo, showTaskTree, editTitle, editDescription, editStatus, editPriority, editDeadline,
+				new CreateTaskMenuItem(task));
+		if(task.getOwner().equals(Application.User())) {
+			addItems((task.getProject() == null ? addToProject : removeFromProject), manageMembers, (task.getGroup() == null ? addToGroup : removeFromGroup), editOwner, deleteTask);
+			
+		}
 	}
 }

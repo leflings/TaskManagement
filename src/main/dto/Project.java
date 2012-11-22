@@ -150,7 +150,7 @@ public class Project extends BaseModel implements IMembership {
 
 	@Override
 	public PermissionLevel getPermissionLevel(User user) {
-		if(getOwner() == user) {
+		if(getOwner().equals(user)) {
 			return PermissionLevel.OWNER;
 		} else {
 			return getFactory().getPermissionLevelDAO().fromProject(this, user);

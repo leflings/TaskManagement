@@ -3,7 +3,6 @@ package main.menu.menuitems;
 import java.util.Date;
 
 import main.Application;
-import main.dao.DAOFactory;
 import main.dto.Task;
 import main.dto.TimeEntry;
 import main.menu.TextMenuItem;
@@ -35,7 +34,7 @@ public class NewTimeEntryMenuItem extends TextMenuItem {
 				te.setDate(date);
 				te.setDuration(duration);
 				te.setUser(Application.User());
-				DAOFactory.getInstance().getTimeEntryDAO().insert(te);
+				te.save();
 			}
 		}
 	};
