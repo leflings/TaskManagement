@@ -11,17 +11,15 @@ public class Project extends BaseModel {
 
 	private int ownerId;
 	private User owner;
-	
+
 	private int groupId;
 	private Group group;
-
-	private List<Task> tasks;
 	private List<User> members;
-	
+
 	public Project() {
 		super();
 	}
-	
+
 	public Project(int projectId) {
 		this();
 		this.projectId = projectId;
@@ -30,13 +28,13 @@ public class Project extends BaseModel {
 	public int getProjectId() {
 		return projectId;
 	}
-	
+
 	public void setProjectId(int projectId) {
-		if(this.projectId == 0) {
+		if (this.projectId == 0) {
 			this.projectId = projectId;
 		}
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -54,7 +52,7 @@ public class Project extends BaseModel {
 	}
 
 	public User getOwner() {
-		if(owner == null && ownerId != 0) {
+		if (owner == null && ownerId != 0) {
 			owner = getFactory().getUserDAO().getById(ownerId);
 		}
 		return owner;
@@ -64,13 +62,13 @@ public class Project extends BaseModel {
 		this.ownerId = (owner == null) ? 0 : owner.getUserId();
 		this.owner = owner;
 	}
-	
+
 	public void setOwner(int ownerId) {
 		this.ownerId = ownerId;
 	}
 
 	public Group getGroup() {
-		if(group == null && groupId != 0) {
+		if (group == null && groupId != 0) {
 			group = getFactory().getGroupDAO().getById(groupId);
 		}
 		return group;
@@ -80,56 +78,51 @@ public class Project extends BaseModel {
 		this.groupId = (group == null) ? 0 : group.getGroupId();
 		this.group = group;
 	}
-	
+
 	public void setGroup(int groupId) {
 		this.groupId = groupId;
 	}
 
 	public List<Task> getTasks() {
-		if (tasks == null) {
-			tasks = getFactory().getTaskDAO().getByProject(this);
-		}
-		return tasks;
+		return getFactory().getTaskDAO().getByProject(this);
 	}
 
 	public List<User> getMembers() {
-		if(members == null) {
-			members = getFactory().getUserDAO().getByProject(this);
-			members.add(getOwner());
-		}
+		members = getFactory().getUserDAO().getByProject(this);
+		members.add(getOwner());
 		return members;
 	}
-	
+
 	public void save() {
-		if(this.projectId == 0) {
+		if (this.projectId == 0) {
 			insert();
 		} else {
 			update();
 		}
 	}
-	
+
 	private void insert() {
 		DAOFactory.getInstance().getProjectDAO().insert(this);
 	}
-	
+
 	private void update() {
 		DAOFactory.getInstance().getProjectDAO().update(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return getTitle();
 	}
-	
-    @Override
-    public boolean equals(Object other) {
-    	return (other instanceof Project) && (other != null) ? getProjectId() == (((Project) other).getProjectId()) : (other == this);
-    }
 
-    @Override
-    public int hashCode() {
-        return (projectId != 0) ? (this.getClass().hashCode() + projectId) : super.hashCode();
-    }
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof Project) && (other != null) ? getProjectId() == (((Project) other).getProjectId()) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (projectId != 0) ? (this.getClass().hashCode() + projectId) : super.hashCode();
+	}
 
 	@Override
 	public int getId() {

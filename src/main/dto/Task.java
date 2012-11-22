@@ -31,7 +31,7 @@ public class Task extends BaseModel {
 
 	private int parentTaskId;
 	private Task parentTask;
-	
+
 	private int rootTaskId;
 	private Task rootTask;
 
@@ -50,8 +50,7 @@ public class Task extends BaseModel {
 		this.taskId = taskId;
 	}
 
-	public Task(int taskId, int ownerId, int projectId, int groupId,
-			int parentTaskId) {
+	public Task(int taskId, int ownerId, int projectId, int groupId, int parentTaskId) {
 		this(taskId);
 		this.ownerId = ownerId;
 		this.projectId = projectId;
@@ -62,9 +61,9 @@ public class Task extends BaseModel {
 	public int getTaskId() {
 		return taskId;
 	}
-	
+
 	public void setTaskId(int taskId) {
-		if(this.taskId == 0) {
+		if (this.taskId == 0) {
 			this.taskId = taskId;
 		}
 	}
@@ -134,7 +133,7 @@ public class Task extends BaseModel {
 	}
 
 	public User getOwner() {
-		if(owner == null) {
+		if (owner == null) {
 			owner = getFactory().getUserDAO().getById(ownerId);
 		}
 		return owner;
@@ -150,7 +149,7 @@ public class Task extends BaseModel {
 	}
 
 	public Project getProject() {
-		if(project == null && projectId != 0) {
+		if (project == null && projectId != 0) {
 			project = getFactory().getProjectDAO().getById(projectId);
 		}
 		return project;
@@ -166,7 +165,7 @@ public class Task extends BaseModel {
 	}
 
 	public Group getGroup() {
-		if(group == null && groupId != 0) {
+		if (group == null && groupId != 0) {
 			group = getFactory().getGroupDAO().getById(groupId);
 		}
 		return group;
@@ -182,7 +181,7 @@ public class Task extends BaseModel {
 	}
 
 	public Task getParentTask() {
-		if(parentTask == null && parentTaskId != 0) {
+		if (parentTask == null && parentTaskId != 0) {
 			parentTask = getFactory().getTaskDAO().getById(parentTaskId);
 		}
 		return parentTask;
@@ -196,78 +195,74 @@ public class Task extends BaseModel {
 	public void setParentTask(int parentTaskId) {
 		this.parentTaskId = parentTaskId;
 	}
-	
+
 	public Task getRootTask() {
-		if(rootTask == null && rootTaskId != 0) {
+		if(rootTaskId == 0) {
+			return this;
+		} else {
 			rootTask = getFactory().getTaskDAO().getById(rootTaskId);
+			return rootTask;
 		}
-		return rootTask;
 	}
-	
+
 	public void setRootTask(Task rootTask) {
 		this.rootTaskId = (rootTask == null) ? 0 : rootTask.getTaskId();
 		this.rootTask = rootTask;
 	}
-	
+
 	public void setRootTask(int rootTaskId) {
 		this.rootTaskId = rootTaskId;
 	}
 
 	public List<User> getCollaborators() {
-		if(collaborators == null ) {
-			collaborators = getFactory().getUserDAO().getByTaskAssignment(this);
-		}
+		collaborators = getFactory().getUserDAO().getByTaskAssignment(this);
 		return collaborators;
 	}
 
 	public List<Task> getChildTasks() {
-		if(childTasks == null) {
-			childTasks = getFactory().getTaskDAO().getByParentTask(this);
-		}
+		childTasks = getFactory().getTaskDAO().getByParentTask(this);
 		return childTasks;
 	}
 
 	public List<TimeEntry> getTimeEntries() {
-		if(timeEntries == null) {
-			timeEntries = getFactory().getTimeEntryDAO().getByTask(this);
-		}
+		timeEntries = getFactory().getTimeEntryDAO().getByTask(this);
 		return timeEntries;
 	}
-	
+
 	public void save() {
-		if(this.taskId == 0) {
+		if (this.taskId == 0) {
 			insert();
 		} else {
 			update();
 		}
 	}
-	
+
 	private void insert() {
 		DAOFactory.getInstance().getTaskDAO().insert(this);
 	}
-	
+
 	private void update() {
 		DAOFactory.getInstance().getTaskDAO().update(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return getTitle();
 	}
-	
-    @Override
-    public boolean equals(Object other) {
-    	return (other instanceof Task) && (other != null) ? getTaskId() == (((Task) other).getTaskId()) : (other == this);
-    }
 
-    @Override
-    public int hashCode() {
-        return (taskId != 0) ? (this.getClass().hashCode() + taskId) : super.hashCode();
-    }
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof Task) && (other != null) ? getTaskId() == (((Task) other).getTaskId()) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return (taskId != 0) ? (this.getClass().hashCode() + taskId) : super.hashCode();
+	}
 
 	@Override
 	public int getId() {
 		return taskId;
 	}
-	
+
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import main.dao.DAOFactory;
 
 public class User extends BaseModel {
-	
+
 	private int userId;
 	private String username;
 	private String name;
@@ -14,21 +14,20 @@ public class User extends BaseModel {
 	private List<Task> tasks;
 	private List<Group> groups;
 	private List<Project> projects;
-	private List<TimeEntry> timeEntries;
 
 	public User() {
 		super();
 	}
-	
+
 	public User(int userId) {
 		this();
 		this.userId = userId;
 	}
-	
+
 	public int getUserId() {
 		return userId;
 	}
-	
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
@@ -56,7 +55,7 @@ public class User extends BaseModel {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
@@ -66,67 +65,58 @@ public class User extends BaseModel {
 	}
 
 	public List<Task> getTasks() {
-		if(tasks == null) {
-			tasks = getFactory().getTaskDAO().getByOwner(this);
-			tasks.addAll(getFactory().getTaskDAO().getByCollaboration(this));
-		}
+		tasks = getFactory().getTaskDAO().getByOwner(this);
+		tasks.addAll(getFactory().getTaskDAO().getByCollaboration(this));
 		return tasks;
 	}
 
 	public List<Group> getGroups() {
-		if(groups == null) {
-			groups = getFactory().getGroupDAO().getByOwnership(this);
-			groups.addAll(getFactory().getGroupDAO().getByMembership(this));
-		}
+		groups = getFactory().getGroupDAO().getByOwnership(this);
+		groups.addAll(getFactory().getGroupDAO().getByMembership(this));
 		return groups;
 	}
 
 	public List<Project> getProjects() {
-		if(projects == null) {
-			projects = getFactory().getProjectDAO().getByOwner(this);
-			projects.addAll(getFactory().getProjectDAO().getByMembership(this));
-		}
+		projects = getFactory().getProjectDAO().getByOwner(this);
+		projects.addAll(getFactory().getProjectDAO().getByMembership(this));
 		return projects;
 	}
-	
+
 	public List<TimeEntry> getTimeEntries() {
-//		if(timeEntries == null) {
-//			timeEntries = getFactory().getTimeEntryDAO().getByUser(this);
-//		}
 		return getFactory().getTimeEntryDAO().getByUser(this);
 	}
-	
+
 	public void save() {
-		if(this.userId == 0) {
+		if (this.userId == 0) {
 			insert();
 		} else {
 			update();
 		}
 	}
-	
+
 	private void insert() {
 		DAOFactory.getInstance().getUserDAO().insert(this);
 	}
-	
+
 	private void update() {
 		DAOFactory.getInstance().getUserDAO().update(this);
 	}
-	
-    @Override
-    public boolean equals(Object other) {
-    	return (other instanceof User) && (other != null) ? getUserId() == (((User) other).getUserId()) : (other == this);
-    }
 
-    @Override
-    public int hashCode() {
-        return (userId != 0) ? (this.getClass().hashCode() + userId) : super.hashCode();
-    }
+	@Override
+	public boolean equals(Object other) {
+		return (other instanceof User) && (other != null) ? getUserId() == (((User) other).getUserId()) : (other == this);
+	}
 
-    @Override
-    public String toString() {
-    	return getName();
-    }
-    
+	@Override
+	public int hashCode() {
+		return (userId != 0) ? (this.getClass().hashCode() + userId) : super.hashCode();
+	}
+
+	@Override
+	public String toString() {
+		return getName();
+	}
+
 	@Override
 	public int getId() {
 		return userId;
