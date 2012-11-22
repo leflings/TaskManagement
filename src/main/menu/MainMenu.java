@@ -3,10 +3,10 @@ package main.menu;
 
 public class MainMenu extends TextMenu {
 
-	private TextMenuItem logout = new TextMenuItem("logout");
+	private TextMenuItem logout = new TextMenuItem("Log ud");
 	
 	public MainMenu() {
-		super("Main menu", false, false);
+		super("Hovedmenu", false, false);
 		ManageTaskMenu manageTaskMenu = new ManageTaskMenu();
 		EditUserMenu editUserMenu = new EditUserMenu();
 		ManageGroupMenu manageGroupMenu = new ManageGroupMenu();

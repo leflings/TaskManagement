@@ -28,10 +28,11 @@ public class CreateTaskMenuItem extends TextMenuItem {
 			Status status;
 			Date deadline;
 			
-			title = UserIOUtil.getNullableString("Indtast opgavenavn (angiv blank opgavenavn for at vende tilbage");
+			title = UserIOUtil.getNullableString("Indtast opgavens titel (angiv blank opgavenavn for at vende tilbage)");
 			if(title == null) { return; }
 			
 			description = UserIOUtil.getNonEmptyString("Indtast opgave beskrivelse");
+			System.out.println("Indtast opgavens deadline");
 			deadline = UserIOUtil.askForDateAndTime();
 			priority = SelectEnum.getPriority();
 			status = SelectEnum.getStatus();
@@ -55,7 +56,7 @@ public class CreateTaskMenuItem extends TextMenuItem {
 			
 			task.save();
 			
-			System.out.println("Opgaven er nu oprettet");
+			System.out.println("Opgaven er nu oprettet og er tilgængelig næste gang du skal vælge en opgave");
 		}
 	};
 	

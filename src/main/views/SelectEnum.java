@@ -15,6 +15,7 @@ public class SelectEnum {
 	private static Scanner scanner = new Scanner(System.in);
 	
 	public static PermissionLevel getPermissionLevel() {
+		System.out.println("Vælg adgangs niveau");
 		List<PermissionLevel> l = new ArrayList<PermissionLevel>();
 		for(PermissionLevel pl : PermissionLevel.values()) {
 			if(pl != PermissionLevel.OWNER) {
@@ -25,6 +26,7 @@ public class SelectEnum {
 	}
 	
 	public static Status getStatus() {
+		System.out.println("Vælg status");
 		List<Status> l = new ArrayList<Status>();
 		for(Status s : Status.values()) {
 			l.add(s);
@@ -33,6 +35,7 @@ public class SelectEnum {
 	}
 	
 	public static Priority getPriority() {
+		System.out.println("Vælg prioritet");
 		List<Priority> l = new ArrayList<Priority>();
 		for (Priority p : Priority.values()) {
 			l.add(p);

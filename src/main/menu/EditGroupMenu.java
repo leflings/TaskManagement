@@ -4,8 +4,6 @@ import java.util.List;
 
 import main.Application;
 import main.dao.DAOFactory;
-import main.dao.ProjectDAO;
-import main.dao.TaskDAO;
 import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
@@ -59,8 +57,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addProject();
-			ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
-			List<Project> projects = pdao.getByNotInGroup();
+			List<Project> projects = DAOFactory.getInstance().getProjectDAO().getByNotInGroup();
 			Project project = SelectItem.getSelection(projects);
 			if (project != null) {
 				project.setGroup(group);
@@ -74,8 +71,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.removeProject();
-			ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
-			List<Project> projects = pdao.getByGroup(group);
+			List<Project> projects = DAOFactory.getInstance().getProjectDAO().getByGroup(group);
 			Project project = SelectItem.getSelection(projects);
 			if (project != null) {
 				project.setGroup(null);
@@ -89,8 +85,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addTask();
-			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
-			List<Task> tasks = tdao.getTasksWithoutGroup();
+			List<Task> tasks = DAOFactory.getInstance().getTaskDAO().getTasksWithoutGroup();
 			Task task = SelectItem.getSelection(tasks);
 			if (task != null) {
 				task.setGroup(group);
@@ -104,8 +99,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addTask();
-			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
-			List<Task> tasks = tdao.getByGroup(group);
+			List<Task> tasks = DAOFactory.getInstance().getTaskDAO().getByGroup(group);
 			Task task = SelectItem.getSelection(tasks);
 			if (task != null) {
 				task.setGroup(null);

@@ -53,7 +53,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 
-	private TextMenuItem addToGroup = new TextMenuItem("Tilføj dette projekt til en gruppe", new Runnable() {
+	private TextMenuItem addToGroup = new TextMenuItem("Tilføj til en gruppe", new Runnable() {
 
 		@Override
 		public void run() {
@@ -66,7 +66,7 @@ public class EditProjectMenu extends TextMenu {
 		}
 	});
 
-	private TextMenuItem removeFromGroup = new TextMenuItem("Fjern projektet fra gruppen", new Runnable() {
+	private TextMenuItem removeFromGroup = new TextMenuItem("Fjern fra gruppen", new Runnable() {
 
 		@Override
 		public void run() {

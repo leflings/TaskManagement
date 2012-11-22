@@ -7,7 +7,7 @@ import main.views.SelectItem;
 
 public class ManageTaskMenu extends TextMenu {
 
-	private TextMenuItem viewTasks = new TextMenuItem("View tasks", new Runnable() {
+	private TextMenuItem viewTasks = new TextMenuItem("Vælg opgave", new Runnable() {
 		public void run() {
 			Task task = SelectItem.getSelection(Application.User().getTasks());
 			if(task != null) {
@@ -17,7 +17,7 @@ public class ManageTaskMenu extends TextMenu {
 	});
 
 	public ManageTaskMenu() {
-		super("Manage tasks", true, false);
+		super("Adminstrér opgaver", true, false);
 		addItems(viewTasks, new CreateTaskMenuItem());
 	}
 

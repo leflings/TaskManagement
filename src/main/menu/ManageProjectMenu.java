@@ -7,7 +7,7 @@ import main.views.SelectItem;
 
 public class ManageProjectMenu extends TextMenu {
 
-	private TextMenuItem viewProjects = new TextMenuItem("View projects", new Runnable() {
+	private TextMenuItem viewProjects = new TextMenuItem("Vælg projekt", new Runnable() {
 		public void run() {
 			Project project = SelectItem.getSelection(Application.User().getProjects());
 			if(project != null) {
@@ -16,15 +16,9 @@ public class ManageProjectMenu extends TextMenu {
 		}
 	});
 	
-	private TextMenuItem searchProjects = new TextMenuItem("Search projects", new Runnable() {
-		public void run() {
-			System.out.println("Søg i projekter");
-		}
-	});
-	
 	public ManageProjectMenu() {
-		super("Manage projects", true, false);
-		addItems(viewProjects, searchProjects, new CreateProjectMenuItem());
+		super("Adminstrér projekter", true, false);
+		addItems(viewProjects, new CreateProjectMenuItem());
 	}
 	
 	

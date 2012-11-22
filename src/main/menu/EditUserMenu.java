@@ -12,8 +12,6 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-//			EditUserController euc = new EditUserController(Application.getAuthenticatedUser());
-//			euc.editUser();
 			Application.User().setName(SelectUtilities.inputEdit(edit.editName()));
 			Application.User().save();
 		}
@@ -47,7 +45,7 @@ public class EditUserMenu extends TextMenu {
 	});
 	
 	public EditUserMenu() {
-		super("User menu", true, false);
+		super("Rediger bruger", true, false);
 		edit = new EditUser(Application.User());
 		addItems(editName, editUserName, editEmail, editPassword);
 	}
