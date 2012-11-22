@@ -10,6 +10,15 @@ import java.util.List;
 public class TextMenu extends TextMenuItem {
 	
 	private static final int MENU_COLUMN_WIDTH = 30;
+	private boolean exitLoop = false;
+	
+	public void setExitLoop(boolean bool) {
+		this.exitLoop = bool;
+	}
+	
+	public boolean isExitLoop() {
+		return exitLoop;
+	}
 
 	private static final TextMenuItem quit = new TextMenuItem("afslut", new Runnable() {
 		public void run() {
@@ -79,6 +88,9 @@ public class TextMenu extends TextMenuItem {
 
 	private TextMenuItem prompt() throws IOException {
 
+		if(isExitLoop()) {
+			return new TextMenuItem("Return");
+		}
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 		while (true) {

@@ -10,6 +10,7 @@ import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
 import main.dto.User;
+import main.views.SelectEnum;
 import main.views.SelectItem;
 
 public class ManageMembersMenu extends TextMenu {
@@ -28,22 +29,24 @@ public class ManageMembersMenu extends TextMenu {
 				GroupMembershipDAO dao = DAOFactory.getInstance().getGroupMembershipDAO();
 				nonmembers = DAOFactory.getInstance().getUserDAO().getByNotInGroup(group);
 				user = SelectItem.getSelection(nonmembers);
-				if (user != null)
-					dao.addMember(group, user);
+				if (user != null) {
+					group.addMember(user, SelectEnum.getPermissionLevel());
+				}
 			}
 			else if (project != null) {
 				ProjectMembershipDAO dao = DAOFactory.getInstance().getProjectMembershipDAO();
 				nonmembers = DAOFactory.getInstance().getUserDAO().getByNotInProject(project);
 				user = SelectItem.getSelection(nonmembers);
-				if (user != null)
-					dao.addMember(project, user);
+				if (user != null) {
+					project.addMember(user, SelectEnum.getPermissionLevel());
+				}
 			}
 			else if (task != null) {
 				TaskAssignmentDAO dao = DAOFactory.getInstance().getTaskAssignmentDAO();
 				nonmembers = DAOFactory.getInstance().getUserDAO().getByNotAssociatedWithTask(task);
 				user = SelectItem.getSelection(nonmembers);
 				if (user != null)
-					dao.addAssignemnt(task, user);
+					task.addCollaborator(user);
 			}
 		}
 	});
@@ -78,26 +81,23 @@ public class ManageMembersMenu extends TextMenu {
 		}
 	});
 	
-//	private ManageMembersMenu() {
-//		super("", true, false);
-//		addItems(addMember, removeMember);
-//	}
+	private ManageMembersMenu() {
+		super("Adminstrér medlemmer", true, false);
+		addItems(addMember, removeMember);
+	}
 	
 	public ManageMembersMenu(Group group) {
-		super("Administrér medlemer", true, false);
+		this();
 		this.group = group;
-		addItems(addMember, removeMember);
 	}
 	
 	public ManageMembersMenu(Project project) {
-		super("Administrér medlemer", true, false);
+		this();
 		this.project = project;
-		addItems(addMember, removeMember);
 	}
 	
 	public ManageMembersMenu(Task task) {
-		super("Administrér medlemer", true, false);
+		this();
 		this.task = task;
-		addItems(addMember, removeMember);
 	}
 }

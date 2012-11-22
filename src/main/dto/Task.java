@@ -198,12 +198,8 @@ public class Task extends BaseModel implements IAssignable {
 	}
 
 	public Task getRootTask() {
-		if(rootTaskId == 0) {
-			return this;
-		} else {
-			rootTask = getFactory().getTaskDAO().getById(rootTaskId);
-			return rootTask;
-		}
+		rootTask = getFactory().getTaskDAO().getById(rootTaskId);
+		return rootTask;
 	}
 
 	public void setRootTask(Task rootTask) {
@@ -268,18 +264,18 @@ public class Task extends BaseModel implements IAssignable {
 
 	@Override
 	public void addCollaborator(User user) {
-		if(!getCollaborators().contains(user)) {
+		if (!getCollaborators().contains(user)) {
 			getFactory().getTaskAssignmentDAO().addAssignemnt(this, user);
 		}
-		
+
 	}
 
 	@Override
 	public void removeCollaborator(User user) {
-		if(getCollaborators().contains(user)) {
+		if (getCollaborators().contains(user)) {
 			getFactory().getTaskAssignmentDAO().removeMember(this, user);
 		}
-		
+
 	}
 
 }

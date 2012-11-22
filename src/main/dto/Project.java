@@ -90,7 +90,6 @@ public class Project extends BaseModel implements IMembership {
 
 	public List<User> getMembers() {
 		members = getFactory().getUserDAO().getByProject(this);
-		members.add(getOwner());
 		return members;
 	}
 

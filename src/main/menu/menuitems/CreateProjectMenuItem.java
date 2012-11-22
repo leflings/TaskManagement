@@ -44,8 +44,7 @@ public class CreateProjectMenuItem extends TextMenuItem {
 	}
 	
 	public CreateProjectMenuItem(Group group) {
-		super("Opret projekt");
+		this();
 		this.group = group;
-		setExec(exec);
 	}
 }

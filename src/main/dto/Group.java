@@ -80,7 +80,6 @@ public class Group extends BaseModel implements IMembership {
 
 	public List<User> getMembers() {
 		members = getFactory().getUserDAO().getByGroup(this);
-		members.add(getOwner());
 		return members;
 	}
 

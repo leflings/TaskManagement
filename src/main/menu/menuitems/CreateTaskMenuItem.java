@@ -25,15 +25,15 @@ public class CreateTaskMenuItem extends TextMenuItem {
 		public void run() {
 			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
 			String title, description;
-			Priority priority = Priority.NONE;
-			Status status = Status.NONE;
+			Priority priority;
+			Status status;
 			Date deadline;
 			
 			title = UserIOUtil.getNullableString("Indtast opgavenavn (angiv blank opgavenavn for at vende tilbage");
 			if(title == null) { return; }
 			
 			description = UserIOUtil.getNonEmptyString("Indtast opgave beskrivelse");
-			deadline = UserIOUtil.askForDateAndTime();	//TODO hvordan håndterer vi at tildele priority og status
+			deadline = UserIOUtil.askForDateAndTime();
 			priority = SelectEnum.getPriority();
 			status = SelectEnum.getStatus();
 			
@@ -49,8 +49,10 @@ public class CreateTaskMenuItem extends TextMenuItem {
 				task.setGroup(group);
 			if (project != null)
 				task.setProject(project);
-			if (parentTask != null)
+			if (parentTask != null) {
 				task.setParentTask(parentTask);
+				task.setRootTask(parentTask.getRootTask());
+			}
 			
 			tdao.insert(task);
 			
@@ -64,26 +66,23 @@ public class CreateTaskMenuItem extends TextMenuItem {
 	}
 	
 	public CreateTaskMenuItem(Group group) {
-		super("Opret opgave");
+		this();
 		this.group = group;
-		setExec(exec);
 	}
 	
 	public CreateTaskMenuItem(Project project) {
-		super("Opret opgave");
+		this();
 		this.project = project;
 		if (project.getGroup() != null)
 			group = project.getGroup();
-		setExec(exec);
 	}
 	
 	public CreateTaskMenuItem(Task task) {
-		super("Opret opgave");
+		this();
 		this.parentTask = task;
 		if (task.getGroup() != null)
 			group = task.getGroup();
 		if (task.getProject() != null)
 			project = task.getProject();
-		setExec(exec);
 	}
 }

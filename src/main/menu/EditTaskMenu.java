@@ -96,7 +96,7 @@ public class EditTaskMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addToProject();
-//			ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
+			// ProjectDAO pdao = DAOFactory.getInstance().getProjectDAO();
 			// SelectProject sp = new SelectProject(pdao.getAll()); //TODO
 			// pdao.allProjects metode skal oprettes
 			// sp.print();
@@ -115,7 +115,7 @@ public class EditTaskMenu extends TextMenu {
 	});
 
 	private TextMenuItem editDeadline = new TextMenuItem("Rediger deadline", new Runnable() {
-		
+
 		@Override
 		public void run() {
 			edit.editDeadline();
@@ -126,9 +126,9 @@ public class EditTaskMenu extends TextMenu {
 			}
 		}
 	});
-	
+
 	private TextMenuItem editStatus = new TextMenuItem("Rediger status", new Runnable() {
-		
+
 		@Override
 		public void run() {
 			edit.editStatus();
@@ -139,9 +139,9 @@ public class EditTaskMenu extends TextMenu {
 			}
 		}
 	});
-	
+
 	private TextMenuItem editPriority = new TextMenuItem("Rediger prioritet", new Runnable() {
-		
+
 		@Override
 		public void run() {
 			edit.editPriority();
@@ -152,14 +152,15 @@ public class EditTaskMenu extends TextMenu {
 			}
 		}
 	});
-	
+
 	private TextMenuItem deleteTask = new TextMenuItem("Slet opgave", new Runnable() {
-		
+
 		@Override
 		public void run() {
-			if (SelectUtilities.confirm(edit.deleteTask()))
-				DAOFactory.getInstance().getTaskDAO().deleteTask();	//TODO mangler hvis vi skal være i stand til at slette tasks
-			
+			if (SelectUtilities.confirm(edit.deleteTask())) {
+				DAOFactory.getInstance().getTaskDAO().delete(task);
+				setExitLoop(true);
+			}
 		}
 	});
 
@@ -168,18 +169,7 @@ public class EditTaskMenu extends TextMenu {
 		this.task = task;
 		edit = new EditTask(task);
 		ManageMembersMenu manageMembers = new ManageMembersMenu(task);
-		addItems(showShortInfo, 
-				showTaskTree, 
-				editTitle, 
-				editDescription, 
-				manageMembers,
-				editOwner,
-				editStatus,
-				editPriority,
-				editDeadline,
-				(task.getGroup() == null ? addToGroup : removeFromGroup), 
-				(task.getProject() == null ? addToProject :	removeFromProject), 
-				new CreateTaskMenuItem(task),
-				deleteTask);
+		addItems(showShortInfo, showTaskTree, editTitle, editDescription, manageMembers, editOwner, editStatus, editPriority, editDeadline, (task.getGroup() == null ? addToGroup : removeFromGroup),
+				(task.getProject() == null ? addToProject : removeFromProject), new CreateTaskMenuItem(task), deleteTask);
 	}
 }

@@ -46,7 +46,8 @@ public class SelectEnum {
 		}
 		
 		String answer;
-		while(!(answer = ask()).equals("")) {
+		while(true) {
+			answer = ask();
 			int choice;
 			try {
 				choice = Integer.parseInt(answer);
@@ -54,16 +55,15 @@ public class SelectEnum {
 				System.out.print("Ugyldigt valg. ");
 				continue;
 			}
-			if(choice > 0 && choice < items.size()) {
+			if(choice >= 0 && choice < items.size()) {
 				return (T) items.get(choice);
 			} else {
 				System.out.print("Ugyldigt valg. ");
 			}
 		}
-		return null;
 	}
 	private static String ask() {
-		System.out.print("Vælg fra listen (angiv blankt input for at gå tilbage) >");
+		System.out.print("Vælg fra listen >");
 		return scanner.nextLine();
 	}
 	

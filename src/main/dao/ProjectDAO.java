@@ -26,6 +26,7 @@ public class ProjectDAO extends BaseDAO {
 	private static final String SQL_FIND_PROJECTS_WITHOUT_GROUP = "SELECT * FROM Projects WHERE p_Group_GroupId IS NULL";
 	
 	private static final String SQL_UPDATE = "UPDATE Project SET p_Title = ?, p_Description = ?, p_Owner_UserId = ?, p_Group_GroupId = ? WHERE p_ProjectId = ?";
+	private static final String SQL_DELETE = "DELETE FROM Project WHERE p_ProjectId = ?";
 	private static final String SQL_INSERT = "INSERT INTO Project (p_Title, p_Description, p_Owner_UserId, p_Group_GroupId) VALUES (?, ?, ?, ?)";
 
 	protected ProjectDAO(DAOFactory daoFactory) {
@@ -102,6 +103,10 @@ public class ProjectDAO extends BaseDAO {
 	
 	public List<Project> getByNotInGroup() {
 		return findMany(SQL_FIND_PROJECTS_WITHOUT_GROUP);
+	}
+	
+	public void delete(Project project) {
+		executeUpdate(SQL_DELETE, project.getProjectId());
 	}
 	
 	public void update(Project project) {

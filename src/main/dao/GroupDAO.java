@@ -21,6 +21,7 @@ public class GroupDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_OWNERSHIP = "SELECT * FROM `Group` WHERE g_Owner_UserId = ?";
 	
 	private static final String SQL_INSERT = "INSERT INTO `Group` (g_Title, g_Description, g_Owner_UserId) VALUES (?, ?, ?)";
+	private static final String SQL_DELETE = "DELETE FROM `Group` WHERE g_GroupId = ?";
 	private static final String SQL_UPDATE = "UPDATE `Group` SET g_Title = ?, g_Description = ?, g_Owner_UserId = ? WHERE g_GroupId = ?";
 	
 	protected GroupDAO(DAOFactory daoFactory) {
@@ -122,6 +123,10 @@ public class GroupDAO extends BaseDAO {
 		if(group.getGroupId() != 0) {
 			executeUpdate(SQL_UPDATE, group.getTitle(), group.getDescription(), group.getOwner().getUserId(), group.getGroupId());
 		}
+	}
+	
+	public void delete(Group group) {
+		executeUpdate(SQL_DELETE, group.getGroupId());
 	}
 	
 	private static Group map(ResultSet rs) throws SQLException {

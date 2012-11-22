@@ -34,7 +34,8 @@ public class TaskDAO extends BaseDAO {
 	private static final String SQL_FIND_TASKS_WITHOUT_PROJECT = "SELECT * FROM Task WHERE t_ProjectId IS NULL";
 	
 	private static final String SQL_UPDATE = "UPDATE Task SET t_Title = ?, t_Description = ?, t_Priority = ?, t_Status = ?, t_Deadline = ?, t_Owner_UserId = ?, t_EstimatedTime = ?, t_Updated = CURRENT_TIMESTAMP, t_GroupId = ?, t_ProjectId = ?, t_Parent_TaskId = ?, t_Root_TaskId = ? WHERE t_TaskId = ?";
-	private static final String SQL_INSERT = "INSERT INTO Task (t_Title, t_Description, t_Priority, t_Status, t_Deadline, t_Owner_UserId, t_EstimatedTime, t_GroupId, t_ProjectId, t_Parent_TaskId, t_Task_TaskId) VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)";
+	private static final String SQL_DELETE = "DELETE FROM Task WHERE t_TaskId = ?";
+	private static final String SQL_INSERT = "INSERT INTO Task (t_Title, t_Description, t_Priority, t_Status, t_Deadline, t_Owner_UserId, t_EstimatedTime, t_GroupId, t_ProjectId, t_Parent_TaskId, t_Root_TaskId) VALUES (?, ?, ?, ? ,?, ?, ?, ?, ?, ?, ?)";
 
 	protected TaskDAO(DAOFactory daoFactory) {
 		super(daoFactory);
@@ -123,6 +124,10 @@ public class TaskDAO extends BaseDAO {
 	
 	public List<Task> getByCollaboration(User user) {
 		return findMany(SQL_FIND_BY_COLLABORATION, user.getUserId());
+	}
+	
+	public void delete(Task task) {
+		executeUpdate(SQL_DELETE, task.getTaskId());
 	}
 	
 	public void update(Task task) {
