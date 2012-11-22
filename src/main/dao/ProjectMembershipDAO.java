@@ -15,21 +15,13 @@ public class ProjectMembershipDAO extends BaseDAO {
 	public void addMember(Project project, User user) {
 		addMember(project, user, PermissionLevel.USER);
 	}
-	
+
 	public void addMember(Project project, User user, PermissionLevel permissionLevel) {
-		if(!project.getMembers().contains(user) && !user.getProjects().contains(project)) {
-			executeUpdate(SQL_ADD_MEMBER, project.getProjectId(), user.getUserId(), permissionLevel.getCode());
-			project.getMembers().add(user);
-			user.getProjects().add(project);
-		}
+		executeUpdate(SQL_ADD_MEMBER, project.getProjectId(), user.getUserId(), permissionLevel.getCode());
 	}
-	
+
 	public void removeMember(Project project, User user) {
-		if(project.getMembers().contains(user) && user.getProjects().contains(project)) {
-			executeUpdate(SQL_REMOVE_MEMBER, project.getProjectId(), user.getUserId());
-			project.getMembers().remove(user);
-			user.getProjects().remove(project);
-		}
+		executeUpdate(SQL_REMOVE_MEMBER, project.getProjectId(), user.getUserId());
 	}
 
 }

@@ -4,10 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import main.dao.DAOFactory;
+import main.enums.PermissionLevel;
 import main.enums.Priority;
 import main.enums.Status;
 
-public class Task extends BaseModel {
+public class Task extends BaseModel implements IMembership {
 	private int taskId;
 	private Priority priority;
 	private Status status;
@@ -263,6 +264,25 @@ public class Task extends BaseModel {
 	@Override
 	public int getId() {
 		return taskId;
+	}
+
+	@Override
+	public void addMember(User user) {
+		if(!getCollaborators().contains(user)) {
+			DAOFactory.getInstance().getTaskAssignmentDAO().addAssignemnt(this, user);
+		}
+	}
+
+	@Override
+	public void addMember(User user, PermissionLevel pl) {
+		addMember(user);
+	}
+
+	@Override
+	public void removeMember(User user) {
+		if(getCollaborators().contains(user)) {
+			DAOFactory.getInstance().getTaskAssignmentDAO().removeMember(this, user);
+		}
 	}
 
 }

@@ -26,19 +26,11 @@ public class GroupMembershipDAO extends BaseDAO {
 	}
 	
 	public void addMember(Group group, User user, PermissionLevel permissionLevel) {
-		if(!group.getMembers().contains(user) && !user.getGroups().contains(group)) {
-			executeUpdate(SQL_ADD_MEMBER, group.getGroupId(), user.getUserId(), permissionLevel.getCode());
-			group.getMembers().add(user);
-			user.getGroups().add(group);
-		}
+		executeUpdate(SQL_ADD_MEMBER, group.getGroupId(), user.getUserId(), permissionLevel.getCode());
 	}
 	
 	public void removeMember(Group group, User user) {
-		if(group.getMembers().contains(user) && user.getGroups().contains(group)) {
-			executeUpdate(SQL_REMOVE_MEMBER, group.getGroupId(), user.getUserId());
-			group.getMembers().remove(user);
-			user.getGroups().remove(group);
-		}
+		executeUpdate(SQL_REMOVE_MEMBER, group.getGroupId(), user.getUserId());
 	}
 
 }

@@ -85,7 +85,7 @@ public class TimeEntry extends BaseModel {
 		if(this.timeEntryId == 0) {
 			insert();
 		} else {
-//			update();
+			update();
 		}
 	}
 

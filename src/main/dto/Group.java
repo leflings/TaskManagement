@@ -3,8 +3,9 @@ package main.dto;
 import java.util.List;
 
 import main.dao.DAOFactory;
+import main.enums.PermissionLevel;
 
-public class Group extends BaseModel {
+public class Group extends BaseModel implements IMembership {
 
 	private int groupId;
 	private String title;
@@ -117,5 +118,24 @@ public class Group extends BaseModel {
 	@Override
 	public int getId() {
 		return groupId;
+	}
+
+	@Override
+	public void addMember(User user) {
+		addMember(user, PermissionLevel.USER);
+	}
+
+	@Override
+	public void addMember(User user, PermissionLevel pl) {
+		if(!getMembers().contains(user)) {
+			DAOFactory.getInstance().getGroupMembershipDAO().addMember(this, user, pl);
+		}
+	}
+
+	@Override
+	public void removeMember(User user) {
+		if(getMembers().contains(user)) {
+			DAOFactory.getInstance().getGroupMembershipDAO().removeMember(this, user);
+		}
 	}
 }

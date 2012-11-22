@@ -3,8 +3,9 @@ package main.dto;
 import java.util.List;
 
 import main.dao.DAOFactory;
+import main.enums.PermissionLevel;
 
-public class Project extends BaseModel {
+public class Project extends BaseModel implements IMembership {
 	private int projectId;
 	private String title;
 	private String description;
@@ -127,5 +128,24 @@ public class Project extends BaseModel {
 	@Override
 	public int getId() {
 		return projectId;
+	}
+
+	@Override
+	public void addMember(User user) {
+		addMember(user, PermissionLevel.USER);
+	}
+
+	@Override
+	public void addMember(User user, PermissionLevel permissionLevel) {
+		if(!getMembers().contains(user)) {
+			DAOFactory.getInstance().getProjectMembershipDAO().addMember(this, user, permissionLevel);
+		}
+	}
+
+	@Override
+	public void removeMember(User user) {
+		if(getMembers().contains(user)) {
+			DAOFactory.getInstance().getProjectMembershipDAO().removeMember(this, user);
+		}
 	}
 }
