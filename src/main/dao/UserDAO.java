@@ -2,6 +2,7 @@ package main.dao;
 
 import static main.dao.DAOUtil.close;
 import static main.dao.DAOUtil.prepareStatement;
+import static main.dao.DAOUtil.setValues;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -100,8 +101,9 @@ public class UserDAO extends BaseDAO {
 		try {
 			connection = daoFactory.getConnection();
 			CallableStatement proc = connection.prepareCall("{call Login(?,?) }");
-			proc.setString(1, username);
-			proc.setString(2, password);
+//			proc.setString(1, username);
+//			proc.setString(2, password);
+			setValues(proc, username, password);
 	
 			resultSet = proc.executeQuery();
 			if (resultSet.next()) {
