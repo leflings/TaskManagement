@@ -2,6 +2,8 @@ package main.dto;
 
 import java.util.List;
 
+import main.dao.DAOFactory;
+
 public class User extends BaseModel {
 	
 	private int userId;
@@ -93,7 +95,23 @@ public class User extends BaseModel {
 //		}
 		return getFactory().getTimeEntryDAO().getByUser(this);
 	}
-
+	
+	public void save() {
+		if(this.userId == 0) {
+			insert();
+		} else {
+			update();
+		}
+	}
+	
+	private void insert() {
+		DAOFactory.getInstance().getUserDAO().insert(this);
+	}
+	
+	private void update() {
+		DAOFactory.getInstance().getUserDAO().update(this);
+	}
+	
     @Override
     public boolean equals(Object other) {
     	return (other instanceof User) && (other != null) ? getUserId() == (((User) other).getUserId()) : (other == this);

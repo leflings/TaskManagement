@@ -24,7 +24,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setName(SelectUtilities.inputEdit(edit.editUserName()));
+			Application.User().setUsername(SelectUtilities.inputEdit(edit.editUserName()));
 			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});
@@ -33,7 +33,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setName(SelectUtilities.inputEdit(edit.editEmail()));
+			Application.User().setEmail(SelectUtilities.inputEdit(edit.editEmail()));
 			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});
@@ -42,7 +42,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setName(SelectUtilities.inputEdit(edit.editPassword()));
+			Application.User().setPassword(SelectUtilities.inputEdit(edit.editPassword()));
 			DAOFactory.getInstance().getUserDAO().update(Application.User());
 		}
 	});

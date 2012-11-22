@@ -3,6 +3,7 @@ package main.dto;
 import java.util.Date;
 import java.util.List;
 
+import main.dao.DAOFactory;
 import main.enums.Priority;
 import main.enums.Status;
 
@@ -231,6 +232,22 @@ public class Task extends BaseModel {
 			timeEntries = getFactory().getTimeEntryDAO().getByTask(this);
 		}
 		return timeEntries;
+	}
+	
+	public void save() {
+		if(this.taskId == 0) {
+			insert();
+		} else {
+			update();
+		}
+	}
+	
+	private void insert() {
+		DAOFactory.getInstance().getTaskDAO().insert(this);
+	}
+	
+	private void update() {
+		DAOFactory.getInstance().getTaskDAO().update(this);
 	}
 	
 	@Override

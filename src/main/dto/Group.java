@@ -2,6 +2,8 @@ package main.dto;
 
 import java.util.List;
 
+import main.dao.DAOFactory;
+
 public class Group extends BaseModel {
 
 	private int groupId;
@@ -89,6 +91,22 @@ public class Group extends BaseModel {
 			members.add(getOwner());
 		}
 		return members;
+	}
+	
+	public void save() {
+		if(this.groupId == 0) {
+			insert();
+		} else {
+			update();
+		}
+	}
+	
+	private void insert() {
+		DAOFactory.getInstance().getGroupDAO().insert(this);
+	}
+	
+	private void update() {
+		DAOFactory.getInstance().getGroupDAO().update(this);
 	}
 	
 	@Override

@@ -2,6 +2,8 @@ package main.dto;
 
 import java.util.List;
 
+import main.dao.DAOFactory;
+
 public class Project extends BaseModel {
 	private int projectId;
 	private String title;
@@ -96,6 +98,22 @@ public class Project extends BaseModel {
 			members.add(getOwner());
 		}
 		return members;
+	}
+	
+	public void save() {
+		if(this.projectId == 0) {
+			insert();
+		} else {
+			update();
+		}
+	}
+	
+	private void insert() {
+		DAOFactory.getInstance().getProjectDAO().insert(this);
+	}
+	
+	private void update() {
+		DAOFactory.getInstance().getProjectDAO().update(this);
 	}
 	
 	@Override

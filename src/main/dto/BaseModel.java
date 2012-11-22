@@ -8,6 +8,7 @@ public abstract class BaseModel {
 	
 	public abstract int getId();
 	public abstract String toString();
+	public abstract void save();
 	
 	final DAOFactory getFactory() {
 		if(factory == null ) {

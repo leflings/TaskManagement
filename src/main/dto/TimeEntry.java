@@ -2,6 +2,7 @@ package main.dto;
 
 import java.util.Date;
 
+import main.dao.DAOFactory;
 import main.utilities.UserIOUtil;
 
 public class TimeEntry extends BaseModel {
@@ -79,7 +80,22 @@ public class TimeEntry extends BaseModel {
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	
+	public void save() {
+		if(this.timeEntryId == 0) {
+			insert();
+		} else {
+//			update();
+		}
+	}
 
+	private void insert() {
+		DAOFactory.getInstance().getTimeEntryDAO().insert(this);
+	}
+	
+	private void update() {
+	}
+	
 	@Override
 	public String toString() {
 		return String.format("[%s -> %s : %s]", getUser(), getTask(), UserIOUtil.printDate(getDate()));
