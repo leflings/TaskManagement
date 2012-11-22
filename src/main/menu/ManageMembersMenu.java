@@ -2,7 +2,6 @@ package main.menu;
 
 import java.util.List;
 
-import main.dao.BaseDAO;
 import main.dao.DAOFactory;
 import main.dao.GroupMembershipDAO;
 import main.dao.ProjectMembershipDAO;

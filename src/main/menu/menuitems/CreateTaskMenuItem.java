@@ -11,6 +11,7 @@ import main.enums.Priority;
 import main.enums.Status;
 import main.menu.TextMenuItem;
 import main.utilities.UserIOUtil;
+import main.views.SelectEnum;
 
 public class CreateTaskMenuItem extends TextMenuItem {
 
@@ -33,6 +34,9 @@ public class CreateTaskMenuItem extends TextMenuItem {
 			
 			description = UserIOUtil.getNonEmptyString("Indtast opgave beskrivelse");
 			deadline = UserIOUtil.askForDateAndTime();	//TODO hvordan håndterer vi at tildele priority og status
+			priority = SelectEnum.getPriority();
+			status = SelectEnum.getStatus();
+			
 			
 			Task task = new Task();
 			task.setTitle(title);

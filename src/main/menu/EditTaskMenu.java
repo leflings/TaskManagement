@@ -8,11 +8,13 @@ import main.dao.UserDAO;
 import main.dto.Group;
 import main.dto.Task;
 import main.dto.User;
+import main.enums.Priority;
 import main.enums.Status;
 import main.menu.menuitems.CreateTaskMenuItem;
 import main.utilities.SelectUtilities;
 import main.utilities.UserIOUtil;
 import main.views.EditTask;
+import main.views.SelectEnum;
 import main.views.SelectItem;
 import main.views.ViewTaskTree;
 import main.views.ViewTask;
@@ -116,6 +118,7 @@ public class EditTaskMenu extends TextMenu {
 		
 		@Override
 		public void run() {
+			edit.editDeadline();
 			Date deadline = UserIOUtil.askForDateAndTime();
 			if (deadline != null) {
 				task.setDeadline(deadline);
@@ -128,36 +131,25 @@ public class EditTaskMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Status status = null;
-			
-			task.setStatus(status);
+			edit.editStatus();
+			Status status = SelectEnum.getStatus();
+			if (status != null) {
+				task.setStatus(status);
+				DAOFactory.getInstance().getTaskDAO().update(task);
+			}
 		}
 	});
 	
-	// TextMenuItem addChildTask = new TextMenuItem("Tilføj en underopgave", new
-	// Runnable() {
-	//
-	// @Override
-	// public void run() {
-	// edit.addChildTask();
-	// TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
-	// List<Task> tasks = tdao.getByNoParent();
-	// SelectTask st = new SelectTask(tasks);
-	// st.print();
-	// DAOFactory.getInstance().getGeneralDAO().addChildToParent(st.getResult(),
-	// task);
-	// }
-	// });
-
-	private TextMenuItem removeChildTask = new TextMenuItem("Fjern en underopgave", new Runnable() {
-
+	private TextMenuItem editPriority = new TextMenuItem("Rediger prioritet", new Runnable() {
+		
 		@Override
 		public void run() {
-			edit.removeChildTask();
-			// SelectTask st = new SelectTask(task.getChildTasks());
-			// st.print();
-			// DAOFactory.getInstance().getGeneralDAO().removeChildFromParent(st.getResult(),
-			// task);
+			edit.editPriority();
+			Priority priority = SelectEnum.getPriority();
+			if (priority != null) {
+				task.setPriority(priority);
+				DAOFactory.getInstance().getTaskDAO().update(task);
+			}
 		}
 	});
 	
@@ -182,9 +174,12 @@ public class EditTaskMenu extends TextMenu {
 				editDescription, 
 				manageMembers,
 				editOwner,
+				editStatus,
+				editPriority,
 				editDeadline,
 				(task.getGroup() == null ? addToGroup : removeFromGroup), 
 				(task.getProject() == null ? addToProject :	removeFromProject), 
-				new CreateTaskMenuItem(task));
+				new CreateTaskMenuItem(task),
+				deleteTask);
 	}
 }
