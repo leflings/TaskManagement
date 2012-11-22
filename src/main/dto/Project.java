@@ -138,14 +138,23 @@ public class Project extends BaseModel implements IMembership {
 	@Override
 	public void addMember(User user, PermissionLevel permissionLevel) {
 		if(!getMembers().contains(user)) {
-			DAOFactory.getInstance().getProjectMembershipDAO().addMember(this, user, permissionLevel);
+			getFactory().getProjectMembershipDAO().addMember(this, user, permissionLevel);
 		}
 	}
 
 	@Override
 	public void removeMember(User user) {
 		if(getMembers().contains(user)) {
-			DAOFactory.getInstance().getProjectMembershipDAO().removeMember(this, user);
+			getFactory().getProjectMembershipDAO().removeMember(this, user);
+		}
+	}
+
+	@Override
+	public PermissionLevel getPermissionLevel(User user) {
+		if(getOwner() == user) {
+			return PermissionLevel.OWNER;
+		} else {
+			return getFactory().getPermissionLevelDAO().fromProject(this, user);
 		}
 	}
 }

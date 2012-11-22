@@ -95,11 +95,11 @@ public class User extends BaseModel {
 	}
 
 	private void insert() {
-		DAOFactory.getInstance().getUserDAO().insert(this);
+		getFactory().getUserDAO().insert(this);
 	}
 
 	private void update() {
-		DAOFactory.getInstance().getUserDAO().update(this);
+		getFactory().getUserDAO().update(this);
 	}
 
 	@Override

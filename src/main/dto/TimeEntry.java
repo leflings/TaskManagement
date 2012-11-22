@@ -90,7 +90,7 @@ public class TimeEntry extends BaseModel {
 	}
 
 	private void insert() {
-		DAOFactory.getInstance().getTimeEntryDAO().insert(this);
+		getFactory().getTimeEntryDAO().insert(this);
 	}
 	
 	private void update() {

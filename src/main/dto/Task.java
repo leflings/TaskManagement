@@ -8,7 +8,7 @@ import main.enums.PermissionLevel;
 import main.enums.Priority;
 import main.enums.Status;
 
-public class Task extends BaseModel implements IMembership {
+public class Task extends BaseModel implements IAssignable {
 	private int taskId;
 	private Priority priority;
 	private Status status;
@@ -267,22 +267,19 @@ public class Task extends BaseModel implements IMembership {
 	}
 
 	@Override
-	public void addMember(User user) {
+	public void addCollaborator(User user) {
 		if(!getCollaborators().contains(user)) {
-			DAOFactory.getInstance().getTaskAssignmentDAO().addAssignemnt(this, user);
+			getFactory().getTaskAssignmentDAO().addAssignemnt(this, user);
 		}
+		
 	}
 
 	@Override
-	public void addMember(User user, PermissionLevel pl) {
-		addMember(user);
-	}
-
-	@Override
-	public void removeMember(User user) {
+	public void removeCollaborator(User user) {
 		if(getCollaborators().contains(user)) {
-			DAOFactory.getInstance().getTaskAssignmentDAO().removeMember(this, user);
+			getFactory().getTaskAssignmentDAO().removeMember(this, user);
 		}
+		
 	}
 
 }

@@ -93,11 +93,11 @@ public class Group extends BaseModel implements IMembership {
 	}
 
 	private void insert() {
-		DAOFactory.getInstance().getGroupDAO().insert(this);
+		getFactory().getGroupDAO().insert(this);
 	}
 
 	private void update() {
-		DAOFactory.getInstance().getGroupDAO().update(this);
+		getFactory().getGroupDAO().update(this);
 	}
 
 	@Override
@@ -127,15 +127,24 @@ public class Group extends BaseModel implements IMembership {
 
 	@Override
 	public void addMember(User user, PermissionLevel pl) {
-		if(!getMembers().contains(user)) {
-			DAOFactory.getInstance().getGroupMembershipDAO().addMember(this, user, pl);
+		if (!getMembers().contains(user)) {
+			getFactory().getGroupMembershipDAO().addMember(this, user, pl);
 		}
 	}
 
 	@Override
 	public void removeMember(User user) {
-		if(getMembers().contains(user)) {
-			DAOFactory.getInstance().getGroupMembershipDAO().removeMember(this, user);
+		if (getMembers().contains(user)) {
+			getFactory().getGroupMembershipDAO().removeMember(this, user);
+		}
+	}
+
+	@Override
+	public PermissionLevel getPermissionLevel(User user) {
+		if (getOwner() == user) {
+			return PermissionLevel.OWNER;
+		} else {
+			return getFactory().getPermissionLevelDAO().fromGroup(this, user);
 		}
 	}
 }
