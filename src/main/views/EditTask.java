@@ -11,11 +11,11 @@ public class EditTask {		//TODO overvej om edit views skal implementere BaseView
 	}
 
 	public String editName() {
-		return "Det nuværende opgave navn er: " + task.getTitle() + "\nIndtast det nye opgave navn: ";
+		return "Det nuværende opgave navn er: " + task.getTitle() + "\nIndtast det nye opgave navn";
 	}
 
 	public String editDescription() {
-		return "Den nuværende beskrivelse af opgaven er: " + task.getDescription() + "\nIndtast din nye beskrivelse: ";
+		return "Den nuværende beskrivelse af opgaven er: " + task.getDescription() + "\nIndtast din nye beskrivelse";
 	}
 
 	public void addUser() {

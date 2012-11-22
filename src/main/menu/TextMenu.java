@@ -10,6 +10,8 @@ import java.util.List;
 public class TextMenu extends TextMenuItem {
 	
 	private static final int MENU_COLUMN_WIDTH = 30;
+	private static final int MINIMUM_ROWS = 3;
+	
 	private boolean exitLoop = false;
 	
 	public void setExitLoop(boolean bool) {
@@ -54,9 +56,9 @@ public class TextMenu extends TextMenuItem {
 	}
 
 	private void display() {
-
-		int columnLength = items.size() / 3 + (items.size() % 3 == 0 ? 0 : 1);
-		int rows = Math.min(Math.max(3, columnLength), items.size());
+		
+		int columnLength = items.size() / MINIMUM_ROWS + (items.size() % MINIMUM_ROWS == 0 ? 0 : 1);
+		int rows = Math.min(Math.max(MINIMUM_ROWS, columnLength), items.size());
 		String rowFormat = "[%2d] : %-"+MENU_COLUMN_WIDTH+"s";
 		System.out.println("\n== " + getTitle() + " ==");
 		for (int i = 0; i < rows; i++) {

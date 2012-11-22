@@ -8,6 +8,7 @@ import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
 import main.dto.User;
+import main.enums.Status;
 import main.menu.menuitems.CreateTaskMenuItem;
 import main.utilities.SelectUtilities;
 import main.utilities.UserIOUtil;
@@ -41,7 +42,7 @@ public class EditTaskMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			task.setTitle(SelectUtilities.inputEdit(edit.editName()));
+			task.setTitle(SelectUtilities.prompt(edit.editName()));
 			task.save();
 		}
 	});
@@ -50,7 +51,7 @@ public class EditTaskMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			task.setDescription(SelectUtilities.inputEdit(edit.editDescription()));
+			task.setDescription(SelectUtilities.prompt(edit.editDescription()));
 			task.save();
 		}
 	});
@@ -157,13 +158,25 @@ public class EditTaskMenu extends TextMenu {
 			}
 		}
 	});
+	
+	private TextMenuItem finishTask = new TextMenuItem("Afslut opgave", new Runnable() {
+		
+		@Override
+		public void run() {
+			if(SelectUtilities.confirm("Vil du afslutte denne opgave?")) {
+				task.setStatus(Status.FINISHED);
+				task.save();
+			}
+			
+		}
+	});
 
 	public EditTaskMenu(Task task) {
 		super("Opgave menu", true, false);
 		this.task = task;
 		edit = new EditTask(task);
 		ManageMembersMenu manageMembers = new ManageMembersMenu(task);
-		addItems(showShortInfo, showTaskTree, editTitle, editDescription, editStatus, editPriority, editDeadline,
+		addItems(showShortInfo, showTaskTree, finishTask, editTitle, editDescription, editStatus, editPriority, editDeadline,
 				new CreateTaskMenuItem(task));
 		if(task.getOwner().equals(Application.User())) {
 			addItems((task.getProject() == null ? addToProject : removeFromProject), manageMembers, (task.getGroup() == null ? addToGroup : removeFromGroup), editOwner, deleteTask);

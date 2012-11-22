@@ -24,7 +24,7 @@ public class EditProjectMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			project.setTitle(SelectUtilities.inputEdit(edit.editName()));
+			project.setTitle(SelectUtilities.prompt(edit.editName()));
 			project.save();
 		}
 	});
@@ -33,7 +33,7 @@ public class EditProjectMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			project.setDescription(SelectUtilities.inputEdit(edit.editDescription()));
+			project.setDescription(SelectUtilities.prompt(edit.editDescription()));
 			project.save();
 		}
 	});

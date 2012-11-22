@@ -11,11 +11,11 @@ public class EditGroup {
 	}
 	
 	public String editName() {
-		return "Det nuværende gruppenavn er: " + group.getTitle() + "\nIndtast det nye gruppenavn: ";
+		return "Det nuværende gruppenavn er: " + group.getTitle() + "\nIndtast det nye gruppenavn";
 	}
 	
 	public String editDescription() {
-		return "Den nuværende beskrivelse af gruppen er: " + group.getDescription() + "\nIndtast din nye beskrivelse: ";
+		return "Den nuværende beskrivelse af gruppen er: " + group.getDescription() + "\nIndtast din nye beskrivelse";
 	}
 	
 	public void addUser() {

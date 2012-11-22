@@ -11,11 +11,11 @@ public class EditProject {
 	}
 	
 	public String editName() {
-		return "Det nuværende projektnavn er: " + project.getTitle() + "\nIndtast det nye projektnavn: ";
+		return "Det nuværende projektnavn er: " + project.getTitle() + "\nIndtast det nye projektnavn";
 	}
 	
 	public String editDescription() {
-		return "Den nuværende beskrivelse af projektet er: " + project.getDescription() + "\nIndtast din nye beskrivelse: ";
+		return "Den nuværende beskrivelse af projektet er: " + project.getDescription() + "\nIndtast din nye beskrivelse";
 	}
 	
 	public void addUser() {
@@ -36,7 +36,7 @@ public class EditProject {
 	}
 	
 	public String removeFromGroup() {
-		return "Er du sikker på du vil fjerne dette projekt fra gruppen: " + project.getGroup().getTitle();
+		return "Er du sikker på du vil fjerne dette projekt fra gruppen " + project.getGroup().getTitle();
 	}
 	
 	public void addTask() {

@@ -12,7 +12,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setName(SelectUtilities.inputEdit(edit.editName()));
+			Application.User().setName(SelectUtilities.prompt(edit.editName()));
 			Application.User().save();
 		}
 	});
@@ -21,7 +21,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setUsername(SelectUtilities.inputEdit(edit.editUserName()));
+			Application.User().setUsername(SelectUtilities.prompt(edit.editUserName()));
 			Application.User().save();
 		}
 	});
@@ -30,7 +30,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setEmail(SelectUtilities.inputEdit(edit.editEmail()));
+			Application.User().setEmail(SelectUtilities.prompt(edit.editEmail()));
 			Application.User().save();
 		}
 	});
@@ -39,7 +39,7 @@ public class EditUserMenu extends TextMenu {
 		
 		@Override
 		public void run() {
-			Application.User().setPassword(SelectUtilities.inputEdit(edit.editPassword()));
+			Application.User().setPassword(SelectUtilities.prompt(edit.editPassword()));
 			Application.User().save();
 		}
 	});

@@ -24,7 +24,7 @@ public class EditGroupMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			group.setTitle(SelectUtilities.inputEdit(edit.editName()));
+			group.setTitle(SelectUtilities.prompt(edit.editName()));
 			group.save();
 		}
 	});
@@ -33,7 +33,7 @@ public class EditGroupMenu extends TextMenu {
 
 		@Override
 		public void run() {
-			group.setTitle(SelectUtilities.inputEdit(edit.editDescription()));
+			group.setTitle(SelectUtilities.prompt(edit.editDescription()));
 			group.save();
 		}
 	});
