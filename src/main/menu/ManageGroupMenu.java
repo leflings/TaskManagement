@@ -2,6 +2,7 @@ package main.menu;
 
 import main.Application;
 import main.dto.Group;
+import main.menu.menuitems.CreateGroupMenuItem;
 import main.views.SelectItem;
 
 public class ManageGroupMenu extends TextMenu {
@@ -23,17 +24,9 @@ public class ManageGroupMenu extends TextMenu {
 		}
 	});
 	
-	private TextMenuItem newGroup = new TextMenuItem("New Group", new Runnable() {
-		
-		@Override
-		public void run() {
-			System.out.println("Opret nyt Group");
-		}
-	});
-	
 	public ManageGroupMenu() {
 		super("Manage groups", true, false);
-		addItems(viewGroups, searchGroups, newGroup);
+		addItems(viewGroups, searchGroups, new CreateGroupMenuItem());
 	}
 
 }

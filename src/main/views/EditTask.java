@@ -47,15 +47,19 @@ public class EditTask {		//TODO overvej om edit views skal implementere BaseView
 		return "Er du sikker på du vil fjerne denne opgave fra projektet" + task.getProject().getTitle();
 	}
 
-	public void addChildTask() {
-	}
-	
-	public void removeChildTask() {
+	public String deleteTask() {
+		return "Er du sikker på du ønsker at slette denne opgave?";
 	}
 
-	public void addToParentTask() {
+	public void editStatus() {
+		System.out.println("Den nuværende status på opgaven er: " + task.getStatus().toString());
 	}
 
-	public void removeFromParentTask() {
+	public void editDeadline() {
+		System.out.println("Den nuværende deadline for opgaven er: " + task.getDeadline());
+	}
+
+	public void editPriority() {
+		System.out.println("Den nuværende prioritet for opgaven er: " + task.getPriority());
 	}
 }
