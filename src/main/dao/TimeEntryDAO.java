@@ -1,6 +1,9 @@
 package main.dao;
 
-import static main.dao.DAOUtil.*;
+import static main.dao.DAOUtil.close;
+import static main.dao.DAOUtil.dateFromSqlTimestamp;
+import static main.dao.DAOUtil.prepareStatement;
+import static main.dao.DAOUtil.sqlTimestampFromDate;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,6 +19,7 @@ import main.exceptions.DAOException;
 
 public class TimeEntryDAO extends BaseDAO {
 
+	private static final String SQL_FIND_BY_ID = "SELECT * FROM TimeEntry WHERE te_TimeEntryId = ?";
 	private static final String SQL_FIND_ALL = "SELECT * FROM TimeEntry";
 	private static final String SQL_FIND_BY_USER = "SELECT * FROM TimeEntry WHERE te_UserId = ?";
 	private static final String SQL_FIND_BY_TASK = "SELECT * FROM TimeEntry WHERE te_TaskId = ?";
@@ -79,6 +83,14 @@ public class TimeEntryDAO extends BaseDAO {
 		return findMany(SQL_FIND_ALL);
 	}
 	
+	public TimeEntry get(int timeEntryId) {
+		return find(SQL_FIND_BY_ID, timeEntryId);
+	}
+	
+	public TimeEntry get(TimeEntry timeEntry) {
+		return get(timeEntry.getId());
+	}
+	
 	public List<TimeEntry> getByUser(User user) {
 		return findMany(SQL_FIND_BY_USER, user.getUserId());
 	}
@@ -115,7 +127,8 @@ public class TimeEntryDAO extends BaseDAO {
 			}
 			generatedKeys = preparedStatement.getGeneratedKeys();
 			if (generatedKeys.next()) {
-				timeEntry.setTimeEntryId(generatedKeys.getInt(1));
+				int x = generatedKeys.getInt(1);
+				timeEntry.setTimeEntryId(x);
 			} else {
 				throw new DAOException("Creating task failed, no generated key obtained.");
 			}

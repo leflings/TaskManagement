@@ -27,7 +27,7 @@ public class TimeEntry extends BaseModel {
 	}
 	
 	public void setTimeEntryId(int timeEntryId) {
-		if(timeEntryId == 0) {
+		if(timeEntryId != 0) {
 			this.timeEntryId = timeEntryId;
 		}
 	}
