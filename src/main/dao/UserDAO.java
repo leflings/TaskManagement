@@ -26,7 +26,6 @@ public class UserDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM User WHERE u_UserId = ?";
 	private static final String SQL_FIND_BY_USERNAME = "SELECT * FROM User WHERE u_Username = ?";
 	private static final String SQL_FIND = "SELECT * FROM User";
-	private static final String SQL_FIND_BY_LOGIN = "SELECT * FROM User WHERE u_Username = ? AND u_Password = ?";
 	
 	private static final String SQL_FIND_BY_NOT_IN_GROUP = "SELECT u.* FROM User u WHERE u.u_UserId NOT IN (SELECT gm.gm_UserId FROM GroupMembership gm WHERE gm.gm_GroupId = ?) AND u.u_UserId NOT IN (SELECT g.g_Owner_UserId FROM `Group` g WHERE g.g_GroupId = ?)";
 	private static final String SQL_FIND_BY_NOT_IN_PROJECT = "SELECT u.* FROM User u WHERE u.u_UserId NOT IN (SELECT pm.pm_UserId FROM ProjectMembership pm WHERE pm.pm_ProjectId = ?) AND u.u_UserId NOT IN (SELECT p.p_Owner_UserId FROM Project p WHERE p.p_ProjectId = ?)";

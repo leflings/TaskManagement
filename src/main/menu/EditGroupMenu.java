@@ -79,6 +79,17 @@ public class EditGroupMenu extends TextMenu {
 			}
 		}
 	});
+	
+	private TextMenuItem deleteGroup = new TextMenuItem("Slet gruppe", new Runnable() {
+		
+		@Override
+		public void run() {
+			if (SelectUtilities.confirm(edit.deleteGroup())) {
+				DAOFactory.getInstance().getGroupDAO().delete(group);
+				setExitLoop(true);
+			}
+		}
+	});
 
 	private TextMenuItem addTask = new TextMenuItem("Tilføj en opgave til gruppen", new Runnable() {
 
@@ -99,8 +110,7 @@ public class EditGroupMenu extends TextMenu {
 		@Override
 		public void run() {
 			edit.addTask();
-			List<Task> tasks = DAOFactory.getInstance().getTaskDAO().getByGroup(group);
-			Task task = SelectItem.getSelection(tasks);
+			Task task = SelectItem.getSelection(group.getTasks());
 			if (task != null) {
 				task.setGroup(null);
 				task.save();
@@ -116,9 +126,9 @@ public class EditGroupMenu extends TextMenu {
 		PermissionLevel pl = group.getPermissionLevel(Application.User());
 		switch (pl) {
 		case OWNER:
-			addItems(editOwner, new CreateProjectMenuItem(group), addProject, removeProject);
+			addItems(editOwner, new CreateProjectMenuItem(group), addProject, removeProject, deleteGroup);
 		case ADMIN:
-			addItems(manageMembers, editGroupTitle, editGroupDescription, new CreateTaskMenuItem(group));
+			addItems(manageMembers, editGroupTitle, editGroupDescription, new CreateTaskMenuItem(group), addTask, removeTask);
 		case SUPERVISOR:
 		case USER:
 		default:

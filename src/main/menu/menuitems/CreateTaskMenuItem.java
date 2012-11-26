@@ -70,11 +70,22 @@ public class CreateTaskMenuItem extends TextMenuItem {
 		this.group = group;
 	}
 	
+	public CreateTaskMenuItem(Group group, String title) {
+		this(group);
+		setTitle(title);
+	}
+	
+	
 	public CreateTaskMenuItem(Project project) {
 		this();
 		this.project = project;
 		if (project.getGroup() != null)
 			group = project.getGroup();
+	}
+	
+	public CreateTaskMenuItem(Project project, String title) {
+		this(project);
+		setTitle(title);
 	}
 	
 	public CreateTaskMenuItem(Task task) {
@@ -85,5 +96,10 @@ public class CreateTaskMenuItem extends TextMenuItem {
 			group = task.getGroup();
 		if (task.getProject() != null)
 			project = task.getProject();
+	}
+	
+	public CreateTaskMenuItem(Task task, String title) {
+		this(task);
+		setTitle(title);
 	}
 }

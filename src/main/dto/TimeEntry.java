@@ -2,7 +2,6 @@ package main.dto;
 
 import java.util.Date;
 
-import main.dao.DAOFactory;
 import main.utilities.UserIOUtil;
 
 public class TimeEntry extends BaseModel {
@@ -98,7 +97,7 @@ public class TimeEntry extends BaseModel {
 	
 	@Override
 	public String toString() {
-		return String.format("[%s -> %s : %s]", getUser(), getTask(), UserIOUtil.printDate(getDate()));
+		return String.format("[%s -> %s : %s (%d min)]", getUser(), getTask(), UserIOUtil.printDate(getDate()), getDuration());
 	}
 	
     @Override

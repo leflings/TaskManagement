@@ -22,8 +22,9 @@ public class ProjectDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_GROUP_ID = "SELECT * FROM Project WHERE p_Group_GroupId = ?";
 	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Project WHERE p_Owner_UserId = ?";
 	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT p.* FROM Project p INNER JOIN ProjectMembership pm ON pm.pm_ProjectId = p.p_ProjectId AND pm.pm_UserId = ?";
+	private static final String SQL_FIND_USERS_GROUPS = "SELECT p.* FROM Project p WHERE p.p_Owner_UserId = ? OR p.p_ProjectId IN (SELECT pm.pm_ProjectId FROM ProjectMembership pm WHERE pm.pm_UserId = ?)";
 	
-	private static final String SQL_FIND_PROJECTS_WITHOUT_GROUP = "SELECT * FROM Projects WHERE p_Group_GroupId IS NULL";
+	private static final String SQL_FIND_PROJECTS_WITHOUT_GROUP = "SELECT * FROM Project WHERE p_Group_GroupId IS NULL";
 	
 	private static final String SQL_UPDATE = "UPDATE Project SET p_Title = ?, p_Description = ?, p_Owner_UserId = ?, p_Group_GroupId = ? WHERE p_ProjectId = ?";
 	private static final String SQL_DELETE = "DELETE FROM Project WHERE p_ProjectId = ?";
@@ -83,6 +84,10 @@ public class ProjectDAO extends BaseDAO {
 	
 	public List<Project> getAll() {
 		return findMany(SQL_FIND_ALL);
+	}
+	
+	public List<Project> getByOwnerAndMembership(User user) {
+		return findMany(SQL_FIND_USERS_GROUPS, user.getId(), user.getId());
 	}
 	
 	public List<Project> getByGroup(Group group) {

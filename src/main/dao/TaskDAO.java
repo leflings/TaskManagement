@@ -21,6 +21,7 @@ import main.exceptions.DAOException;
 
 public class TaskDAO extends BaseDAO {
 
+	private static final String SQL_FIND_BY_OWNER_AND_COLLABORATION = "SELECT t.* FROM Task t WHERE t.t_Owner_UserId = ? OR t.t_TaskId IN (SELECT ta.ta_TaskId FROM TaskAssignment ta WHERE ta.ta_UserId = ?)";
 	private static final String SQL_FIND_BY_COLLABORATION = "SELECT t.* FROM Task t INNER JOIN TaskAssignment ta ON ta.ta_TaskId = t.t_TaskId AND ta.ta_UserId = ?";
 	private static final String SQL_FIND_BY_OWNER = "SELECT * FROM Task WHERE t_Owner_UserId = ?";
 	private static final String SQL_FIND_BY_PARENT_ID = "SELECT * FROM Task WHERE t_Parent_TaskId = ?";
@@ -98,6 +99,9 @@ public class TaskDAO extends BaseDAO {
 		return findMany(SQL_FIND_TASKS_WITHOUT_GROUP);
 	}
 	
+	public List<Task> getByOwnershipAndCollaboration(User user) {
+		return findMany(SQL_FIND_BY_OWNER_AND_COLLABORATION, user.getId(), user.getId());
+	}
 	public List<Task> getByOwner(User owner) {
 		return findMany(SQL_FIND_BY_OWNER, owner.getUserId());
 	}

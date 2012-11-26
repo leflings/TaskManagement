@@ -25,7 +25,7 @@ public class SelectItem {
 				continue;
 			}
 			if(choice > 0 && choice <= items.size()) {
-				return (T) items.get(choice-1);
+				return items.get(choice-1);
 			} else {
 				System.out.print("Ugyldigt valg. ");
 			}

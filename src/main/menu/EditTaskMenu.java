@@ -177,7 +177,7 @@ public class EditTaskMenu extends TextMenu {
 		edit = new EditTask(task);
 		ManageMembersMenu manageMembers = new ManageMembersMenu(task);
 		addItems(showShortInfo, showTaskTree, finishTask, editTitle, editDescription, editStatus, editPriority, editDeadline,
-				new CreateTaskMenuItem(task));
+				new CreateTaskMenuItem(task, "Opret underopgave"));
 		if(task.getOwner().equals(Application.User())) {
 			addItems((task.getProject() == null ? addToProject : removeFromProject), manageMembers, (task.getGroup() == null ? addToGroup : removeFromGroup), editOwner, deleteTask);
 			

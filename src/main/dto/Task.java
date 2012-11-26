@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import main.dao.DAOFactory;
-import main.enums.PermissionLevel;
 import main.enums.Priority;
 import main.enums.Status;
 
@@ -198,7 +197,9 @@ public class Task extends BaseModel implements IAssignable {
 	}
 
 	public Task getRootTask() {
-		rootTask = getFactory().getTaskDAO().getById(rootTaskId);
+		if(rootTask == null && rootTaskId != 0) {
+			rootTask = getFactory().getTaskDAO().getById(rootTaskId);
+		}
 		return rootTask;
 	}
 
@@ -264,18 +265,12 @@ public class Task extends BaseModel implements IAssignable {
 
 	@Override
 	public void addCollaborator(User user) {
-		if (!getCollaborators().contains(user)) {
-			getFactory().getTaskAssignmentDAO().addAssignemnt(this, user);
-		}
-
+		getFactory().getTaskAssignmentDAO().addAssignemnt(this, user);
 	}
 
 	@Override
 	public void removeCollaborator(User user) {
-		if (getCollaborators().contains(user)) {
-			getFactory().getTaskAssignmentDAO().removeMember(this, user);
-		}
-
+		getFactory().getTaskAssignmentDAO().removeMember(this, user);
 	}
 
 }

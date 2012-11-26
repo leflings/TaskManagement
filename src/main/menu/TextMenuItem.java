@@ -18,6 +18,10 @@ public class TextMenuItem implements Runnable {
 		return title;
 	}
 	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 	public boolean isExec() {
 		return exec != null;
 	}

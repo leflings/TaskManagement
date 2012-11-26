@@ -10,6 +10,10 @@ public class EditProject {
 		this.project = project;
 	}
 	
+	public String deleteProject() {
+		return "Er du sikker på at du vil slette dette projekt?";
+	}
+	
 	public String editName() {
 		return "Det nuværende projektnavn er: " + project.getTitle() + "\nIndtast det nye projektnavn";
 	}

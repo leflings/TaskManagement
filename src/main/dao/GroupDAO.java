@@ -19,6 +19,7 @@ public class GroupDAO extends BaseDAO {
 	private static final String SQL_FIND_BY_ID = "SELECT * FROM `Group` WHERE g_GroupId = ?";
 	private static final String SQL_FIND_BY_MEMBERSHIP = "SELECT g.* FROM `Group` g INNER JOIN GroupMembership gm ON gm.gm_GroupId = g.g_GroupId AND gm.gm_UserId = ?";
 	private static final String SQL_FIND_BY_OWNERSHIP = "SELECT * FROM `Group` WHERE g_Owner_UserId = ?";
+	private static final String SQL_FIND_BY_MEMBER_OWNERSHIP = "SELECT g.* FROM `Group` g WHERE g.g_Owner_UserId = ? OR g.g_GroupId IN (SELECT gm.gm_GroupId FROM GroupMembership gm WHERE gm.gm_UserId = ?)";
 	
 	private static final String SQL_INSERT = "INSERT INTO `Group` (g_Title, g_Description, g_Owner_UserId) VALUES (?, ?, ?)";
 	private static final String SQL_DELETE = "DELETE FROM `Group` WHERE g_GroupId = ?";
@@ -75,6 +76,10 @@ public class GroupDAO extends BaseDAO {
 
 	public Group getById(int groupId) {
 		return find(SQL_FIND_BY_ID, groupId);
+	}
+	
+	public List<Group> getByOwnerAndMembership(User user) {
+		return findMany(SQL_FIND_BY_MEMBER_OWNERSHIP, user.getUserId(), user.getUserId());
 	}
 
 	public List<Group> getByMembership(User user) {

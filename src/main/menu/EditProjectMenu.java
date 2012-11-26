@@ -4,7 +4,6 @@ import java.util.List;
 
 import main.Application;
 import main.dao.DAOFactory;
-import main.dao.TaskDAO;
 import main.dto.Group;
 import main.dto.Project;
 import main.dto.Task;
@@ -76,17 +75,29 @@ public class EditProjectMenu extends TextMenu {
 			}
 		}
 	});
+	
+	private TextMenuItem deleteProject = new TextMenuItem("Slet projekt", new Runnable() {
+		
+		@Override
+		public void run() {
+			if (SelectUtilities.confirm(edit.deleteProject())) {
+				DAOFactory.getInstance().getProjectDAO().delete(project);
+				setExitLoop(true);
+			}
+		}
+	});
 
 	private TextMenuItem addTask = new TextMenuItem("Tilføj en opgave til projektet", new Runnable() {
 
 		@Override
 		public void run() {
 			edit.addTask();
-			TaskDAO tdao = DAOFactory.getInstance().getTaskDAO();
-			List<Task> tasks = tdao.getAll();
+			List<Task> tasks = DAOFactory.getInstance().getTaskDAO().getTasksWithoutProject();
 			Task task = SelectItem.getSelection(tasks);
 			if (task != null) {
-				DAOFactory.getInstance().getGeneralDAO().addTaskToProject(project, task);
+				task.setProject(project);
+				task.setGroup(project.getGroup());
+				task.save();
 			}
 		}
 	});
@@ -98,7 +109,11 @@ public class EditProjectMenu extends TextMenu {
 			edit.removeTask();
 			Task task = SelectItem.getSelection(project.getTasks());
 			if (task != null) {
-				DAOFactory.getInstance().getGeneralDAO().removeTaskFromProject(project, task);
+				task.setProject(null);
+				if(project.getGroup() != null) {
+					task.setGroup(null);
+				}
+				task.save();
 			}
 		}
 	});
@@ -110,9 +125,9 @@ public class EditProjectMenu extends TextMenu {
 		ManageMembersMenu manageMembers = new ManageMembersMenu(project);
 		switch (project.getPermissionLevel(Application.User())) {
 		case OWNER:
-			addItems(editOwner, (project.getGroup() == null ? addToGroup : removeFromGroup));
+			addItems(editOwner, (project.getGroup() == null ? addToGroup : removeFromGroup), deleteProject);
 		case ADMIN:
-			addItems(editTitle, editDescription, manageMembers);
+			addItems(editTitle, editDescription, manageMembers, addTask, removeTask);
 		case SUPERVISOR:
 		case USER:
 			addItems(new CreateTaskMenuItem(project));
