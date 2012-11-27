@@ -30,7 +30,6 @@ public class TimeEntryDAO extends BaseDAO {
 		super(daoFactory);
 	}
 
-	@SuppressWarnings("unused")
 	private TimeEntry find(String sql, Object ... values) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
