@@ -50,7 +50,6 @@ public class GroupDAO extends BaseDAO {
 		}
 
 		return groups;
-
 	}
 
 	private Group find(String sql, Object... values) {

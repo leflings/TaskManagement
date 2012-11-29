@@ -8,7 +8,7 @@ import main.exceptions.DAOConfigurationException;
 
 public class DAOProperties {
 
-	public static final String CONNECTION_NAME = "flemming_localhost";
+	public static final String CONNECTION_NAME = "connection";
 	private static final String PROPERTIES_FILE = "dao.properties";
 	private static final Properties PROPERTIES = new Properties();
 
